@@ -194,10 +194,10 @@ module.exports = {
       we.db.models['system-setting']
       .bulkCreate([{
         key: 'siteName',
-        value: 'Nome da organização',
+        value: 'Saúde é meu lugar',
       }, {
         key: 'siteDescription',
-        value: `Em breve!`,
+        value: `Versão digital da Mostra 'Saúde é Meu Lugar - Vivências no Território`,
       }, {
         key: 'emailContact',
         value: `nao-responda <alberto@linkysystems.com>`,

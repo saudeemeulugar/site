@@ -48,6 +48,8 @@ module.exports = function loadPlugin(projectPath, Plugin) {
     }
   });
 
+  plugin.setResource({ name: 'history' });
+
   plugin.setResource({
     name: 'content',
     findAll: {

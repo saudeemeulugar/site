@@ -61,5 +61,6 @@ files/sync-*
 exported-data
 install-local.js
 
-server/themes
+server/themes/*
+!server/themes/one-page-new-age
 

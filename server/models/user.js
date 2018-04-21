@@ -111,6 +111,7 @@ module.exports = function UserModel(we) {
         formFieldType: null
       }
     },
+    associations: {},
     options: {
       enableAlias: false,
       titleField: 'displayName',
