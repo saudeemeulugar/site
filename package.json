@@ -6,9 +6,9 @@
   "main": "./app.js",
   "scripts": {
     "session": "LOG_LV=verbose REDIS_URL=redis://127.0.0.1:9479/1 PORT=9400 node app.js --dev",
-    "session-prod": "REDIS_URL=redis://127.0.0.1:9479/1 PORT=9490 node app.js --prod",
+    "session-prod": "LOG_LV=verbose REDIS_URL=redis://127.0.0.1:9479/1 PORT=9400 node app.js --prod",
     "watch": "supervisor -w server,config,plugin.js app.js",
-    "build": "gulp build",
+    "build": "LOG_LV=verbose REDIS_URL=redis://127.0.0.1:9479/1 PORT=9409 gulp build",
     "deploy": "git push prod master && git push prod master:prod",
     "dev": "node app.js --dev",
     "verbose": "node app.js --prod",
