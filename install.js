@@ -105,22 +105,74 @@ module.exports = {
         function createMainMenu(done) {
           we.db.models.menu.create({
             name: 'main',
-            class: ''
+            class: 'main-menu'
           })
           .then(function (r){
             we.log.info('New menu with name: '+r.name+' and id: '+r.id);
             // then create menu links
             we.db.models.link.bulkCreate([
               {
-                href: '/about',
-                text: 'Sobre',
-                title: 'About',
+                'href': '/',
+                'text': 'Início',
+                class: 'link-home',
+                'type': 'custom',
+                'depth': 0,
+                'weight': 1,
                 menuId: r.id
               },
               {
-                href: '/site-contact',
-                text: 'Contato',
-                title: 'Entre em contato',
+                'href': '/about',
+                'text': 'Sobre',
+                class: 'link-about',
+                'title': 'About',
+                'depth': 0,
+                'weight': 2,
+                menuId: r.id
+              },
+              {
+                'href': '/historias',
+                'text': 'Histórias',
+                class: 'link-history',
+                'type': 'custom',
+                'depth': 0,
+                'weight': 3,
+                menuId: r.id
+              },
+              {
+                'href': '/',
+                'text': 'Mídias',
+                class: 'link-midia',
+                'type': 'custom',
+                'depth': 0,
+                'weight': 4,
+                menuId: r.id
+              },
+              {
+                'href': '/blog',
+                'text': 'Blog',
+                class: 'link-log',
+                'type': 'custom',
+                'depth': 0,
+                'weight': 5,
+                menuId: r.id
+              },
+
+              {
+                'href': '/history/create',
+                'text': 'Participar',
+                class: 'link-create-history',
+                'type': 'custom',
+                'depth': 0,
+                'weight': 7,
+                menuId: r.id
+              },
+              {
+                'href': '/login',
+                'text': 'Entrar',
+                class: 'link-login',
+                'userRole': 'unAuthenticated',
+                'depth': 0,
+                'weight': 8,
                 menuId: r.id
               }
             ])
@@ -129,7 +181,6 @@ module.exports = {
               return null;
             })
             .catch(done);
-
             return null;
           })
           .catch(done);
