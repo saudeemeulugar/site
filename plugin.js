@@ -138,5 +138,10 @@ module.exports = function loadPlugin(projectPath, Plugin) {
 
   plugin.events.on('we:after:load:plugins', plugin.setMetatagHandlers);
 
+  plugin.events.on('we:after:load:express', (we)=> {
+    const adminFiles = path.join( __dirname, 'client/admin/prod');
+    we.express.use('/admin', we.utils.express.static(adminFiles));
+  });
+
   return plugin;
 };
