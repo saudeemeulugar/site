@@ -252,6 +252,12 @@ module.exports = {
       }, {
         key: 'emailContact',
         value: `nao-responda <alberto@linkysystems.com>`,
+      }, {
+        key: 'menuMainId',
+        value: '1'
+      }, {
+        key: 'menuSocialId',
+        value: '2'
       }])
       .spread( ()=> {
         we.log.info('First system-setting created');
