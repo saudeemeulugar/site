@@ -148,9 +148,9 @@ module.exports = {
                 menuId: r.id
               },
               {
-                'href': '/blog',
-                'text': 'Blog',
-                class: 'link-log',
+                'href': '/news',
+                'text': 'Notícias',
+                class: 'link-news',
                 'type': 'custom',
                 'depth': 0,
                 'weight': 5,
