@@ -46,10 +46,10 @@ module.exports = function HModel(we) {
         allowNull: true
       },
 
-      // videos: {
-      //   type: we.db.Sequelize.VIRTUAL,
-      //   formFieldType: 'video-upload'
-      // },
+      uploadedVideoID: {
+        type: we.db.Sequelize.STRING,
+        allowNull: true
+      },
 
       youtubeVideoUrl: {
         type: we.db.Sequelize.TEXT,
