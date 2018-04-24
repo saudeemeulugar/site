@@ -7661,6 +7661,9 @@ body.iframe-page-type footer {
   color: #fff;
   text-decoration: underline;
 }
+.form-control.select2-hidden-accessible {
+  width: 1px;
+}
 #region-sidebar .widget-mailchimp-subscription-form {
   margin-bottom: 20px;
   padding: 15px;

@@ -1,0 +1,28 @@
+{
+  "method": "post",
+
+  "fields": {
+    "title": {
+      "type": "text",
+      "allowNull": false
+    },
+    "body": {
+      "type": "html",
+      "allowNull": true,
+      "formFieldType": "html",
+      "formFieldHeight": 400
+    },
+    "tags": {
+      "type": "vocabulary/tag",
+      "vocabularyName": "Tags",
+      "canCreate": true,
+      "formFieldMultiple": true,
+      "onlyLowercase": true
+    }
+  },
+  "actions": {
+    "avancar": {
+      "type": "submit"
+    }
+  }
+}

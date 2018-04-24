@@ -8,6 +8,7 @@
 
 
 const path = require('path'),
+  youtube = require('./lib/youtube.js'),
   metatagContentFindAll = require('./lib/metatags/metatagContentFindAll.js'),
   metatagContentFindOne = require('./lib/metatags/metatagContentFindOne.js');
 
@@ -21,6 +22,20 @@ module.exports = function loadPlugin(projectPath, Plugin) {
       },
       'view_dashboard': { title: '' },
       'edit_terms_of_use': { title: '' }
+    },
+
+    API_KEYS: {
+      youtube: {
+        client_id: null,
+        client_secret: null,
+        redirect_uri: null
+      }
+    },
+
+    forms: {
+      'history1': __dirname + '/server/forms/history1.json',
+      'history2': __dirname + '/server/forms/history2.json',
+      'history3': __dirname + '/server/forms/history2.json'
     }
   });
 
@@ -45,10 +60,64 @@ module.exports = function loadPlugin(projectPath, Plugin) {
       template: 'terms-of-use',
       action: 'termsOfUse',
       permission: true
+    },
+
+    // authorizatio and refresh token restrival
+    'get /auth/youtube/authenticate': {
+      controller: 'video',
+      action: 'authenticate',
+      permission: 'manage_youtube_upload'
+    },
+
+    'get /auth/youtube/refresh-token': {
+      controller: 'video',
+      action: 'refreshToken',
+      permission: 'manage_youtube_upload'
     }
   });
 
-  plugin.setResource({ name: 'history' });
+  const imageMimeTypes = [
+    'application/vnd.apple.mpegurl',
+    'application/x-mpegurl',
+    'video/3gpp',
+    'video/mp4',
+    'video/mpeg',
+    'video/ogg',
+    'video/quicktime',
+    'video/webm',
+    'video/x-m4v',
+    'video/ms-asf',
+    'video/x-ms-wmv',
+    'video/x-msvideo'
+  ];
+
+  const historyUPConfig = {
+    limits: {
+      fieldNameSize: 250,
+      fileSize: 250 * 1000000, // 250MB
+      fieldSize: 750 * 1000000 // 750MB
+    },
+    fileFilter(req, file, cb) {
+      if (imageMimeTypes.indexOf(file.mimetype) < 0) {
+        req.we.log.warn('Video:onFileUploadStart: Invalid file type for file:', file)
+        return cb(null, false)
+      }
+      cb(null, true);
+    },
+    fields: [{
+      name: 'videos', maxCount: 3
+    }]
+  };
+
+  plugin.setResource({
+    name: 'history',
+    // create: {
+    //   upload: historyUPConfig
+    // },
+    edit: {
+      upload: historyUPConfig
+    }
+  });
 
   plugin.setResource({
     name: 'content',
@@ -135,6 +204,8 @@ module.exports = function loadPlugin(projectPath, Plugin) {
     }
     next();
   }
+
+  youtube.init(plugin.we);
 
   plugin.events.on('we:after:load:plugins', plugin.setMetatagHandlers);
 

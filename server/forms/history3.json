@@ -1,0 +1,25 @@
+{
+  "method": "post",
+
+  "fields": {
+    "email": {
+      "type": "email",
+      "allowNull": false
+    },
+    "password": {
+      "type": "password",
+      "allowNull": false
+    },
+    "persistent": {
+      "type": "boolean"
+    }
+  },
+  "actions": {
+    "voltar": {
+      "type": "submit"
+    },
+    "avancar": {
+      "type": "submit"
+    }
+  }
+}

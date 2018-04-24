@@ -35,14 +35,9 @@ module.exports = function HModel(we) {
         type: we.db.Sequelize.STRING,
         allowNull: false
       },
-      about: {
-        type: we.db.Sequelize.TEXT,
-        allowNull: false,
-        formFieldType: 'textarea',
-      },
       body: {
         type: we.db.Sequelize.TEXT,
-        allowNull: false,
+        allowNull: true,
         formFieldType: 'html',
         formFieldHeight: 400
       },
@@ -50,6 +45,18 @@ module.exports = function HModel(we) {
         type: we.db.Sequelize.DATE,
         allowNull: true
       },
+
+      // videos: {
+      //   type: we.db.Sequelize.VIRTUAL,
+      //   formFieldType: 'video-upload'
+      // },
+
+      youtubeVideoUrl: {
+        type: we.db.Sequelize.TEXT,
+        allowNull: true,
+        formFieldType: 'string'
+      },
+
       categoryItem: {
         type: we.db.Sequelize.VIRTUAL,
         get() {
