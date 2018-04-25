@@ -1,0 +1,31 @@
+{
+  "method": "post",
+
+  "fields": {
+    "cellphone": {
+      "type": "phone/cell",
+      "allowNull": false
+    },
+    "phone": {
+      "type": "phone/cell",
+      "allowNull": false
+    },
+    "cpf": {
+      "type": "gov-br/cpf",
+      "allowNull": true
+    },
+    "passaporte": {
+      "type": "gov-br/passaporte",
+      "allowNull": true
+    },
+    "estrangeiro": {
+      "type": "gov-br/brasileiro-seletor",
+      "allowNull": false
+    }
+  },
+  "actions": {
+    "salvar": {
+      "type": "submit"
+    }
+  }
+}

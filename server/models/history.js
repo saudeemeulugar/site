@@ -57,6 +57,32 @@ module.exports = function HModel(we) {
         formFieldType: 'string'
       },
 
+      publishAsAnonymous: {
+        type: we.db.Sequelize.BOOLEAN,
+        defaultValue: false
+      },
+
+      haveText: {
+        type: we.db.Sequelize.BOOLEAN,
+        defaultValue: true,
+        formFieldType: null
+      },
+      haveImage: {
+        type: we.db.Sequelize.BOOLEAN,
+        defaultValue: false,
+        formFieldType: null
+      },
+      haveVideo: {
+        type: we.db.Sequelize.BOOLEAN,
+        defaultValue: false,
+        formFieldType: null
+      },
+      haveAudio: {
+        type: we.db.Sequelize.BOOLEAN,
+        defaultValue: false,
+        formFieldType: null
+      },
+
       categoryItem: {
         type: we.db.Sequelize.VIRTUAL,
         get() {

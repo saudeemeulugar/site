@@ -361,6 +361,15 @@ braces@^2.3.1:
     split-string "^3.0.2"
     to-regex "^3.0.1"
 
+brasil@0.0.38:
+  version "0.0.38"
+  resolved "https://registry.yarnpkg.com/brasil/-/brasil-0.0.38.tgz#ccf7793277b67376716c41a58a1fa0f1847ac866"
+  dependencies:
+    gammautils "0.0.67"
+    iconv-lite "^0.4.3"
+    pdfkit "^0.7.0"
+    request "^2.37.0"
+
 browser-stdout@1.3.1:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/browser-stdout/-/browser-stdout-1.3.1.tgz#baa559ee14ced73452229bad7326467c61fabd60"
@@ -1334,6 +1343,10 @@ fsevents@^1.0.0:
     nan "^2.9.2"
     node-pre-gyp "^0.9.0"
 
+gammautils@0.0.67:
+  version "0.0.67"
+  resolved "https://registry.yarnpkg.com/gammautils/-/gammautils-0.0.67.tgz#383244dc756a0f08ca6146d2c3c396d3812660b6"
+
 gauge@~2.7.3:
   version "2.7.4"
   resolved "https://registry.yarnpkg.com/gauge/-/gauge-2.7.4.tgz#2c03405c7538c39d7eb37b317022e325fb018bf7"
@@ -1843,7 +1856,7 @@ iconv-lite@0.4.19:
   version "0.4.19"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.19.tgz#f7468f60135f5e5dad3399c0a81be9a1603a082b"
 
-iconv-lite@^0.4.18, iconv-lite@^0.4.4:
+iconv-lite@^0.4.18, iconv-lite@^0.4.3, iconv-lite@^0.4.4:
   version "0.4.21"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.21.tgz#c47f8733d02171189ebc4a400f3218d348094798"
   dependencies:
@@ -2227,6 +2240,12 @@ liftoff@^2.1.0:
     object.map "^1.0.0"
     rechoir "^0.6.2"
     resolve "^1.1.7"
+
+linebreak@~0.1.0:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/linebreak/-/linebreak-0.1.2.tgz#67ef2db4a4698902e87eba9a0ee4f8490aa717e6"
+  dependencies:
+    unicode-trie "^0.1.1"
 
 lodash._basecopy@^3.0.0:
   version "3.0.1"
@@ -2956,11 +2975,38 @@ passport-facebook@^2.1.1:
   dependencies:
     passport-oauth2 "1.x.x"
 
+passport-google-oauth1@1.x.x:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/passport-google-oauth1/-/passport-google-oauth1-1.0.0.tgz#af74a803df51ec646f66a44d82282be6f108e0cc"
+  dependencies:
+    passport-oauth1 "1.x.x"
+
+passport-google-oauth20@1.x.x:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/passport-google-oauth20/-/passport-google-oauth20-1.0.0.tgz#3b960e8a1d70d1dbe794615c827c68c40392a5d0"
+  dependencies:
+    passport-oauth2 "1.x.x"
+
+passport-google-oauth@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/passport-google-oauth/-/passport-google-oauth-1.0.0.tgz#65f50633192ad0627a18b08960077109d84eb76d"
+  dependencies:
+    passport-google-oauth1 "1.x.x"
+    passport-google-oauth20 "1.x.x"
+
 passport-local@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/passport-local/-/passport-local-1.0.0.tgz#1fe63268c92e75606626437e3b906662c15ba6ee"
   dependencies:
     passport-strategy "1.x.x"
+
+passport-oauth1@1.x.x:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/passport-oauth1/-/passport-oauth1-1.1.0.tgz#a7de988a211f9cf4687377130ea74df32730c918"
+  dependencies:
+    oauth "0.9.x"
+    passport-strategy "1.x.x"
+    utils-merge "1.x.x"
 
 passport-oauth2@1.x.x:
   version "1.4.0"
@@ -3014,6 +3060,13 @@ pause@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/pause/-/pause-0.0.1.tgz#1d408b3fdb76923b9543d96fb4c9dfd535d9cb5d"
 
+pdfkit@^0.7.0:
+  version "0.7.2"
+  resolved "https://registry.yarnpkg.com/pdfkit/-/pdfkit-0.7.2.tgz#a6e67512e56f6de2bdd7b63388f461b47baa8c97"
+  dependencies:
+    linebreak "~0.1.0"
+    png-js ">=0.1.0"
+
 performance-now@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
@@ -3029,6 +3082,10 @@ pify@^3.0.0:
 pluralize@^7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/pluralize/-/pluralize-7.0.0.tgz#298b89df8b93b0221dbf421ad2b1b1ea23fc6777"
+
+png-js@>=0.1.0:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/png-js/-/png-js-0.1.1.tgz#1cc7c212303acabe74263ec3ac78009580242d93"
 
 posix-character-classes@^0.1.0:
   version "0.1.1"
@@ -3226,7 +3283,7 @@ replace-ext@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/replace-ext/-/replace-ext-1.0.0.tgz#de63128373fcbf7c3ccfa4de5a480c45a67958eb"
 
-request@2.85.0, request@^2.81.0, request@^2.83.0, request@^2.85.0:
+request@2.85.0, request@^2.37.0, request@^2.81.0, request@^2.83.0, request@^2.85.0:
   version "2.85.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.85.0.tgz#5a03615a47c61420b3eb99b7dba204f83603e1fa"
   dependencies:
@@ -3971,6 +4028,10 @@ underscore@~1.7.0:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.7.0.tgz#6bbaf0877500d36be34ecaa584e0db9fef035209"
 
+unicode-trie@^0.1.1:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/unicode-trie/-/unicode-trie-0.1.2.tgz#bd3c528bc3360cafdf71f0863cbec29fc0e84ec8"
+
 union-value@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/union-value/-/union-value-1.0.0.tgz#5c71c34cb5bad5dcebe3ea0cd08207ba5aa1aea4"
@@ -4259,6 +4320,12 @@ we-plugin-google-analytics@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/we-plugin-google-analytics/-/we-plugin-google-analytics-1.2.0.tgz#8f65cc576e577b54b7b5c65be9a3552dbcca0ca7"
 
+we-plugin-gov-br@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/we-plugin-gov-br/-/we-plugin-gov-br-1.0.0.tgz#dcd390c5597829daa97dfcb5354d5aae5bc75c77"
+  dependencies:
+    brasil "0.0.38"
+
 we-plugin-group@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/we-plugin-group/-/we-plugin-group-2.0.0.tgz#c699064e27280b926fc5b850b4b177b94a22112c"
@@ -4266,6 +4333,10 @@ we-plugin-group@^2.0.0:
 we-plugin-i18n-api@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/we-plugin-i18n-api/-/we-plugin-i18n-api-1.0.0.tgz#c9e96ee7d99e875406d4986806a980171ce7923a"
+
+we-plugin-location@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/we-plugin-location/-/we-plugin-location-1.0.0.tgz#c164e1ae74d1c1b2a844b5f512f6b98fcfce678e"
 
 we-plugin-mailchimp-sb@^1.0.0:
   version "1.0.0"
@@ -4290,6 +4361,12 @@ we-plugin-passport-facebook@^1.3.0:
   resolved "https://registry.yarnpkg.com/we-plugin-passport-facebook/-/we-plugin-passport-facebook-1.3.0.tgz#4f502e4b14acb922f7f8cb24e23eeec000ad2190"
   dependencies:
     passport-facebook "^2.1.1"
+
+we-plugin-passport-google@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/we-plugin-passport-google/-/we-plugin-passport-google-1.1.0.tgz#37030ac5fafe46a68bae5a585fcd9737d7affe43"
+  dependencies:
+    passport-google-oauth "^1.0.0"
 
 we-plugin-search@^2.0.1:
   version "2.0.1"

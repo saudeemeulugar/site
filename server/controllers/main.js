@@ -23,5 +23,34 @@ module.exports = {
     }
 
     return res.goTo('/'+ss.termOfUseModel+'/'+ss.termOfUseId);
+  },
+
+  completeRegistration(req, res) {
+    if (!req.isAuthenticated()) return res.forbidden();
+
+    if (req.user.allRequirementsMet) {
+      return res.goTo('/user/'+req.user.id);
+    }
+
+    res.locals.data = req.user;
+    req.we.utils._.merge(res.locals.data, req.body);
+
+    if (req.method == 'POST') {
+      req.user.updateAttributes(req.body)
+      .then(function afterUpdate () {
+        if (req.user.allRequirementsMet) {
+          return res.goTo('/user/'+req.user.id);
+
+        } else {
+          res.addMessage('warning', {
+            text: 'fill.all.fields'
+          });
+          return res.ok();
+        }
+      })
+      .catch(res.queryError);
+    } else {
+      res.ok();
+    }
   }
 };

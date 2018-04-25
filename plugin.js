@@ -33,6 +33,7 @@ module.exports = function loadPlugin(projectPath, Plugin) {
     },
 
     forms: {
+      'complete-registration': __dirname + '/server/forms/complete-registration.json',
       'history1': __dirname + '/server/forms/history1.json',
       'history2': __dirname + '/server/forms/history2.json',
       'history3': __dirname + '/server/forms/history2.json'
@@ -73,6 +74,17 @@ module.exports = function loadPlugin(projectPath, Plugin) {
       controller: 'video',
       action: 'refreshToken',
       permission: 'manage_youtube_upload'
+    },
+
+    'get /complete-registration': {
+      controller: 'main',
+      action: 'completeRegistration',
+      template: 'user/complete-registration'
+    },
+    'post /complete-registration': {
+      controller: 'main',
+      action: 'completeRegistration',
+      template: 'user/complete-registration'
     }
   });
 
@@ -183,6 +195,28 @@ module.exports = function loadPlugin(projectPath, Plugin) {
     done();
   });
 
+  plugin.bindCPFRequirementRoute = function(we) {
+    we.express.use(function(req, res, next) {
+      if (
+        req.isAuthenticated() &&
+        !req.allRequirementsMet &&
+        req.originalUrl == '/'
+      ) {
+
+        // res.addMessage('warning', {
+        //   text: 'cpf.passport.required.to.continue'
+        // });
+
+        return res.goTo('/complete-registration');
+      }
+
+      next();
+    });
+  }
+
+  plugin.events.on('we:after:load:passport', plugin.bindCPFRequirementRoute);
+
+
   plugin.events.on('we:after:load:express', (we)=> {
 
     if (we.env == 'dev') {
@@ -213,6 +247,76 @@ module.exports = function loadPlugin(projectPath, Plugin) {
     const adminFiles = path.join( __dirname, 'client/admin/prod');
     we.express.use('/admin', we.utils.express.static(adminFiles));
   });
+
+  plugin.hooks.on('we:models:before:instance', function (we, done) {
+    const brasil = we.gov.br;
+    const brValid = brasil.validacoes;
+
+    // o usuário deve preencher o CPF ou o Passaporte de acordo com a flag que diz se ele é brasileiro ou não
+
+    // setando o campo de cpf
+    we.db.modelsConfigs.user.definition.cpf = {
+      type: we.db.Sequelize.STRING(11),
+      unique: true,
+      allowNull: true,
+      formFieldType: 'gov-br/cpf',
+      set: function onSetCPF(val) {
+        if (val) {
+          // remove a mascara de cpf ao setar o valor
+          this.setDataValue('cpf', brasil.formatacoes.removerMascara(val));
+        } else {
+          this.setDataValue('cpf', null);
+        }
+      },
+      validate: {
+        cpfIsValid: function cpfIsValid(val) {
+          if (val && !brValid.eCpf(val)) throw new Error('user.cpf.invalid');
+        }
+      }
+    }
+
+    we.db.modelsConfigs.user.definition.estrangeiro = {
+      type: we.db.Sequelize.BOOLEAN,
+      defaultValue: false,
+      formFieldType: 'gov-br/brasileiro-seletor',
+      set(val) {
+        if (!val) this.setDataValue('estrangeiro', null);
+        if ( Number(val) )
+          this.setDataValue('estrangeiro', Number(val) );
+        this.setDataValue('estrangeiro', null);
+      }
+    }
+
+    done();
+  });
+
+  plugin.CPFOrPassportValidation = function(we, next) {
+    we.db.models.user
+    .hook('beforeValidate', (user) => {
+      console.log('rodoou>beforeValidate');
+      let val = user.requerCpfOrPassport;
+      // skip cpf and passport requirement if is new record:
+      if (user.isNewRecord) {
+        return user;
+      }
+
+      if (!val || !we.utils._.trim(val)) {
+        if (!user.getDataValue('cpf')) {
+          // se for brasileiro, deve ter um cpf
+          throw new Error('user.cpf.required');
+        }
+      } else {
+        if (!user.getDataValue('passaporte') ) {
+          // se não for brasileiro deve ter um passaporte
+          throw new Error('user.passaporte.required');
+        }
+      }
+    });
+
+    next();
+  };
+
+  plugin.hooks.on('we:models:ready', plugin.CPFOrPassportValidation);
 
   return plugin;
 };

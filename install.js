@@ -17,6 +17,7 @@ module.exports = {
         email: 'alberto.souza.99@gmail.com',
         password: '123', // change after install
         displayName: 'Administrator',
+        cpf: '13044479797',
         active: true,
         roles: ['administrator']
       };
@@ -55,6 +56,7 @@ module.exports = {
         email: 'contato@albertosouza.net',
         password: '123', // change after install
         displayName: 'Alberto',
+        cpf: '73346725693',
         active: true,
         roles: []
       };

@@ -65,10 +65,38 @@ module.exports = function UserModel(we) {
         }
       },
 
+      cellphone: {
+        type: we.db.Sequelize.STRING,
+        allowNull: true,
+        formFieldType: 'phone/cell'
+      },
+
+      phone: {
+        type: we.db.Sequelize.STRING,
+        allowNull: true,
+        formFieldType: 'phone/cell'
+      },
+
       active: {
         type: we.db.Sequelize.BOOLEAN,
         defaultValue: false,
         formFieldType: null
+      },
+
+      allRequirementsMet: {
+        type: we.db.Sequelize.VIRTUAL,
+        get() {
+          if (
+            this.get('email') &&
+            this.get('displayName') &&
+            this.get('cpf') &&
+            this.get('cellphone') &&
+            this.get('phone')
+          ) {
+            return true;
+          }
+          return false;
+        }
       },
 
       language: {
