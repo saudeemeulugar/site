@@ -54,10 +54,18 @@ module.exports = {
       const user1 = {
         username: 'alberto',
         email: 'contato@albertosouza.net',
+        cpf: '73346725693',
         password: '123', // change after install
         displayName: 'Alberto',
-        cpf: '73346725693',
+        fullName: 'Alberto Souza Santos Júnior',
+        gender: 'M',
+        cellphone: '(21) 97643-4196',
+        phone: '(21) 3654-8862',
+        cep: '25251-397',
+        organization: ['Linky Systems'],
+        biography: `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus in iaculis ipsum, et interdum nibh. Nullam rutrum, ex non viverra pellentesque, est tellus auctor ex, non suscipit magna metus eu ipsum. Phasellus vitae iaculis magna. Nulla libero nulla, tincidunt sed aliquam eget, commodo eu nulla. Nam vel ante ipsum. Donec ac nibh malesuada, rhoncus enim ut, elementum purus. Morbi ut purus ut nibh imperdiet imperdiet sit amet et massa. Aliquam condimentum molestie quam vel placerat. In dapibus rutrum tincidunt. Suspendisse sodales posuere nisl sed blandit.</p>\r\n<p>Quisque rhoncus metus vel tortor egestas scelerisque. Aenean lobortis consequat urna, sed sollicitudin erat iaculis et. Nulla quis laoreet mauris. In a dolor in justo aliquet placerat sit amet vel arcu. Aenean et diam lorem. Donec vitae quam fringilla velit pretium malesuada eu id tellus. Maecenas et lorem condimentum urna fermentum auctor at at nunc. Maecenas rutrum volutpat nulla, in sagittis lectus fermentum sit amet. Integer condimentum nisi ac lectus suscipit, vitae finibus massa ultrices. Proin tempor tincidunt posuere. Integer lacinia sem ante, sed congue mi facilisis nec. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>\r\n<p>Proin id quam mattis, semper lorem sit amet, malesuada erat. Vivamus iaculis a magna nec volutpat. Suspendisse et nisl libero. Etiam auctor risus velit, a gravida orci eleifend in. Ut mollis magna porttitor lacus egestas, et feugiat nunc accumsan. Sed tincidunt bibendum suscipit. Aliquam at suscipit lorem, vel euismod felis. Curabitur libero ligula, vestibulum eu cursus vitae, consectetur quis purus. Morbi mattis arcu ut consequat posuere. Sed mauris urna, commodo sed velit in, condimentum accumsan erat. Phasellus dignissim at urna ornare maximus. Nunc dictum mi vel nulla maximus elementum. Sed dictum et risus quis pulvinar. Curabitur velit nulla, placerat id ipsum in, maximus consectetur orci. Cras ac velit ac erat tincidunt ultrices.</p>\r\n<p>Aliquam malesuada interdum nunc, id rhoncus metus feugiat blandit. Nam tincidunt urna sit amet laoreet ornare. Proin sem lectus, blandit ut varius sit amet, molestie in lectus. Ut felis nibh, pharetra in turpis id, molestie semper nibh. Mauris laoreet vitae nisl nec tincidunt. Curabitur condimentum lacus sed tincidunt posuere. Nulla elit massa, mattis at molestie eu, condimentum eget mauris. Vestibulum sodales sapien id sem dictum posuere. Nulla mattis magna in ornare luctus.</p>`,
         active: true,
+        acceptTerms: true,
         roles: []
       };
 
@@ -123,7 +131,7 @@ module.exports = {
                 menuId: r.id
               },
               {
-                'href': '/about',
+                'href': '/sobre',
                 'text': 'Sobre',
                 class: 'link-about',
                 'title': 'About',
@@ -150,7 +158,7 @@ module.exports = {
                 menuId: r.id
               },
               {
-                'href': '/news',
+                'href': '/noticias',
                 'text': 'Notícias',
                 class: 'link-news',
                 'type': 'custom',
@@ -197,19 +205,43 @@ module.exports = {
             // then create menu links
             we.db.models.link.bulkCreate([
               {
-                href: '#',
+                href: 'https://www.facebook.com/saudeemeulugar',
                 text: '<i class="fa fa-facebook"></i>',
-                title: 'Example',
+                title: 'Facebook',
                 menuId: r.id
               },
               {
-                href: '#',
+                href: 'https://twitter.com/saudeemeulugar',
                 text: '<i class="fa fa-twitter"></i>',
-                title: 'Example',
+                title: 'Twitter ',
+                menuId: r.id
+              },
+              {
+                href: 'https://medium.com/@saudeemeulugar',
+                text: '<i class="fa fa-medium"></i>',
+                title: 'Medium ',
+                menuId: r.id
+              },
+              {
+                href: 'http://instagram.com/saudeemeulugar',
+                text: '<i class="fa fa-instagram"></i>',
+                title: 'Instagram',
+                menuId: r.id
+              },
+              {
+                href: 'https://soundcloud.com/saude-e-meu-lugar',
+                text: '<i class="fa fa-soundcloud"></i>',
+                title: 'SoundCloud',
+                menuId: r.id
+              },
+              {
+                href: 'https://www.youtube.com/channel/UCjz3F1Y8e-mWu_7aZHJTyhg',
+                text: '<i class="fa fa-youtube"></i>',
+                title: 'Youtube',
                 menuId: r.id
               }
             ])
-            .then( ()=> {
+            .then(()=> {
               done();
               return null;
             })
@@ -233,7 +265,8 @@ module.exports = {
         body: 'Digite o texto sobre a organização aqui ...',
         publishedAt: new Date(),
         allowComments: false,
-        category: 'Página'
+        category: 'Página',
+        setAlias: 'sobre'
       })
       .then( ()=> {
         we.log.info('First contents created');
@@ -242,6 +275,43 @@ module.exports = {
       })
       .catch(done);
     });
+
+    fns.push(function createVocabulary(done) {
+      we.db.models.vocabulary
+      .bulkCreate([{
+        name: 'Organization',
+        description: 'Organizações registradas'
+      }, {
+        name: 'Professional Activity',
+        description: 'Atividade profícional'
+      }])
+      .spread( ()=> {
+        we.log.info('First vocabularies created');
+        done();
+        return null;
+      })
+      .catch(done);
+    });
+
+    fns.push(function createTermAlias(done) {
+      we.db.models['url-alia']
+      .bulkCreate([{
+        alias: '/historias',
+        target: '/history',
+        locale: 'pt-BR'
+      }, {
+        alias: '/noticias',
+        target: '/news',
+        locale: 'pt-BR'
+      }])
+      .spread( ()=> {
+        we.log.info('First url alias created');
+        done();
+        return null
+      })
+      .catch(done);
+    });
+
 
     fns.push(function createFirstSettings(done) {
       we.db.models['system-setting']
@@ -268,6 +338,21 @@ module.exports = {
       })
       .catch(done);
     });
+
+    fns.push(function registerLocations(done) {
+      we.log.info('Register all locations init');
+      let p = we.projectPath + '/node_modules/we-plugin-location/bin/registerAllLocations.js';
+      const rl = require(p);
+      rl.saveLocations(we, (err)=> {
+        if (err) {
+          we.log.error('Error on register all locations');
+        }
+
+        we.log.info('Register all locations done');
+        done();
+      });
+    });
+
 
     we.utils.async.series(fns, done);
   }

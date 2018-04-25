@@ -61,6 +61,10 @@ module.exports = function contentModel(we) {
 
           return null;
         }
+      },
+
+      setAlias: {
+        type: we.db.Sequelize.VIRTUAL
       }
     },
 

@@ -1,10 +1,22 @@
 {{we-avatar id=user.id style='medium' width="100%" class="img-thumbnail avatar"}}
+
+<h1 class="user-displayName">{{user.displayName}}</h1>
+{{#if user.atividade}}
+<div class="user-professional-activity"><i class="fa fa-briefcase" aria-hidden="true"></i>
+ {{user.atividade}}</div>
+{{/if}}
+
+{{#if user.locationText}}
+  <div class="user-location-data">
+    <i class="fa fa-map-o" aria-hidden="true"></i> {{user.locationText}}
+  </div>
+  <div class="user-location-map">
+
+  </div>
+{{/if}}
+
 <div class="user-actions">
   {{we-action-edit-btn 'user'  user this.req user.id redirectTo=this.req.url}}
-</div>
-<div class="user-biography">
-  {{we-strip-tags text=user.biography maxLength=500}}
-  {{!-- {{{user.biography}}} --}}
 </div>
 
 {{#region 'profileSidebar'}}{{/region}}

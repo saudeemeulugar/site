@@ -93,6 +93,10 @@ module.exports = function HModel(we) {
 
           return null;
         }
+      },
+
+      setAlias: {
+        type: we.db.Sequelize.VIRTUAL
       }
     },
 

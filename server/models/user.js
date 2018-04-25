@@ -9,7 +9,7 @@
 module.exports = function UserModel(we) {
   const model = {
     definition: {
-      username: {
+      username: { // deprecated!
         type: we.db.Sequelize.STRING,
         formFieldType: null,
       },
@@ -137,6 +137,32 @@ module.exports = function UserModel(we) {
         equals: true,
         allowNull: false,
         formFieldType: null
+      },
+
+      locationText: {
+        type: we.db.Sequelize.VIRTUAL,
+        get() {
+
+          const p = this.get('country');
+          if (!p) return '';
+
+          const s = this.get('locationState')
+          const c = this.get('city');
+
+          if (c) {
+            return s +' / '+ c;
+          }
+
+          if (s) {
+            return p +' / '+ s;
+          }
+
+          return p;
+        }
+      },
+
+      setAlias: {
+        type: we.db.Sequelize.VIRTUAL
       }
     },
     associations: {},
@@ -149,6 +175,12 @@ module.exports = function UserModel(we) {
           canCreate: true,
           formFieldMultiple: false,
           onlyLowercase: false
+        },
+        atividade: {
+          vocabularyName: 'Professional Activity',
+          canCreate: true,
+          formFieldMultiple: false,
+          onlyLowercase: true
         },
       },
       imageFields: {
@@ -188,16 +220,6 @@ module.exports = function UserModel(we) {
 
           if (res.locals.user) {
             res.locals.data = res.locals.user;
-
-            if (
-              res.locals.controller == 'user' &&
-              res.locals.action == 'findOne' &&
-              req.accepts('html')
-            ) {
-              res.goTo('/user/'+res.locals.data.id+'/post')
-              return null;
-            }
-
 
             if (
               res.locals.data.id &&

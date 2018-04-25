@@ -199,7 +199,7 @@ module.exports = function loadPlugin(projectPath, Plugin) {
     we.express.use(function(req, res, next) {
       if (
         req.isAuthenticated() &&
-        !req.allRequirementsMet &&
+        !req.user.allRequirementsMet &&
         req.originalUrl == '/'
       ) {
 
@@ -293,7 +293,6 @@ module.exports = function loadPlugin(projectPath, Plugin) {
   plugin.CPFOrPassportValidation = function(we, next) {
     we.db.models.user
     .hook('beforeValidate', (user) => {
-      console.log('rodoou>beforeValidate');
       let val = user.requerCpfOrPassport;
       // skip cpf and passport requirement if is new record:
       if (user.isNewRecord) {

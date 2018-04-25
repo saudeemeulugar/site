@@ -1,12 +1,31 @@
-<ul class="nav nav-tabs">
-  <li class="active">
-    <a href="{{data.linkPermanent}}">Postagens</a>
+<ul class="nav nav-tabs" role="tablist">
+  <li role="presentation" class="active">
+    <a href="#thistories" aria-controls="thistories" role="tab" data-toggle="tab">Histórias</a>
   </li>
-  <li>
-    <a href="/user/{{data.id}}/group">Grupos</a>
+  <li role="presentation">
+    <a href="#tabout" aria-controls="tabout" role="tab" data-toggle="tab">Sobre</a>
   </li>
 </ul>
+<div class="tab-content">
+  <div role="tabpanel" class="tab-pane active" id="thistories">
 
-{{#if req.user.id}}
-  {{template 'post/sharebox' locals=this}}
-{{/if}}
+    <div class="user-history-list">
+    Lista as histórias do usuário aqui ...
+
+      {{#each data.histories}}
+        <div class="user-history-teaser">
+          video, imagem, somPlaceholder, placeholder
+
+          <div class="basic-data">
+            <div class="title">|{{id}}| {{title}}</div>
+            Atualizado em: {{updatedAt}}
+          </div>
+        </div>
+      {{/each}}
+
+    </div>
+
+  </div>
+  <div role="tabpanel" class="tab-pane" id="tabout">{{{data.biography}}}
+  </div>
+</div>
