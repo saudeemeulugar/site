@@ -6,9 +6,7 @@
  * @return {Object}             intance of we.js Plugin class
  */
 
-
 const path = require('path'),
-  youtube = require('./lib/youtube.js'),
   metatagContentFindAll = require('./lib/metatags/metatagContentFindAll.js'),
   metatagContentFindOne = require('./lib/metatags/metatagContentFindOne.js');
 
@@ -34,9 +32,12 @@ module.exports = function loadPlugin(projectPath, Plugin) {
 
     forms: {
       'complete-registration': __dirname + '/server/forms/complete-registration.json',
+      'history-create': __dirname + '/server/forms/history-create.json',
       'history1': __dirname + '/server/forms/history1.json',
       'history2': __dirname + '/server/forms/history2.json',
-      'history3': __dirname + '/server/forms/history2.json'
+      'history3': __dirname + '/server/forms/history3.json',
+      'history4': __dirname + '/server/forms/history4.json',
+      'history5': __dirname + '/server/forms/history5.json'
     }
   });
 
@@ -56,26 +57,6 @@ module.exports = function loadPlugin(projectPath, Plugin) {
       responseType: 'json'
     },
 
-    'get /terms-of-use': {
-      controller: 'main',
-      template: 'terms-of-use',
-      action: 'termsOfUse',
-      permission: true
-    },
-
-    // authorizatio and refresh token restrival
-    'get /auth/youtube/authenticate': {
-      controller: 'video',
-      action: 'authenticate',
-      permission: 'manage_youtube_upload'
-    },
-
-    'get /auth/youtube/refresh-token': {
-      controller: 'video',
-      action: 'refreshToken',
-      permission: 'manage_youtube_upload'
-    },
-
     'get /complete-registration': {
       controller: 'main',
       action: 'completeRegistration',
@@ -85,51 +66,110 @@ module.exports = function loadPlugin(projectPath, Plugin) {
       controller: 'main',
       action: 'completeRegistration',
       template: 'user/complete-registration'
-    }
-  });
-
-  const imageMimeTypes = [
-    'application/vnd.apple.mpegurl',
-    'application/x-mpegurl',
-    'video/3gpp',
-    'video/mp4',
-    'video/mpeg',
-    'video/ogg',
-    'video/quicktime',
-    'video/webm',
-    'video/x-m4v',
-    'video/ms-asf',
-    'video/x-ms-wmv',
-    'video/x-msvideo'
-  ];
-
-  const historyUPConfig = {
-    limits: {
-      fieldNameSize: 250,
-      fileSize: 250 * 1000000, // 250MB
-      fieldSize: 750 * 1000000 // 750MB
     },
-    fileFilter(req, file, cb) {
-      if (imageMimeTypes.indexOf(file.mimetype) < 0) {
-        req.we.log.warn('Video:onFileUploadStart: Invalid file type for file:', file)
-        return cb(null, false)
+
+    'post /drive/get-upload-url': {
+      controller: 'gdrive',
+      action: 'getUploadUrl',
+      responseType: 'json'
+    },
+    // upload/complete google drive upload process
+    'post /drive/video/:id': {
+      controller: 'gdrive',
+      action: 'updateVideoMetadata',
+      model: 'video',
+      responseType: 'modal',
+      permission: 'upload_gdrive_video'
+    },
+
+    'get /user/:userId/video': {
+      controller: 'video',
+      action: 'find',
+      model: 'video',
+      permission: 'find_user_video',
+      search: {
+        currentUserIs: {
+          parser: 'paramIs',
+          param: 'userId',
+          runIfNull: true,
+          target: {
+            type: 'field',
+            field: 'creatorId'
+          }
+        }
       }
-      cb(null, true);
     },
-    fields: [{
-      name: 'videos', maxCount: 3
-    }]
-  };
+    'get /api/v1/video/:id([0-9]+)': {
+      controller: 'video',
+      action: 'findOne',
+      model: 'video',
+      responseType: 'json',
+      permission: 'find_video'
+    },
+    'delete /api/v1/video/:name': {
+      controller: 'video',
+      action: 'destroy',
+      model: 'video',
+      responseType: 'json',
+      permission: 'delete_video'
+    },
+    'get /api/v1/:type(video|audio)/get-form-modal-content': {
+      controller: 'video',
+      action: 'getFormModalContent',
+      model: 'video',
+      responseType: 'modal',
+      permission: true
+    },
 
-  plugin.setResource({
-    name: 'history',
-    // create: {
-    //   upload: historyUPConfig
-    // },
-    edit: {
-      upload: historyUPConfig
-    }
+    // audio
+    'post /drive/get-audio-upload-url': {
+      controller: 'gdrive',
+      action: 'getAudioUploadUrl',
+      responseType: 'json'
+    },
+    'post /drive/audio/:id': {
+      controller: 'gdrive',
+      action: 'updateAudioMetadata',
+      model: 'audio',
+      responseType: 'modal',
+      permission: 'upload_gdrive_audio'
+    },
+
+    'get /user/:userId/audio': {
+      controller: 'audio',
+      action: 'find',
+      model: 'audio',
+      permission: 'find_user_audio',
+      search: {
+        currentUserIs: {
+          parser: 'paramIs',
+          param: 'userId',
+          runIfNull: true,
+          target: {
+            type: 'field',
+            field: 'creatorId'
+          }
+        }
+      }
+    },
+    'get /api/v1/audio/:id([0-9]+)': {
+      controller: 'audio',
+      action: 'findOne',
+      model: 'audio',
+      responseType: 'json',
+      permission: 'find_audio'
+    },
+    'delete /api/v1/audio/:name': {
+      controller: 'audio',
+      action: 'destroy',
+      model: 'audio',
+      responseType: 'json',
+      permission: 'delete_audio'
+    },
+
   });
+
+  plugin.setResource({ name: 'history' });
 
   plugin.setResource({
     name: 'content',
@@ -216,7 +256,6 @@ module.exports = function loadPlugin(projectPath, Plugin) {
 
   plugin.events.on('we:after:load:passport', plugin.bindCPFRequirementRoute);
 
-
   plugin.events.on('we:after:load:express', (we)=> {
 
     if (we.env == 'dev') {
@@ -238,8 +277,6 @@ module.exports = function loadPlugin(projectPath, Plugin) {
     }
     next();
   }
-
-  youtube.init(plugin.we);
 
   plugin.events.on('we:after:load:plugins', plugin.setMetatagHandlers);
 
@@ -316,6 +353,18 @@ module.exports = function loadPlugin(projectPath, Plugin) {
   };
 
   plugin.hooks.on('we:models:ready', plugin.CPFOrPassportValidation);
+
+  plugin.addJs('we.component.videoSelector', {
+    weight: 20,
+    type: 'project',
+    path: 'files/public/we.components.videoSelector.js'
+  });
+
+  plugin.addJs('we.component.audioSelector', {
+    weight: 20,
+    type: 'project',
+    path: 'files/public/we.components.audioSelector.js'
+  });
 
   return plugin;
 };

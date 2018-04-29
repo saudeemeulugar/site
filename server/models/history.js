@@ -83,6 +83,24 @@ module.exports = function HModel(we) {
         formFieldType: null
       },
 
+      country: {
+        type: we.db.Sequelize.STRING(5),
+        formFieldType: 'location/country',
+        defaultValue: 'BR'
+      },
+
+      locationState: {
+        type: we.db.Sequelize.STRING(10),
+        formFieldType: 'location/state',
+        formCountryFieldName: 'country'
+      },
+
+      city: {
+        type: we.db.Sequelize.STRING,
+        formFieldType: 'location/city',
+        formStateFieldName: 'locationState'
+      },
+
       categoryItem: {
         type: we.db.Sequelize.VIRTUAL,
         get() {
@@ -127,6 +145,14 @@ module.exports = function HModel(we) {
       imageFields: {
         featuredImage: { formFieldMultiple: false },
         images: { formFieldMultiple: true }
+      },
+
+      videoFields: {
+        videos: { formFieldMultiple: true }
+      },
+
+      audioFields: {
+        audios: { formFieldMultiple: true }
       },
 
       fileFields: {

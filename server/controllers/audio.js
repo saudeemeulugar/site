@@ -1,34 +1,9 @@
 module.exports = {
   /**
-   * Get we-plugin-view modal content for select files in it
+   * Upload one audio to default storage strategy and save metadata on database
    *
-   * @apiName file.getFormModalContent
-   * @apiGroup file
-   *
-   * @module Controller
-   *
-   * @param {Object} req Express.js request
-   * @param {Object} res Express.js response
-   * @param {Function} next Express.js callback
-   *
-   * @successResponse 200
-   */
-  getFormModalContent(req, res) {
-    // only works with we-plugin-view
-    if (!req.we.view) return res.notFound();
-
-    res.send(
-      req.we.view.renderTemplate(
-        req.params.type+'/form-'+req.params.type+'-modal-content', res.locals.theme, res.locals
-      )
-    );
-  },
-
-  /**
-   * Upload one video to default storage strategy and save metadata on database
-   *
-   * @apiName video.create
-   * @apiGroup video
+   * @apiName audio.create
+   * @apiGroup audio
    *
    * @module Controller
    *
@@ -39,7 +14,7 @@ module.exports = {
    * @successResponse 201
    */
   create(req, res) {
-    // create video disabled
+    // create audio disabled
     return res.notFound();
   },
   /**
@@ -59,7 +34,7 @@ module.exports = {
   destroy(req, res) {
     const we = req.we;
 
-    we.db.models.video
+    we.db.models.audio
     .findOne({
       where: { name: req.params.name }
     })

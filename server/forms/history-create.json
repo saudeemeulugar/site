@@ -78,6 +78,18 @@
           }
         }
       }
+    },
+
+    "acceptTerms": {
+      "type": "boolean",
+      "required": true,
+      "allowNull": false,
+      "defaultValue": false,
+      "formFieldAttributes": {
+        "label": "Li e aceito os <a target=\"_blank\" href=\"/terms-of-use\">Termos de Uso.</a>",
+        "placeholder": null,
+        "help": null
+      }
     }
   },
   "actions": {

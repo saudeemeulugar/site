@@ -36,7 +36,11 @@
         "find_history",
         "view_dashboard",
         "find_url-alia",
-        "find_simple-event"
+        "find_simple-event",
+        "find_video",
+        "upload_gdrive_video",
+        "find_audio",
+        "upload_gdrive_audio"
       ],
       "isSystemRole": true
     },
@@ -62,7 +66,9 @@
         "find_history",
         "view_dashboard",
         "find_url-alia",
-        "find_simple-event"
+        "find_simple-event",
+        "find_video",
+        "find_audio"
       ],
       "isSystemRole": true
     },
@@ -74,7 +80,9 @@
         "delete_comment",
         "delete_post",
         "update_user",
-        "update_history"
+        "update_history",
+        "delete_video",
+        "delete_audio"
       ],
       "isSystemRole": true
     },

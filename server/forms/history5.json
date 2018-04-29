@@ -2,11 +2,11 @@
   "method": "post",
 
   "fields": {
-    "videos": {
-      "type": "file/video",
-      "formFieldMultiple": false,
+    "publishAsAnonymous": {
+      "type": "boolean",
+      "defaultValue": false,
       "formFieldAttributes": {
-        "label": "Vídeo",
+        "label": "Publicar como Anônimo <br><small>Na modalidade Anônimo, apenas ‘Município’, ‘Ocupação’ e o ‘Título da história’ serão publicados</small>",
         "placeholder": null,
         "help": null
       }
@@ -23,12 +23,11 @@
         "help": null
       }
     },
-    "next": {
+    "saveAndView": {
       "type": "submit",
-      "defaultValue": "next",
+      "defaultValue": "saveAndView",
       "formFieldAttributes": {
-        "class": "btn btn-primary",
-        "label": "Salvar e avançar",
+        "label": "Salvar e ver",
         "placeholder": null,
         "help": null
       }

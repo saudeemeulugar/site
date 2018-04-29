@@ -2,24 +2,45 @@
   "method": "post",
 
   "fields": {
-    "email": {
-      "type": "email",
-      "allowNull": false
+    "featuredImage": {
+      "type": "file/image",
+      "formFieldMultiple": false,
+      "formFieldAttributes": {
+        "label": "Imagem de destaque",
+        "placeholder": null,
+        "help": "Imagen de destaque que aparece nas listas e destacada na parte de cima da história"
+      }
     },
-    "password": {
-      "type": "password",
-      "allowNull": false
-    },
-    "persistent": {
-      "type": "boolean"
+    "images": {
+      "type": "file/image",
+      "formFieldMultiple": true,
+      "formFieldAttributes": {
+        "label": "Imagens",
+        "placeholder": null,
+        "help": "As imagens enviadas aqui serão exibidas em uma galeria de imagens da história"
+      }
     }
   },
   "actions": {
-    "voltar": {
-      "type": "submit"
+    "previus": {
+      "type": "submit",
+      "defaultValue": "previus",
+      "formFieldAttributes": {
+        "class": "btn btn-default",
+        "label": "Voltar",
+        "placeholder": null,
+        "help": null
+      }
     },
-    "avancar": {
-      "type": "submit"
+    "next": {
+      "type": "submit",
+      "defaultValue": "next",
+      "formFieldAttributes": {
+        "class": "btn btn-primary",
+        "label": "Salvar e avançar",
+        "placeholder": null,
+        "help": null
+      }
     }
   }
 }

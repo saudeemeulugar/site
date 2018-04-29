@@ -2,11 +2,11 @@
   "method": "post",
 
   "fields": {
-    "videos": {
-      "type": "file/video",
-      "formFieldMultiple": false,
+    "audios": {
+      "type": "file/audio",
+      "formFieldMultiple": true,
       "formFieldAttributes": {
-        "label": "Vídeo",
+        "label": "Audio",
         "placeholder": null,
         "help": null
       }

@@ -1314,5 +1314,18 @@
   "form-placeholder-complete-registration-passaporte": " ",
   "form-helper-complete-registration-passaporte": "Preencha o passaporte apenas se não possuír o CPF",
   "form-complete-registration-estrangeiro": "Sou estrangeiro e não possuo CPF",
-  "form-complete-registration-salvar": "Salvar"
+  "form-complete-registration-salvar": "Salvar",
+  "history.create": "Registrar história",
+  "history.find": "Histórias",
+
+  "video.remove": "Remover vídeo",
+  "file.video.select.btn": "Adicionar vídeo",
+  "video.selector": "Adicionar vídeo",
+  "video.uploader.title": "Envio de vídeo",
+  "video.upload.selector.btn": "Clique para enviar",
+  "audio.remove": "Remover audio",
+  "file.audio.select.btn": "Adicionar audio",
+  "audio.selector": "Adicionar audio",
+  "audio.uploader.title": "Envio de audio",
+  "audio.upload.selector.btn": "Clique para enviar"
 }

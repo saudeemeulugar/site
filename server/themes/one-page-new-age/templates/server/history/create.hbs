@@ -1,2 +1,10 @@
-<h1>Cadastrar história:</h1>
-{{{form 'history1' data validationError}}}
+{{multistep-steps
+  steps=steps
+  currentStep=1
+  url=req.url
+  urlBeforeAlias=req.urlBeforeAlias
+  disableStepLink=true
+}}
+
+<h1>Qual é a sua história?</h1>
+{{{form 'history-create' data validationError}}}

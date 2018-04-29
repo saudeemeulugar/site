@@ -1,15 +1,11 @@
-{{#if step1}}
-  <h1>Descreva sua história:</h1>
-  {{{form 'history1' data validationError}}}
-{{/if}}
+{{multistep-steps
+  steps=steps
+  currentStep=currentStep
+  url=req.url
+  urlBeforeAlias=req.urlBeforeAlias
+}}
 
-{{#if step2}}
-  <h1>Mídia (Imagens, vídeo e audios):</h1>
-  {{{form 'history2' data validationError}}}
+{{#if currentStepOBJ}}
+  <h1>{{currentStepOBJ.title}}</h1>
+  {{{form currentStepOBJ.form data validationError}}}
 {{/if}}
-
-{{#if step3}}
-  <h1>Publicação:</h1>
-  {{{form 'history3' data validationError}}}
-{{/if}}
-

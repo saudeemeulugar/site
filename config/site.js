@@ -1,9 +1,16 @@
 // var path = require('path');
 module.exports = {
-  isONG: true,
   appName: 'Site',
   subtitle: 'Nome do site',
   systemSettingsPubSubStrategy: 'redis',
+
+  googleApi: {
+    scopes: {
+      'https://www.googleapis.com/auth/drive.file': true,
+      'https://www.googleapis.com/auth/youtube.upload': true,
+      'https://www.googleapis.com/auth/youtube': true
+    }
+  },
 
   // default favicon, change in your project config/local.js
   // favicon: path.resolve(__dirname, '..', 'files/public/favicon.png'),
@@ -42,6 +49,9 @@ module.exports = {
   upload: {
     // defaultImageStorage: null,
     // defaultFileStorage: null,
+
+    defaultVideoStorage: 'youtube',
+
     image: {
       avaibleStyles: [
         'thumbnail',

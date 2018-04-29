@@ -1,5 +1,35 @@
-const youtube = require('../../lib/youtube.js'),
-  fs = require('fs');
+const editSteps = {
+  1: {
+    id: 1,
+    label: 'Descrição',
+    title: 'Descreva sua história',
+    form: 'history1',
+  },
+  2: {
+    id: 2,
+    label: 'Imagens e fotos',
+    title: 'Imagens e fotos',
+    form: 'history2',
+  },
+  3: {
+    id: 3,
+    label: 'Vídeo',
+    title: 'Vídeo',
+    form: 'history3',
+  },
+  4: {
+    id: 4,
+    label: 'Audios',
+    title: 'Audios',
+    form: 'history4',
+  },
+  5: {
+    id: 5,
+    label: 'Publicação',
+    title: 'Publicação',
+    form: 'history5',
+  }
+};
 
 module.exports = {
   /**
@@ -67,6 +97,8 @@ module.exports = {
       res.locals.data = {};
     }
 
+    res.locals.steps = editSteps;
+
     if (req.method === 'POST') {
       if (req.isAuthenticated && req.isAuthenticated()) {
         req.body.creatorId = req.user.id;
@@ -78,8 +110,12 @@ module.exports = {
       .create(req.body)
       .then(function afterCreate (record) {
         res.locals.data = record;
-        res.created();
-        return null;
+
+        if (req.body.avancar) {
+          return res.goTo('/history/'+record.id+'/edit?step=2');
+        }
+
+        return res.created();
       })
       .catch(res.queryError);
     } else {
@@ -102,79 +138,28 @@ module.exports = {
 
     let record = res.locals.data;
 
-    switch(req.query.step) {
-      case '2':
-        res.locals.step2 = true;
-        break;
-      case '3':
-        res.locals.step3 = true;
-        break;
-      default:
-        res.locals.step1 = true;
+    res.locals.steps = editSteps;
+
+    if (req.query.step && editSteps[req.query.step]) {
+      res.locals.stepId = req.query.step;
+    } else {
+      res.locals.stepId = 1;
     }
+
+    res.locals['step'+res.locals.stepId] = true;
+    res.locals.currentStep = res.locals.stepId;
+    res.locals.currentStepOBJ = editSteps[res.locals.stepId];
 
     if (we.config.updateMethods.indexOf(req.method) >-1) {
       if (!record) {
         return res.notFound();
       }
-
-      if (
-        req.files &&
-        req.files.videos &&
-        req.files.videos.length
-      ) {
-        const video = req.files.videos[0];
-
-        let fileStream = fs.createReadStream( video.path );
-        youtube.upload(fileStream, video, (err, result)=> {
-          if (err) {
-            return res.queryError(err);
-          }
-
-          req.we.log.warn('history:edit:result after upload video:', result.data);
-
-          fileStream.close();
-          // delete local video async:
-          fs.unlink(video.path, (err) => {
-            if (err) we.log.error('history:upload:error on delete file', err);
-            we.log.info('youtube:uploader:deleted local video:', video.path);
-          });
-
-          req.body.youtubeVideoUrl = 'https://www.youtube.com/watch?v='+result.data.id;
-
-          record.updateAttributes(req.body)
-          .then(function reloadAssocs(n) {
-            return n.reload()
-            .then(function() {
-              return n;
-            });
-          })
-          .then(function afterUpdate (newRecord) {
-            res.locals.data = newRecord;
-            res.updated();
-            return null;
-          })
-          .catch(res.queryError);
-        });
-      } else {
-        record.updateAttributes(req.body)
-        .then(function reloadAssocs(n) {
-          return n.reload()
-          .then(function() {
-            return n;
-          });
-        })
-        .then(function afterUpdate (newRecord) {
-          res.locals.data = newRecord;
-          res.updated();
-          return null;
-        })
-        .catch(res.queryError);
-      }
+      return editResponse(req, res, record);
     } else {
       res.ok();
     }
   },
+
   /**
    * Delete and delete action
    *
@@ -208,3 +193,26 @@ module.exports = {
     }
   }
 };
+
+function editResponse(req, res, record) {
+  record.updateAttributes(req.body)
+  .then(function reloadAssocs(n) {
+    return n.reload()
+    .then(function() {
+      return n;
+    });
+  })
+  .then(function afterUpdate () {
+    let nextStep = 1;
+
+    if (req.body.next) nextStep = Number(res.locals.currentStep)+1;
+    if (req.body.previus) nextStep = Number(res.locals.currentStep)-1;
+
+    if (req.body.saveAndView) {
+      return res.goTo('/history/'+record.id);
+    } else if (editSteps[nextStep]) {
+      return res.goTo('/history/'+record.id+'/edit?step='+ nextStep);
+    }
+  })
+  .catch(res.queryError);
+}
