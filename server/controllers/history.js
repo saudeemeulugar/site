@@ -45,6 +45,20 @@ module.exports = {
       res.locals.query.where.published = true;
     }
 
+    const Op = req.we.Op;
+
+    if (req.query.q) {
+      res.locals.query.where[Op.or] = [{
+        title: {
+          [Op.like]: '%'+req.query.q+'%'
+        }
+      }, {
+        body: {
+          [Op.like]: '%'+req.query.q+'%'
+        }
+      }];
+    }
+
     return res.locals.Model
     .findAndCountAll(res.locals.query)
     // reload creators to get tags and related data from hooks:

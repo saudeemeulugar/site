@@ -7881,8 +7881,32 @@ body.body-main-index #region-content .widget.widget-slideshow .device-container 
     border: none !important;
   }
 }
+.dynamic-grid {
+  margin-top: 15px;
+}
 .history-title {
   margin-top: 0px;
+}
+.ht-title {
+  margin-top: 0px;
+  font-size: 20px;
+  color: #555;
+}
+.ht-creator .ht-creator-avatar {
+  float: left;
+  margin: 0px 5px 3px 0px;
+  width: 40px;
+}
+.ht-creator .ht-creator-displayName {
+  font-size: 13px;
+  font-weight: bold;
+  margin: 0px;
+  padding-top: 2px;
+  color: #000;
+}
+.ht-creator .ht-creator-location {
+  font-size: 10px;
+  color: #888;
 }
 .social-logins {
   border-bottom: 1px solid #ddd;
