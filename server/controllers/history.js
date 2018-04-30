@@ -258,6 +258,11 @@ function editResponse(req, res, record) {
   .then(function afterUpdate () {
     let nextStep = 1;
 
+    if (!req.accepts('html')) {
+      // not html response
+      return res.ok();
+    }
+
     if (req.body.next) nextStep = Number(res.locals.currentStep)+1;
     if (req.body.previus) nextStep = Number(res.locals.currentStep)-1;
 

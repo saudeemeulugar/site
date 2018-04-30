@@ -18,7 +18,7 @@ module.exports = function UserModel(we) {
 
       publishedHistoryCount: {
         type: we.db.Sequelize.INTEGER,
-        allowNull: true,
+        allowNull: false,
         defaultValue: 0,
         formFieldType: null
       },
@@ -31,7 +31,7 @@ module.exports = function UserModel(we) {
 
       gender: {
         type: we.db.Sequelize.STRING,
-        formFieldType: 'select' ,
+        programaçãoformFieldType: 'select' ,
         fieldOptions: { M: 'Male', F: 'Female' }
       },
 
@@ -283,12 +283,40 @@ module.exports = function UserModel(we) {
             return null;
           })
           .catch(done);
+        },
+
+        incrementPublishedHistoryCount(creatorId) {
+          return new Promise((resolve, reject)=> {
+            if (!creatorId || !Number(creatorId)) {
+              return resolve();
+            }
+
+            let sql = `UPDATE users SET publishedHistoryCount = publishedHistoryCount + 1
+              WHERE id = ${creatorId}`;
+
+            we.db.defaultConnection.query(sql)
+            .then(resolve)
+            .catch(reject);
+          });
+        },
+        decrementPublishedHistoryCount(creatorId) {
+          return new Promise((resolve, reject)=> {
+            if (!creatorId || !Number(creatorId)) {
+              return resolve();
+            }
+
+            let sql = `UPDATE users SET publishedHistoryCount = publishedHistoryCount - 1
+              WHERE id = ${creatorId}`;
+
+            we.db.defaultConnection.query(sql)
+            .then(resolve)
+            .catch(reject);
+          });
         }
       },
       instanceMethods: {
         toJSON() {
           const obj = this.get();
-
           // delete and hide user email
           delete obj.email;
           // remove password hash from view

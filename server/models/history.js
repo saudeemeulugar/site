@@ -205,6 +205,30 @@ module.exports = function HModel(we) {
           if (!r.highlighted) {
             r.highlighted = 0;
           }
+        },
+
+        afterUpdate(r) {
+          if (r.changed('published')) {
+            if (!r.creatorId || !r.creator) {
+              return r;
+            }
+
+            let creatorId = r.creatorId || r.creator.id;
+
+            if (r.published) {
+              we.db.models.user.incrementPublishedHistoryCount(creatorId)
+              .then( ()=> {
+                return r;
+              });
+            } else {
+              we.db.models.user.decrementPublishedHistoryCount(creatorId)
+              .then( ()=> {
+                return r;
+              });
+            }
+          }
+
+          return r;
         }
       }
     }
