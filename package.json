@@ -110,6 +110,7 @@
       "we-plugin-db-system-settings": true,
       "we-plugin-google-analytics": true,
       "we-plugin-passport-facebook": true,
+      "we-plugin-passport-google": true,
       "we-plugin-notification": true,
       "we-plugin-csv": true,
       "we-plugin-slideshow": true,

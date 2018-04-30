@@ -20,20 +20,27 @@
       </ul>
       <div class="tab-content">
         <div class="social-logins text-center">
-          <div class="btn-group">
+          <div class="btn-group btn-group-facebook">
             <a class='btn btn-primary disabled'>
               <i class="fa fa-facebook"></i>
             </a>
-            <a class='btn btn-primary ' href='/auth/facebook'>Entrar com Facebook</a>
+            <a class='btn btn-primary btn-fb-link' href='/auth/facebook'>Entrar com Facebook</a>
+          </div>
+          <div class="btn-group btn-group-google">
+            <a class='btn btn-danger disabled'>
+              <i class="fa fa-google"></i>
+            </a>
+            <a class='btn btn-danger btn-google-link' href='/auth/google'>Entrar com Google</a>
           </div>
         </div>
 
-        <hr>
-        <br>
+        <div class="login-with-email">
+          <div class="login-with-email-title">Ou registre os seus dados abaixo:</div>
 
-        {{#unless newUserCreated}}
-          {{{form 'register' req.body validationError}}}
-        {{/unless}}
+          {{#unless newUserCreated}}
+            {{{form 'register' req.body validationError}}}
+          {{/unless}}
+        </div>
       </div>
     {{else}}
       <p>{{{t 'auth.login.authenticated.msg'}}}</p>

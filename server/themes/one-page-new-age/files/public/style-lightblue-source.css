@@ -7887,6 +7887,23 @@ body.body-main-index #region-content .widget.widget-slideshow .device-container 
 .history-title {
   margin-top: 0px;
 }
+.social-logins {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+.social-logins .btn-fb-link,
+.social-logins .btn-google-link {
+  min-width: 195px;
+}
+.btn-group-google,
+.btn-group-facebook {
+  margin-bottom: 5px;
+}
+.login-with-email-title {
+  text-align: center;
+  font-size: 11px;
+}
 .form-control.select2-hidden-accessible {
   width: 1px;
 }

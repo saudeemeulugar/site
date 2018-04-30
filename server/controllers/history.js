@@ -142,6 +142,10 @@ module.exports = {
    * @param  {Object} res express.js response
    */
   create(req, res) {
+    if (!req.isAuthenticated()) {
+      return res.goTo('/login?redirectUrl=/history/create');
+    }
+
     if (!res.locals.template) {
       res.locals.template = res.locals.model + '/' + 'create';
     }

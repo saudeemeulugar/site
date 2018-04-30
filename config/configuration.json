@@ -34,6 +34,7 @@
         "find_d-form",
         "use_flag",
         "find_history",
+        "create_history",
         "view_dashboard",
         "find_url-alia",
         "find_simple-event",
@@ -68,7 +69,8 @@
         "find_url-alia",
         "find_simple-event",
         "find_video",
-        "find_audio"
+        "find_audio",
+        "create_history"
       ],
       "isSystemRole": true
     },

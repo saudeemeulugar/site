@@ -34,6 +34,57 @@ module.exports = {
       facebook: {
         clientID: 'TODO',
         clientSecret: 'TODO'
+      },
+
+      local: {
+        session: true,
+        findUser(email, password, done) {
+          console.log('rodo!', email);
+          const we = this.we;
+          // build the find user query with support to email or cpf
+          let query = {
+            where: {
+              [we.Op.or]: [{
+                email: email
+              }, {
+                cpf: email
+              }]
+            }
+          };
+
+          // find user in DB
+          we.db.models.user
+          .find(query)
+          .then ( (user)=> {
+            if (!user) {
+              done(null, false, { message: 'auth.login.wrong.email.or.password' });
+              return null;
+            } else if (user.blocked) {
+              done(null, false, { message: 'auth.login.user.blocked' });
+              return null;
+            }
+            // get the user password
+            return user.getPassword()
+            .then( (passwordObj)=> {
+              if (!passwordObj) {
+                done(null, false, { message: 'auth.login.user.dont.have.password' });
+                return null;
+              }
+
+              passwordObj.validatePassword(password, (err, isValid)=> {
+                if (err) return done(err);
+                if (!isValid) {
+                  return done(null, false, { message: 'auth.login.user.incorrect.password.or.email' });
+                } else {
+                  return done(null, user);
+                }
+              })
+
+              return null;
+            })
+          })
+          .catch(done);
+        }
       }
     }
   },
