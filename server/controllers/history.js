@@ -41,6 +41,10 @@ module.exports = {
   find(req, res) {
     const models = req.we.db.models;
 
+    if (!req.we.acl.canStatic('access_history_unpublished', req.userRoleNames)) {
+      res.locals.query.where.published = true;
+    }
+
     return res.locals.Model
     .findAndCountAll(res.locals.query)
     // reload creators to get tags and related data from hooks:
@@ -110,19 +114,26 @@ module.exports = {
       return next();
     }
 
+    if (
+      !res.locals.data.published &&
+      !req.we.acl.canStatic('access_history_unpublished', req.userRoleNames)
+    ) {
+      return res.forbidden();
+    }
+
     const models = req.we.db.models;
 
     if (!res.locals.data.creator) {
       return res.ok();
     }
 
-    models.user.findById(res.locals.data.creator.id)
+    models.user
+    .findById(res.locals.data.creator.id)
     .then( (creator)=> {
       res.locals.data.creator = creator;
       return res.ok();
     })
     .catch(res.queryError);
-
   },
   /**
    * Create and create page actions

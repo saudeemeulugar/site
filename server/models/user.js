@@ -16,6 +16,13 @@ module.exports = function UserModel(we) {
       displayName: { type: we.db.Sequelize.STRING },
       fullName: { type: we.db.Sequelize.TEXT, formFieldType: 'text' },
 
+      publishedHistoryCount: {
+        type: we.db.Sequelize.INTEGER,
+        allowNull: true,
+        defaultValue: 0,
+        formFieldType: null
+      },
+
       biography: {
         type: we.db.Sequelize.TEXT,
         formFieldType: 'html',

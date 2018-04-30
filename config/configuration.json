@@ -82,7 +82,8 @@
         "update_user",
         "update_history",
         "delete_video",
-        "delete_audio"
+        "delete_audio",
+        "access_history_unpublished"
       ],
       "isSystemRole": true
     },

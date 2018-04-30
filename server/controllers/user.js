@@ -73,6 +73,18 @@ module.exports = {
       return res.badRequest('user.invalid.filter');
     }
 
+    const Op = req.we.Op;
+
+
+    if (!req.we.acl.canStatic('view_all_users', req.userRoleNames)) {
+
+    } else {
+      res.locals.query.where.active = true;
+      res.locals.query.where.publishedHistoryCount = {
+        [Op.gt]: 0
+      };
+    }
+
     res.locals.Model
     .findAndCountAll(res.locals.query)
     .then(function afterFindAndCount (record) {
