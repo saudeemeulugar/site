@@ -10,27 +10,32 @@
         {{record.title}} {{#unless record.published}} <small><span class="label label-warning">Despublicado</span></small> {{/unless}}
       </h2>
     {{/link-to-record}}
-    <p class="ht-subtitle">{{record.about}}</p>
+    <div class="ht-creator-meta">
+      {{#if record.historyDate}}
+        {{we-date record.historyDate 'DD/MM/YYYY'}}
+      {{/if}}
+      {{record.locationText}}
+    </div>
 
-    {{#if record.creator}}
-      <div class="ht-creator">
-        <a href="{{record.creator.permanentLink}}">
-          {{we-avatar id=record.creator.id style="thumbnail" class="ht-creator-avatar img-thumbnail"}}
-          <h6 class="ht-creator-displayName">{{record.creator.displayName}}</h6>
-          {{#if record.creator.locationText}}
-            <span class="ht-creator-location">{{record.creator.locationText}}</span>
-          {{/if}}
-        </a>
-      </div>
+    {{#ifCond locals.controller 'user'}}
+      <div class="ht-creator"></div>
     {{else}}
-      <div class="ht-creator">
-        {{we-avatar id=0 style="thumbnail" class="ht-creator-avatar img-thumbnail"}}
-        <h6 class="ht-creator-displayName">{{record.creator.displayName}}</h6>
-        {{#if record.creator.locationText}}
-          <span class="ht-creator-location">{{record.creator.locationText}}</span>
-        {{/if}}
-      </div>
-      Anonimous ...
-    {{/if}}
+      {{#if record.publishAsAnonymous}}
+        <div class="ht-creator">
+          {{we-avatar id="0" style="thumbnail" class="ht-creator-avatar img-thumbnail"}}
+          <h6 class="ht-creator-displayName">Anônimo</h6>
+        </div>
+      {{else}}
+        <div class="ht-creator">
+          <a href="{{record.creator.permanentLink}}">
+            {{we-avatar id=record.creator.id style="thumbnail" class="ht-creator-avatar img-thumbnail"}}
+            <h6 class="ht-creator-displayName">{{record.creator.displayName}}</h6>
+            {{#if record.creator.locationText}}
+              <span class="ht-creator-location">{{record.creator.locationText}}</span>
+            {{/if}}
+          </a>
+        </div>
+      {{/if}}
+    {{/ifCond}}
   </div>
 </div>

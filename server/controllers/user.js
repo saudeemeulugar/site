@@ -47,15 +47,27 @@ module.exports = {
 
     const models = req.we.db.models;
 
-    console.log('res.locals.query>', res.locals.query);
-
-    models.history.findAll({
+    const queryH = {
       where: {
         creatorId: res.locals.data.id
       },
+      limit: 20
+    };
 
-      limit: 15
-    })
+    if (
+      req.isAuthenticated() &&
+      ( req.user.id == res.locals.data.id )
+    ) {
+      // owner page
+    } else if (req.we.acl.canStatic('access_history_unpublished', req.userRoleNames)) {
+      // admin or editor page
+    } else {
+      // others users cant see this user unpublished or anonymous content
+      queryH.where.published = true;
+      queryH.where.publishAsAnonymous = false;
+    }
+
+    models.history.findAll(queryH)
     .then( (histories)=> {
       res.locals.data.histories = histories;
       return res.ok();

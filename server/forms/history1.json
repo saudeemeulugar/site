@@ -44,7 +44,7 @@
       }
     },
 
-    "historyData": {
+    "historyDate": {
       "type": "date",
       "allowNull": true,
       "formFieldAttributes": {

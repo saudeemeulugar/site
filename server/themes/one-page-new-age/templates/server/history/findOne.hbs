@@ -16,7 +16,7 @@
     <div class="actions">
       {{we-action-edit-btn resourceName data req data.id}} {{we-action-delete-btn resourceName data req data.id}}
     </div>
-    <div class="history-metadata">{{data.historyDate}}, {{data.locationText}}</div>
+    <div class="history-metadata">{{we-date data.historyDate 'DD/MM/YYYY'}}, {{data.locationText}}</div>
     {{#if data.featuredImage}}
       <div class="history-featuredImage">
         {{we-image data.featuredImage "banner" class="img-responsive img-thumbnail featured-image-findOne"}}
@@ -67,31 +67,38 @@
     {{/if}}
   </div>
   <div class="col-md-3">
-    <div class="history-creator">
-      {{we-avatar id=data.creator.id style="medium" class="img-responsive img-thumbnail"}}
-      <h3 class="history-creator-displayName">{{data.creator.displayName}}</h3>
-      {{#if data.creator.atividade}}
-        <div class="history-creator-atividade">{{data.creator.atividade}}</div>
-      {{/if}}
-
-      {{#if data.creator.locationText}}
-        <div class="user-location-data">
-          <i class="fa fa-map-o" aria-hidden="true"></i> {{data.creator.locationText}}
-        </div>
-        <div class="user-location-map">
-
-        </div>
-      {{/if}}
-
-      <a href="{{data.creator.linkPermanent}}" class="btn btn-default"><i class="fa fa-user" aria-hidden="true"></i> Ver perfil</a>
-    </div>
-
-    <div class="history-creator-histories">
-      <h3 class="creator-histories-title">Mais histórias</h3>
-      <div class="histories-thumbnail-side">
-        TODO! add latest Autor histories...
+    {{#if data.publishAsAnonymous}}
+      <div class="history-creator">
+        {{we-avatar id="0" style="medium" class="img-responsive img-thumbnail"}}
+        <h3 class="history-creator-displayName">Anônimo</h3>
       </div>
-    </div>
+    {{else}}
+      <div class="history-creator">
+        {{we-avatar id=data.creator.id style="medium" class="img-responsive img-thumbnail"}}
+        <h3 class="history-creator-displayName">{{data.creator.displayName}}</h3>
+        {{#if data.creator.atividade}}
+          <div class="history-creator-atividade">{{data.creator.atividade}}</div>
+        {{/if}}
+
+        {{#if data.creator.locationText}}
+          <div class="user-location-data">
+            <i class="fa fa-map-o" aria-hidden="true"></i> {{data.creator.locationText}}
+          </div>
+          <div class="user-location-map">
+
+          </div>
+        {{/if}}
+
+        <a href="{{data.creator.linkPermanent}}" class="btn btn-default"><i class="fa fa-user" aria-hidden="true"></i> Ver perfil</a>
+      </div>
+
+      <div class="history-creator-histories">
+        <h3 class="creator-histories-title">Mais histórias</h3>
+        <div class="histories-thumbnail-side">
+          TODO! add latest Autor histories...
+        </div>
+      </div>
+    {{/if}}
   </div>
 </div>
 

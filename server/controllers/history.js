@@ -137,6 +137,15 @@ module.exports = {
 
     const models = req.we.db.models;
 
+    if (
+      res.locals.data.publishAsAnonymous &&
+      !req.we.acl.canStatic('access_history_unpublished', req.userRoleNames)
+    ) {
+      res.locals.data.creator = null;
+      res.locals.data.creatorId = null;
+      return res.ok();
+    }
+
     if (!res.locals.data.creator) {
       return res.ok();
     }

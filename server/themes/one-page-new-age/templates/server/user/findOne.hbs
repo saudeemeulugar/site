@@ -2,30 +2,34 @@
   <li role="presentation" class="active">
     <a href="#thistories" aria-controls="thistories" role="tab" data-toggle="tab">Histórias</a>
   </li>
-  <li role="presentation">
-    <a href="#tabout" aria-controls="tabout" role="tab" data-toggle="tab">Sobre</a>
-  </li>
+  {{#if data.biography}}
+    <li role="presentation">
+      <a href="#tabout" aria-controls="tabout" role="tab" data-toggle="tab">Sobre</a>
+    </li>
+  {{/if}}
 </ul>
 <div class="tab-content">
   <div role="tabpanel" class="tab-pane active" id="thistories">
 
     <div class="user-history-list">
-    Lista as histórias do usuário aqui ...
-
-      {{#each data.histories}}
-        <div class="user-history-teaser">
-          video, imagem, somPlaceholder, placeholder
-
-          <div class="basic-data">
-            <div class="title">|{{id}}| {{title}}</div>
-            Atualizado em: {{updatedAt}}
+      <div class="row dynamic-grid">
+        {{#each data.histories}}
+          <div class="d-col col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xg-4">
+            {{render-record-teaser modelName='history' record=this locals=..}}
           </div>
+        {{else}}
+          <div class="col-md-12">Nenhuma história públicada.</div>
+        {{/each}}
+
+        <div class="col-md-12">
+          {{paginate count=metadata.count limit=query.limit currentPage=query.page req=req}}
         </div>
-      {{/each}}
+      </div>
 
     </div>
-
   </div>
-  <div role="tabpanel" class="tab-pane" id="tabout">{{{data.biography}}}
+  {{#if data.biography}}
+    <div role="tabpanel" class="tab-pane" id="tabout">{{{data.biography}}}
+  {{/if}}
   </div>
 </div>
