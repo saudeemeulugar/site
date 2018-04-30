@@ -7,8 +7,8 @@ const editSteps = {
   },
   2: {
     id: 2,
-    label: 'Imagens e fotos',
-    title: 'Imagens e fotos',
+    label: 'Imagens',
+    title: 'Imagens',
     form: 'history2',
   },
   3: {
@@ -39,8 +39,38 @@ module.exports = {
    * @param  {Object} res express.js response
    */
   find(req, res) {
+    const models = req.we.db.models;
+
     return res.locals.Model
     .findAndCountAll(res.locals.query)
+    // reload creators to get tags and related data from hooks:
+    .then(function (result) {
+      let creatorsIds = result.rows.map( (r)=> {
+        if (!r.creator || !r.creator.id) return;
+        return r.creator.id;
+      });
+
+      return models.user
+      .findAll({
+        where: { id: creatorsIds }
+      })
+      .then( (creators)=> {
+        const cOjb = {};
+
+        creators.forEach( (c)=> {
+          if (!cOjb[c.id]) {
+            cOjb[c.id] = c;
+          }
+        });
+
+        result.rows.forEach( (r)=> {
+          if (!r.creator || !r.creator.id) return;
+          r.creator = cOjb[ r.creator.id ];
+        });
+
+        return result;
+      });
+    })
     .then(function afterFindAndCount (record) {
       res.locals.metadata.count = record.count;
       res.locals.data = record.rows;
@@ -79,8 +109,20 @@ module.exports = {
     if (!res.locals.data) {
       return next();
     }
-    // by default record is preloaded in context load
-    res.ok();
+
+    const models = req.we.db.models;
+
+    if (!res.locals.data.creator) {
+      return res.ok();
+    }
+
+    models.user.findById(res.locals.data.creator.id)
+    .then( (creator)=> {
+      res.locals.data.creator = creator;
+      return res.ok();
+    })
+    .catch(res.queryError);
+
   },
   /**
    * Create and create page actions

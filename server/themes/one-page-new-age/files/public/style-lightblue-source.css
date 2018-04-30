@@ -7884,6 +7884,9 @@ body.body-main-index #region-content .widget.widget-slideshow .device-container 
     border: none !important;
   }
 }
+.history-title {
+  margin-top: 0px;
+}
 .form-control.select2-hidden-accessible {
   width: 1px;
 }

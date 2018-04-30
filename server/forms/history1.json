@@ -44,6 +44,17 @@
       }
     },
 
+    "historyData": {
+      "type": "date",
+      "allowNull": true,
+      "formFieldAttributes": {
+        "label": "Principal data da história",
+        "placeholder": null,
+        "help": null
+      }
+    },
+
+
     "locationGroup": {
       "type": "field-group",
       "title": "Localização",

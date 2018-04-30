@@ -1,3 +1,99 @@
+<div class="history-findOne">
+
+<div class="row">
+  <div class="col-md-9">
+    {{#unless data.published}}
+      <div class="alert alert-warning" role="alert">Despublicado! A sua história ainda não foi publicada.</div>
+    {{/unless}}
+
+    <h1 class="history-title">{{data.title}}</h1>
+    <div class="actions">
+      {{we-action-edit-btn resourceName data req data.id}} {{we-action-delete-btn resourceName data req data.id}}
+    </div>
+    <div class="history-metadata">{{data.historyDate}}, {{data.locationText}}</div>
+    {{#if data.featuredImage}}
+      <div class="history-featuredImage">
+        {{we-image data.featuredImage "banner" class="img-responsive img-thumbnail featured-image-findOne"}}
+      </div>
+    {{/if}}
+
+    <div class="history-body">{{{data.body}}}</div>
+
+    {{#if data.attachment.length}}
+      <div class="well">
+        <h4>Arquivos</h4>
+        {{#each data.attachment}}
+          <a href="{{urls.original}}" download><i class="fa fa-download" aria-hidden="true"></i> {{originalname}}</a>
+        {{/each}}
+      </div>
+    {{/if}}
+
+    {{#if data.videos.length}}
+      <div class="history-videos">
+        <h4>Vídeos</h4>
+        {{#each data.videos}}
+          <iframe width="640px" height="480px" src="{{urls.original}}" frameborder="0" class="history-video-preview"></iframe>
+        {{/each}}
+      </div>
+    {{/if}}
+
+    {{#if data.audios.length}}
+      <div class="history-videos">
+        <h4>Audios</h4>
+        {{#each data.audios}}
+          <iframe width="640px" height="90px" src="{{urls.original}}" frameborder="0" class="history-video-preview"></iframe>
+        {{/each}}
+      </div>
+    {{/if}}
+
+    {{#if data.images.length}}
+      <div class="history-images">
+        <h4>Galeria de imagens</h4>
+        <div>{{we-fancybox-galery images=data.images id="postImageGalery" style="medium"}}</div>
+      </div>
+      <hr>
+    {{/if}}
+
+    {{#if data.allowComments}}
+      <div class="content-comments">
+        {{{comments modelName="history" modelId=data.id comments=data.metadata.comments count=data.metadata.commentCount locals=this}}}
+      </div>
+    {{/if}}
+  </div>
+  <div class="col-md-3">
+    <div class="history-creator">
+      {{we-avatar id=data.creator.id style="medium" class="img-responsive img-thumbnail"}}
+      <h3 class="history-creator-displayName">{{data.creator.displayName}}</h3>
+      {{#if data.creator.atividade}}
+        <div class="history-creator-atividade">{{data.creator.atividade}}</div>
+      {{/if}}
+
+      {{#if data.creator.locationText}}
+        <div class="user-location-data">
+          <i class="fa fa-map-o" aria-hidden="true"></i> {{data.creator.locationText}}
+        </div>
+        <div class="user-location-map">
+
+        </div>
+      {{/if}}
+
+      <a href="{{data.creator.linkPermanent}}" class="btn btn-default"><i class="fa fa-user" aria-hidden="true"></i> Ver perfil</a>
+    </div>
+
+    <div class="history-creator-histories">
+      <h3 class="creator-histories-title">Mais histórias</h3>
+      <div class="histories-thumbnail-side">
+        TODO! add latest Autor histories...
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>{{!-- /.history-findOne  --}}
+
+<br><br>
+<hr>
+Dados salvos na história:
 <table class="table table-striped table-hover">
   <tbody>
     {{#each data.dataValues }}
@@ -9,8 +105,7 @@
   </tbody>
   <tfoot>
     <td colspan="2">
-      {{we-action-edit-btn resourceName data req data.id}}
-      {{we-action-delete-btn resourceName data req data.id}}
+
     </td>
   </tfoot>
 </table>

@@ -85,6 +85,7 @@ module.exports = function UserModel(we) {
 
       allRequirementsMet: {
         type: we.db.Sequelize.VIRTUAL,
+        formFieldType: null,
         get() {
           if (
             this.get('email') &&
@@ -141,6 +142,7 @@ module.exports = function UserModel(we) {
 
       locationText: {
         type: we.db.Sequelize.VIRTUAL,
+        formFieldType: null,
         get() {
 
           const p = this.get('country');
@@ -162,7 +164,8 @@ module.exports = function UserModel(we) {
       },
 
       setAlias: {
-        type: we.db.Sequelize.VIRTUAL
+        type: we.db.Sequelize.VIRTUAL,
+        formFieldType: null
       }
     },
     associations: {},

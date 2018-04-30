@@ -5,16 +5,6 @@
 module.exports = function HModel(we) {
   const model = {
     definition: {
-      active: {
-        type: we.db.Sequelize.BOOLEAN,
-        defaultValue: true,
-        formFieldType: null
-      },
-      published: {
-        type: we.db.Sequelize.BOOLEAN,
-        defaultValue: false,
-        formFieldType: null
-      },
       highlighted: {
         type: we.db.Sequelize.INTEGER,
         allowNull: false,
@@ -41,27 +31,32 @@ module.exports = function HModel(we) {
         formFieldType: 'html',
         formFieldHeight: 400
       },
+      historyDate: {
+        type: we.db.Sequelize.DATE,
+        allowNull: true
+      },
+      published: {
+        type: we.db.Sequelize.BOOLEAN,
+        defaultValue: false,
+        formFieldType: null
+      },
       publishedAt: {
         type: we.db.Sequelize.DATE,
         allowNull: true
       },
-
       uploadedVideoID: {
         type: we.db.Sequelize.STRING,
         allowNull: true
       },
-
       youtubeVideoUrl: {
         type: we.db.Sequelize.TEXT,
         allowNull: true,
         formFieldType: 'string'
       },
-
       publishAsAnonymous: {
         type: we.db.Sequelize.BOOLEAN,
         defaultValue: false
       },
-
       haveText: {
         type: we.db.Sequelize.BOOLEAN,
         defaultValue: true,
@@ -82,25 +77,43 @@ module.exports = function HModel(we) {
         defaultValue: false,
         formFieldType: null
       },
-
       country: {
         type: we.db.Sequelize.STRING(5),
         formFieldType: 'location/country',
         defaultValue: 'BR'
       },
-
       locationState: {
         type: we.db.Sequelize.STRING(10),
         formFieldType: 'location/state',
         formCountryFieldName: 'country'
       },
-
       city: {
         type: we.db.Sequelize.STRING,
         formFieldType: 'location/city',
         formStateFieldName: 'locationState'
       },
+      locationText: {
+        type: we.db.Sequelize.VIRTUAL,
+        formFieldType: null,
+        get() {
 
+          const p = this.get('country');
+          if (!p) return '';
+
+          const s = this.get('locationState')
+          const c = this.get('city');
+
+          if (c) {
+            return s +' / '+ c;
+          }
+
+          if (s) {
+            return p +' / '+ s;
+          }
+
+          return p;
+        }
+      },
       categoryItem: {
         type: we.db.Sequelize.VIRTUAL,
         get() {
@@ -112,7 +125,6 @@ module.exports = function HModel(we) {
           return null;
         }
       },
-
       setAlias: {
         type: we.db.Sequelize.VIRTUAL
       }
