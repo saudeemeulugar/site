@@ -44193,7 +44193,10 @@ we.components.videoSelector = {
     $.ajax({
       type: 'POST',
       url: '/drive/get-upload-url',
-      data: data
+      data: data,
+      headers: {
+        'x-Origin': location.origin
+      }
     })
     .then(function (result) {
       if (result && result.uploadUrl) {
@@ -44212,6 +44215,9 @@ we.components.videoSelector = {
       url: uploadUrl,
       type: 'PUT',
       data: file,
+      headers: {
+        'X-Origin': location.origin
+      },
       crossDomain: true,
       contentType: false,
       processData: false,
@@ -44433,7 +44439,10 @@ we.components.audioSelector = {
     $.ajax({
       type: 'POST',
       url: '/drive/get-audio-upload-url',
-      data: data
+      data: data,
+      headers: {
+        'x-Origin': location.origin
+      }
     })
     .then(function (result) {
       if (result && result.uploadUrl) {
@@ -44452,6 +44461,9 @@ we.components.audioSelector = {
       url: uploadUrl,
       type: 'PUT',
       data: file,
+      headers: {
+        'X-Origin': location.origin
+      },
       crossDomain: true,
       contentType: false,
       processData: false,
