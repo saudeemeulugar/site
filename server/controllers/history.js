@@ -191,7 +191,7 @@ module.exports = {
       .then(function afterCreate (record) {
         res.locals.data = record;
 
-        if (req.body.avancar) {
+        if (req.body.avancar || req.body.next) {
           return res.goTo('/history/'+record.id+'/edit?step=2');
         }
 
