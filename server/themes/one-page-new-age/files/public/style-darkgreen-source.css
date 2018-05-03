@@ -7455,7 +7455,7 @@ body.iframe-page-type footer {
   line-height: 32px;
   height: 32px;
   position: fixed;
-  top: 0;
+  top: 33px;
   left: 0;
   width: 100%;
   z-index: 99999;
@@ -7483,6 +7483,18 @@ body.iframe-page-type footer {
 }
 #afterWeadmin {
   height: 32px;
+}
+@media (max-width: 767px) {
+  .navbar-right,
+  .navbar-left {
+    width: 49%;
+  }
+  .navbar-left {
+    float: left;
+  }
+  .nav.navbar-right {
+    float: right;
+  }
 }
 .sidebar-nav > li {
   border: 1px solid #ccc;
@@ -8295,4 +8307,7 @@ body.is-mobile .dropdown-menu > li > a.s-whatsapp-site {
 }
 .mce-branding {
   display: none !important;
+}
+.wrapper-barra-brasil {
+  z-index: 199999;
 }
