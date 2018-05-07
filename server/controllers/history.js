@@ -95,6 +95,13 @@ module.exports = {
         return result;
       });
     })
+    .then(function completeCount(r) {
+      return models.history.count()
+      .then((c)=> {
+        res.locals.metadata.completeCount = c;
+        return r;
+      });
+    })
     .then(function afterFindAndCount (record) {
       res.locals.metadata.count = record.count;
       res.locals.data = record.rows;
