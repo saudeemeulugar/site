@@ -7454,9 +7454,6 @@ body.iframe-page-type footer {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
   line-height: 32px;
   height: 32px;
-  position: fixed;
-  top: 33px;
-  left: 0;
   width: 100%;
   z-index: 99999;
   background: #23282d;
@@ -7480,9 +7477,6 @@ body.iframe-page-type footer {
 #weAdminBar > .container > .nav > li > a:active,
 #weAdminBar > .container > .nav > li > a:hover {
   background-color: #888;
-}
-#afterWeadmin {
-  height: 32px;
 }
 @media (max-width: 767px) {
   .navbar-right,
