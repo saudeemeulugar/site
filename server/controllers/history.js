@@ -47,16 +47,22 @@ module.exports = {
 
     const Op = req.we.Op;
 
-    if (req.query.q) {
-      res.locals.query.where[Op.or] = [{
-        title: {
-          [Op.like]: '%'+req.query.q+'%'
-        }
-      }, {
-        body: {
-          [Op.like]: '%'+req.query.q+'%'
-        }
-      }];
+    if (req.query.q && req.query.q.split) {
+      let searchs = req.query.q.split(' ');
+
+      const where = res.locals.query.where;
+
+      where[Op.and] = [];
+      const and = where[Op.and];
+
+      searchs.forEach( (s)=> {
+        if (!s) return;
+        and.push({
+          searchData: {
+            [Op.like]: '%'+s+'%'
+          }
+        });
+      });
     }
 
     return res.locals.Model

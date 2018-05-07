@@ -127,9 +127,16 @@ module.exports = function HModel(we) {
       },
       setAlias: {
         type: we.db.Sequelize.VIRTUAL
+      },
+
+      // Search data with some record data concatened.
+      // TODO! move to search engines like Elasticsearch
+      searchData: {
+        type: we.db.Sequelize.TEXT,
+        allowNull: true,
+        formFieldType: null
       }
     },
-
     associations: {
       creator: {
         type: 'belongsTo',
@@ -139,6 +146,7 @@ module.exports = function HModel(we) {
     options: {
       // title field, for default title record pages
       titleField: 'title',
+      tableName: 'histories',
 
       termFields: {
         tags: {
@@ -180,7 +188,25 @@ module.exports = function HModel(we) {
         }
       },
       // record method for use with record.[method]
-      instanceMethods: {},
+      instanceMethods: {
+        buildSearchDataValue() {
+          const r = this;
+          // update search field before save in DB on update:
+          r.searchData = r.title + ' ' +
+            ( r.body || '') + ' ' +
+            ( r.locationState || '' ) + ' ' +
+            ( r.city || '' ) + ' ' +
+            ( r.categoryItem || '' ) + ' ';
+
+          if (
+            !r.publishAsAnonymous &&
+            r.creator &&
+            r.creator.displayName
+          ) {
+            r.searchData += r.creator.displayName
+          }
+        }
+      },
       hooks: {
         beforeCreate(r) {
           // create an published history and set its publishedDate:
@@ -205,6 +231,8 @@ module.exports = function HModel(we) {
           if (!r.highlighted) {
             r.highlighted = 0;
           }
+
+          r.buildSearchDataValue();
         },
 
         afterUpdate(r) {

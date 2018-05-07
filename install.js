@@ -355,5 +355,6 @@ module.exports = {
 
 
     we.utils.async.series(fns, done);
-  }
+  },
+  updates: require('./updates.js')
 };
