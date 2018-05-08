@@ -22,6 +22,14 @@ module.exports = function loadPlugin(projectPath, Plugin) {
       'edit_terms_of_use': { title: '' }
     },
 
+    certification: {
+      textPositions: {
+        middle: { l: 30, t: 350 },
+        left: { l: 30, t: 150 },
+        right: { l: 400, t: 150 }
+      }
+    },
+
     API_KEYS: {
       youtube: {
         client_id: null,
@@ -68,10 +76,34 @@ module.exports = function loadPlugin(projectPath, Plugin) {
       controller: 'main',
       action: 'completeRegistration',
       template: 'user/complete-registration'
+    },
+
+    // 'get /user/:userId/certification': {
+    //   name: 'user.certification',
+    //   title: 'Certificados',
+    //   controller: 'certification',
+    //   action: 'find',
+    //   template: 'user/certification'
+    // },
+    // 'get /history/:userId/certification': {
+    //   name: 'history.certification',
+    //   title: 'Gerar certificado',
+    //   controller: 'certification',
+    //   action: 'generate'
+    // }
+
+    'post /history/:id/publish': {
+      controller: 'history',
+      action: 'publish',
+      responseType: 'json',
+      permission: 'publish_history'
     }
   });
 
   plugin.setResource({ name: 'history' });
+
+  plugin.setResource({ name: 'certification' });
+  plugin.setResource({ name: 'certification-template' });
 
   plugin.setResource({
     name: 'content',
@@ -229,32 +261,32 @@ module.exports = function loadPlugin(projectPath, Plugin) {
     done();
   });
 
-  plugin.CPFOrPassportValidation = function(we, next) {
-    we.db.models.user
-    .hook('beforeValidate', (user) => {
-      let val = user.requerCpfOrPassport;
-      // skip cpf and passport requirement if is new record:
-      if (user.isNewRecord) {
-        return user;
-      }
+  // plugin.CPFOrPassportValidation = function(we, next) {
+  //   we.db.models.user
+  //   .hook('beforeValidate', (user) => {
+  //     let val = user.requerCpfOrPassport;
+  //     // skip cpf and passport requirement if is new record:
+  //     if (user.isNewRecord) {
+  //       return user;
+  //     }
 
-      if (!val || !we.utils._.trim(val)) {
-        if (!user.getDataValue('cpf')) {
-          // se for brasileiro, deve ter um cpf
-          throw new Error('user.cpf.required');
-        }
-      } else {
-        if (!user.getDataValue('passaporte') ) {
-          // se não for brasileiro deve ter um passaporte
-          throw new Error('user.passaporte.required');
-        }
-      }
-    });
+  //     if (!val || !we.utils._.trim(val)) {
+  //       if (!user.getDataValue('cpf')) {
+  //         // se for brasileiro, deve ter um cpf
+  //         throw new Error('user.cpf.required');
+  //       }
+  //     } else {
+  //       if (!user.getDataValue('passaporte') ) {
+  //         // se não for brasileiro deve ter um passaporte
+  //         throw new Error('user.passaporte.required');
+  //       }
+  //     }
+  //   });
 
-    next();
-  };
+  //   next();
+  // };
 
-  plugin.hooks.on('we:models:ready', plugin.CPFOrPassportValidation);
+  // plugin.hooks.on('we:models:ready', plugin.CPFOrPassportValidation);
 
   return plugin;
 };
