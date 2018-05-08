@@ -8,10 +8,13 @@
 
 const path = require('path'),
   metatagContentFindAll = require('./lib/metatags/metatagContentFindAll.js'),
-  metatagContentFindOne = require('./lib/metatags/metatagContentFindOne.js');
+  metatagContentFindOne = require('./lib/metatags/metatagContentFindOne.js'),
+  generateHistoryCertification = require('./lib/generateHistoryCertification.js');
 
 module.exports = function loadPlugin(projectPath, Plugin) {
   const plugin = new Plugin(__dirname);
+
+  plugin.generateHistoryCertification = require('./lib/generateHistoryCertification.js');
 
   plugin.setConfigs({
     permissions: {
@@ -287,6 +290,11 @@ module.exports = function loadPlugin(projectPath, Plugin) {
   // };
 
   // plugin.hooks.on('we:models:ready', plugin.CPFOrPassportValidation);
+
+  plugin.hooks.on(
+    'history:published:after',
+    generateHistoryCertification
+  );
 
   return plugin;
 };

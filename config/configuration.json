@@ -157,18 +157,15 @@
         "find_url-alia",
         "create_url-alia",
         "update_url-alia",
-        "update_municipio",
-        "create_municipio",
-        "delete_municipio",
-        "manage_municipio",
-        "access_municipio_unPublished",
         "create_simple-event",
         "update_simple-event",
         "create_slide",
         "update_slide",
         "update_vocabulary",
         "update_term",
-        "update_email-template"
+        "update_email-template",
+        "publish_history",
+        "update_history"
       ]
     },
     "tourismManager": {

@@ -21,6 +21,31 @@ function updates() {
       })
       .catch(done);
     }
+  }, {
+    version: '0.0.5',
+    update(we, done) {
+      we.log.info('Start project update v0.0.5');
+
+      we.db.models['certification-template']
+      .findOrCreate({
+        where: {
+          identifier: 'history-published'
+        },
+        defaults: {
+          identifier: 'history-published',
+          name: 'Histórias publicadas',
+          text: 'Teste!!',
+          textPosition: 'middle',
+          published: true
+        }
+      })
+      .then( ()=> {
+        we.log.info('Done project update v0.0.5');
+        done();
+        return null;
+      })
+      .catch(done);
+    }
   }];
 }
 

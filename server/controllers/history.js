@@ -252,7 +252,29 @@ module.exports = {
       res.ok();
     }
   },
+  /**
+   * Publish one history
+   *
+   * @param  {Object} req express.js request
+   * @param  {Object} res express.js response
+   */
+  publish(req, res) {
+    if (!req.isAuthenticated()) return res.forbidden();
 
+    const models = req.we.db.models;
+
+    models.history.findById(req.params.id)
+    .then( (history)=> {
+      if (!history) return res.notFound();
+
+      return history.publish( Boolean(req.body.published) )
+      .then( ()=> {
+        // success
+        return res.ok();
+      });
+    })
+    .catch(res.queryError);
+  },
   /**
    * Delete and delete action
    *

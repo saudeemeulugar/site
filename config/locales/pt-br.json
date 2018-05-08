@@ -1334,5 +1334,9 @@
   "audio.selector": "Adicionar audio",
   "audio.uploader.title": "Envio de audio",
   "audio.upload.selector.btn": "Clique para enviar",
-  "history.delete.confirm.msg": "Tem certeza que deseja deletar essa história?<br>Essa ação não é permanente."
+  "history.delete.confirm.msg": "Tem certeza que deseja deletar essa história?<br>Essa ação não é permanente.",
+  "certification.userCertifications": "Certificados do usuário",
+  "certification.user.empty": "Você não tem certificados nesse sistema",
+  "download.as.pdf": "Baixar como PDF",
+  "certification.my": "Meus certificados"
 }

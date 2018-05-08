@@ -96,6 +96,23 @@ module.exports = {
       .catch(done);
     });
 
+    fns.push(function createCertificationTemplates(done) {
+      we.db.models['certification-template']
+      .bulkCreate([{
+        identifier: 'history-published',
+        name: 'Histórias publicadas',
+        text: '',
+        textPosition: 'middle',
+        published: true
+      }])
+      .spread( ()=> {
+        we.log.info('Certification templates created');
+        done();
+        return null;
+      })
+      .catch(done);
+    });
+
     fns.push(function registerHomeSlideshow(done) {
       const data = {
         name: 'Home slideshow',
@@ -312,7 +329,6 @@ module.exports = {
       .catch(done);
     });
 
-
     fns.push(function createFirstSettings(done) {
       we.db.models['system-setting']
       .bulkCreate([{
@@ -352,7 +368,6 @@ module.exports = {
         done();
       });
     });
-
 
     we.utils.async.series(fns, done);
   },

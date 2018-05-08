@@ -185,6 +185,42 @@ module.exports = function HModel(we) {
                    .slugify().s,
             target: '/history/' + record.id,
           };
+        },
+        publish(record, status) {
+          return new Promise( (resolve, reject)=> {
+            record.updateAttributes({
+              published: status,
+              publishedAt: Date.now()
+            })
+            .then( (r)=> {
+              if (r.creator && r.creatorId) {
+                return r;
+              }
+
+              return r.getCreator()
+              .then( (creator)=> {
+                r.creator = creator;
+                return r;
+              });
+            })
+            .then( ()=> {
+              if (status) {
+                // published
+                we.hooks.trigger('history:published:after', {
+                  we: we,
+                  history: record
+                }, (err)=> {
+                  we.log.error('history:publish:error', err);
+                  resolve(record);
+                });
+              } else {
+                resolve(record);
+              }
+
+              return null;
+            })
+            .catch(reject);
+          });
         }
       },
       // record method for use with record.[method]
@@ -205,6 +241,10 @@ module.exports = function HModel(we) {
           ) {
             r.searchData += r.creator.displayName
           }
+        },
+
+        publish(status) {
+          return we.db.models.history.publish(this, status);
         }
       },
       hooks: {
