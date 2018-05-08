@@ -42879,13 +42879,14 @@ window.we.components.editor = {
 
     var element = $(selector);
     var cfg = {
+      menubar: true,
       target: element[0],
       lang: window.WE_BOOTSTRAP_CONFIG.locale,
       convert_urls: false,
       branding: false,
       paste_as_text: true,
 
-      min_height: element.attr('we-editor-height') || 400,
+      min_height: element.attr('we-editor-height') || 350,
       theme: 'modern',
       extended_valid_elements: 'iframe[src|frameborder|style|scrolling|class|width|height|name|align]',
       plugins: [
@@ -42894,7 +42895,7 @@ window.we.components.editor = {
         'insertdatetime media nonbreaking save table contextmenu directionality',
         'emoticons paste textcolor colorpicker textpattern codesample'
       ],
-      toolbar1: 'undo redo | insert | '+
+      toolbar: 'undo redo | insert paste | '+
         'styleselect | '+
         'bold italic forecolor backcolor | '+
         'alignleft aligncenter alignright alignjustify | '+
@@ -42926,6 +42927,7 @@ window.we.components.editor = {
     cfg.toolbar = window.we.components.editor.styles[style];
 
     setTimeout(function() {
+      console.log('cfg', cfg);
       window.tinymce.init(cfg);
     }, 200);
   },
@@ -42938,7 +42940,8 @@ window.we.components.editor = {
       return this.editorLocaleCache;
     }
 
-    var locale = window.we.config.locale;
+    var locale = window.WE_BOOTSTRAP_CONFIG.locale;
+
     // use default en-us locale
     if (!locale || locale === 'en' || locale === 'en-us') {
       return null;
@@ -42969,6 +42972,8 @@ window.we.components.editor = {
     }
 
     var locale = this.getEditorLocale();
+
+    if (!locale) return null;
 
     this.editorLocaleUrlCache = '/public/plugin/we-plugin-editor-tinymce/files/langs/'+locale+'.js';
 
@@ -43463,7 +43468,6 @@ we.components.imageSelector = {
     this.progressBar = this.progress.find('.progress-bar');
 
     this.modal.modal('show');
-
     // Change this to the location of your server-side upload handler:
     this.uploader.fileupload({
       dataType: 'json',
@@ -43487,17 +43491,22 @@ we.components.imageSelector = {
         $('#upload-image-preview-wrapper').html('');
         $('#weImageUploadDescription').val('');
         we.imageSelectedHandler = null;
-        self.progress.hide();
-        self.progressBar.css( 'width', '0%' );
 
+        self.hideProgressBar();
         self.goTostep1();
       },
       progressall: function (e, data) {
         var progress = parseInt(data.loaded / data.total * 100, 10);
+
+        console.log('Upload progress:', progress);
+
         self.progressBar.css( 'width', progress + '%' );
       },
       fail: function (e, data) {
         var xhr = data.jqXHR;
+
+        self.hideProgressBar();
+
         if (xhr.responseJSON && xhr.responseJSON.messages) {
           for(var i = 0; i < xhr.responseJSON.messages.length; i++) {
             var msg = xhr.responseJSON.messages[i];
@@ -43524,10 +43533,25 @@ we.components.imageSelector = {
     $('#weImageUploadForm .upload-step-1').hide();
     $('#weImageUploadForm .upload-step-2').show();
   },
-  saveFile: function saveFile() {
-    if ($('#weImageUploadDescription').val())
-      this.fileUploadData.submit();
 
+  showProgressBar: function() {
+    $('#weImageUploadForm .form-group').hide();
+    this.progressBar.css( 'width', '0%' );
+    this.progress.show();
+  },
+  hideProgressBar: function() {
+    $('#weImageUploadForm .form-group').show();
+    this.progressBar.css( 'width', '0%' );
+    this.progress.hide();
+  },
+
+  saveFile: function saveFile() {
+    // if ($('#weImageUploadDescription').val()) {
+
+    this.showProgressBar();
+
+    this.fileUploadData.submit();
+    // }
 
     return false;
   },
