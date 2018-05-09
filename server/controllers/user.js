@@ -80,6 +80,7 @@ module.exports = {
     // block email filter
     if (
       req.query.email ||
+      req.query.cpf ||
       (res.locals.query.where && res.locals.query.where.email)
     ) {
       return res.badRequest('user.invalid.filter');
@@ -87,8 +88,7 @@ module.exports = {
 
     const Op = req.we.Op;
 
-
-    if (!req.we.acl.canStatic('view_all_users', req.userRoleNames)) {
+    if (req.we.acl.canStatic('view_all_users', req.userRoleNames)) {
 
     } else {
       res.locals.query.where.active = true;
