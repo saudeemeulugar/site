@@ -4,7 +4,6 @@
 
 module.exports = function contentModel(we) {
   const model = {
-
     definition: {
       active: {
         type: we.db.Sequelize.BOOLEAN,
@@ -38,12 +37,12 @@ module.exports = function contentModel(we) {
       },
       about: {
         type: we.db.Sequelize.TEXT,
-        allowNull: false,
+        allowNull: true,
         formFieldType: 'textarea',
       },
       body: {
         type: we.db.Sequelize.TEXT,
-        allowNull: false,
+        allowNull: true,
         formFieldType: 'html',
         formFieldHeight: 400
       },
