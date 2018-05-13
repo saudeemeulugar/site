@@ -47,6 +47,12 @@ module.exports = {
 
     const models = req.we.db.models;
 
+    if (req.we.acl.canStatic(
+      'view_all_user_data', req.userRoleNames
+    )) {
+      res.locals.data.canViewAllUserData = true;
+    }
+
     const queryH = {
       where: {
         creatorId: res.locals.data.id
@@ -77,19 +83,22 @@ module.exports = {
   },
 
   find(req, res) {
-    // block email filter
-    if (
-      req.query.email ||
-      req.query.cpf ||
-      (res.locals.query.where && res.locals.query.where.email)
-    ) {
-      return res.badRequest('user.invalid.filter');
+    if (!req.we.acl.canStatic(
+      'view_all_user_data', req.userRoleNames
+    )) {
+      if (
+        req.query.email ||
+        req.query.cpf ||
+        req.query.passaporte ||
+        (res.locals.query.where && res.locals.query.where.email)
+      ) {
+        return res.badRequest('user.invalid.filter');
+      }
     }
 
     const Op = req.we.Op;
 
     if (req.we.acl.canStatic('view_all_users', req.userRoleNames)) {
-
     } else {
       res.locals.query.where.active = true;
       res.locals.query.where.publishedHistoryCount = {
@@ -102,6 +111,16 @@ module.exports = {
     .then(function afterFindAndCount (record) {
       res.locals.metadata.count = record.count;
       res.locals.data = record.rows;
+
+
+      if (req.we.acl.canStatic(
+        'view_all_user_data', req.userRoleNames
+      )) {
+        res.locals.data.forEach( (u)=> {
+          u.canViewAllUserData = true;
+        });
+      }
+
       res.ok();
       return null;
     })
@@ -141,6 +160,12 @@ module.exports = {
 
   edit(req, res, next) {
     const we = req.we;
+
+    if (req.we.acl.canStatic(
+      'view_all_user_data', req.userRoleNames
+    )) {
+      res.locals.data.canViewAllUserData = true;
+    }
 
     delete req.body.blocked;
 

@@ -146,5 +146,27 @@ module.exports = {
     models: {
       post: true
     }
+  },
+
+  csv: {
+    modelColumns: {
+      history: {
+        id: 'historyId',
+        title: 'title',
+        published: 'published',
+        city: 'city',
+        'creator.id': 'creatorId',
+        creator: {
+          id: 'x'
+        }
+      },
+      user: {
+        userId: 'userId',
+        displayName: 'displayName',
+        fullName: 'fullName',
+        biography: 'biography',
+        gender: 'gender'
+      }
+    }
   }
 };

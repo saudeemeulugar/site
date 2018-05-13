@@ -194,8 +194,12 @@ module.exports = function UserModel(we) {
         },
       },
       imageFields: {
-        avatar: { formFieldMultiple: false },
-        banner: { formFieldMultiple: false }
+        avatar: {
+          formFieldMultiple: false
+        },
+        banner: {
+          formFieldMultiple: false
+        }
       },
 
       // table comment
@@ -317,12 +321,19 @@ module.exports = function UserModel(we) {
       instanceMethods: {
         toJSON() {
           const obj = this.get();
-          // delete and hide user email
-          delete obj.email;
-          // remove password hash from view
-          delete obj.password;
+
+          if (!this.canViewAllUserData) {
+            // delete and hide user email
+            delete obj.fullName;
+            delete obj.email;
+            delete obj.cpf;
+            delete obj.passaporte;
+            // remove password hash from view
+            delete obj.password;
+          }
 
           if (!obj.displayName) obj.displayName = obj.id;
+          if (!obj.username) obj.username = obj.id;
 
           return obj;
         }

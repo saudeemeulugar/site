@@ -16,7 +16,11 @@
 {{/if}}
 
 <div class="user-actions">
-  {{we-action-edit-btn 'user'  user this.req user.id redirectTo=this.req.url}}
+  {{#ifCond req.user.id user.id }}
+    <a href="/user/{{user.id}}/edit?redirectTo=/user/{{user.id}}" class="btn btn-default btn-sm" data-we-btn-action="edit"><i class="glyphicon glyphicon-edit text-info"></i> Editar</a>
+  {{else}}
+    {{we-action-edit-btn 'user' user this.req user.id redirectTo=this.req.url}}
+  {{/ifCond}}
 </div>
 
 {{#region 'profileSidebar'}}{{/region}}

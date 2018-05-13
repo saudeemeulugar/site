@@ -22,7 +22,10 @@ module.exports = function loadPlugin(projectPath, Plugin) {
         'title': 'Access unpublished contents'
       },
       'view_dashboard': { title: '' },
-      'edit_terms_of_use': { title: '' }
+      'edit_terms_of_use': { title: '' },
+      'generate_reports': {
+        title: 'Generate reports in admin'
+      }
     },
 
     certification: {
@@ -94,6 +97,29 @@ module.exports = function loadPlugin(projectPath, Plugin) {
     //   controller: 'certification',
     //   action: 'generate'
     // }
+
+    'get /exports/history.csv': {
+      controller: 'report',
+      action: 'exportHistory',
+      permission: 'generate_reports'
+    },
+    'get /exports/user.csv': {
+      controller: 'report',
+      action: 'exportUser',
+      permission: 'generate_reports'
+    },
+
+    'get /exports/history-count-in-states': {
+      controller: 'report',
+      action: 'exportsHistoryCountInStates',
+      permission: 'generate_reports'
+    },
+
+    'get /exports/user-count-in-states': {
+      controller: 'report',
+      action: 'exportsUserCountInStates',
+      permission: 'generate_reports'
+    },
 
     'post /history/:id/publish': {
       controller: 'history',

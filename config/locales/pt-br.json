@@ -672,8 +672,8 @@
   "form-helper-term-vocabularyName": "Digite o nome do vocabulário onde esse termo será criado",
   "form-helper-urlAlias-alias": "Esta é a URL que o usuário irá usar para acessar a página original, por exemplo: /meu-conteúdo-legal",
   "form-helper-urlAlias-target": "Normalmente um link permanente, por exemplo: /user/1",
-  "form-helper-user-avatar": " ",
-  "form-helper-user-banner": " ",
+  "form-helper-user-avatar": "Tamanho ideal da imagem do avatar: 250x250px",
+  "form-helper-user-banner": "Tamanho ideal da imagem do banner: 1140x388px",
   "form-helper-user-biography": " ",
   "form-helper-user-cfsession-about": " ",
   "form-helper-user-cfsession-newPassword": " ",
@@ -1261,21 +1261,16 @@
   "form-register-estrangeiro": "Você não possuí um CPF?",
   "form-placeholder-register-estrangeiro": " ",
   "form-helper-register-estrangeiro": " ",
-
   "form-user-cpf": "CPF",
   "form-helper-user-cpf": " ",
   "form-placeholder-user-cpf": " ",
-
   "form-user-estrangeiro": "Sou estrangeiro e não possuo CPF",
-
   "form-user-passaporte": "Passaporte",
   "form-placeholder-user-passaporte": " ",
   "form-helper-user-passaporte": "Número do passaporte caso não possua um CPF",
-
   "form-user-cep": "CEP",
   "form-helper-user-cep": "Exemplo: 25251-397",
   "form-placeholder-user-cep": " ",
-
   "form-register-country": "País",
   "form-placeholder-register-country": " ",
   "form-helper-register-country": "Clique e selecione o país que você mora no campo acima.",
@@ -1285,7 +1280,6 @@
   "form-register-city": "Cidade",
   "form-placeholder-register-city": " ",
   "form-helper-register-city": "Clique e selecione a cidade onde você mora, por exemplo: Recife",
-
   "form-user-country": "País",
   "form-placeholder-user-country": " ",
   "form-helper-user-country": "Selecione o país que você mora no campo acima.",
@@ -1295,18 +1289,14 @@
   "form-user-city": "Cidade",
   "form-placeholder-user-city": " ",
   "form-helper-user-city": "Selecione a cidade onde você mora, por exemplo: Recife",
-
   "form-user-cellphone": "Celular",
   "form-placeholder-user-cellphone": " ",
   "form-helper-user-cellphone": " ",
-
   "form-user-phone": "Telefone fixo",
   "form-placeholder-user-phone": " ",
   "form-helper-user-phone": " ",
   "cpf.passport.required.to.continue": "Preencha e salve os campos obrigatórios do seu perfil para participar do site Saúde é meu lugar",
-
   "fill.all.fields": "Preencha todos os campos!",
-
   "form-complete-registration-cellphone": "Celular",
   "form-placeholder-complete-registration-cellphone": " ",
   "form-helper-complete-registration-cellphone": "Telefone celular",
@@ -1323,7 +1313,6 @@
   "form-complete-registration-salvar": "Salvar",
   "history.create": "Registrar história",
   "history.find": "Histórias",
-
   "video.remove": "Remover vídeo",
   "file.video.select.btn": "Adicionar vídeo",
   "video.selector": "Adicionar vídeo",
@@ -1338,5 +1327,6 @@
   "certification.userCertifications": "Certificados do usuário",
   "certification.user.empty": "Você não tem certificados nesse sistema",
   "download.as.pdf": "Baixar como PDF",
-  "certification.my": "Meus certificados"
+  "certification.my": "Meus certificados",
+  "models.table.search": "Buscar por:"
 }
