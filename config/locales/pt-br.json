@@ -1328,5 +1328,9 @@
   "certification.user.empty": "Você não tem certificados nesse sistema",
   "download.as.pdf": "Baixar como PDF",
   "certification.my": "Meus certificados",
-  "models.table.search": "Buscar por:"
+  "models.table.search": "Buscar por:",
+  "audio.url.uploader.title": "Audio salvo na internet",
+  "audio.url.selector.btn": "URL do audio:",
+  "file.url.select.btn": "Adicionar",
+  "url.remove": "Remover"
 }

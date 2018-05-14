@@ -7920,6 +7920,25 @@ body.body-main-index #region-content .widget.widget-slideshow .device-container 
   font-size: 10px;
   color: #888;
 }
+.we-form-group-videoUrlGroup {
+  width: 49%;
+  float: left;
+}
+.we-form-group-videoGroup {
+  width: 49%;
+  float: right;
+}
+.we-form-group-audioUrlGroup {
+  width: 49%;
+  float: left;
+}
+.we-form-group-audioGroup {
+  width: 49%;
+  float: right;
+}
+.we-form-actions {
+  clear: both;
+}
 .social-logins {
   border-bottom: 1px solid #ddd;
   padding-bottom: 10px;

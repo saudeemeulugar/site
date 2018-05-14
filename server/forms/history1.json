@@ -54,7 +54,6 @@
       }
     },
 
-
     "locationGroup": {
       "type": "field-group",
       "title": "Localização",

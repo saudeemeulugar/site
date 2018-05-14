@@ -122,6 +122,7 @@
       "we-plugin-location": true,
       "we-plugin-google-api": true,
       "we-plugin-file-gdrive": true,
+      "we-plugin-file-url": true,
       "we-plugin-certification": true
     },
     "devPlugins": {}

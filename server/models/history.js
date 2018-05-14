@@ -171,6 +171,11 @@ module.exports = function HModel(we) {
         videos: { formFieldMultiple: true }
       },
 
+      urlFields: {
+        videoUrls: { formFieldMultiple: false },
+        audioUrls: { formFieldMultiple: true }
+      },
+
       audioFields: {
         audios: { formFieldMultiple: true }
       },
