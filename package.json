@@ -46,6 +46,7 @@
     "we-plugin-file": "^2.0.3",
     "we-plugin-file-gdrive": "^1.0.2",
     "we-plugin-file-local": "^2.0.2",
+    "we-plugin-file-url": "^0.0.2",
     "we-plugin-flag": "^2.0.0",
     "we-plugin-form": "^1.3.2",
     "we-plugin-google-analytics": "^1.2.0",

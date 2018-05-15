@@ -4593,6 +4593,10 @@ we-plugin-file-local@^2.0.2:
     mkdirp "^0.5.1"
     uuid "^3.2.1"
 
+we-plugin-file-url@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/we-plugin-file-url/-/we-plugin-file-url-0.0.2.tgz#55238c84b15da4a7e0527160bcad1c1c52d410b4"
+
 we-plugin-file@^2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/we-plugin-file/-/we-plugin-file-2.0.3.tgz#660d5533d6225e36c0f5b535f47fdcaece1b0136"
