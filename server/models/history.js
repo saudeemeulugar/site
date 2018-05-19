@@ -23,7 +23,8 @@ module.exports = function HModel(we) {
       },
       title: {
         type: we.db.Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        skipSanitizer: true
       },
       body: {
         type: we.db.Sequelize.TEXT,
@@ -158,7 +159,7 @@ module.exports = function HModel(we) {
         category: {
           vocabularyName: 'Category',
           canCreate: false,
-          formFieldMultiple: false
+          formFieldMultiple: true
         }
       },
 
@@ -172,7 +173,7 @@ module.exports = function HModel(we) {
       },
 
       urlFields: {
-        videoUrls: { formFieldMultiple: false },
+        videoUrls: { formFieldMultiple: true },
         audioUrls: { formFieldMultiple: true }
       },
 
@@ -186,7 +187,8 @@ module.exports = function HModel(we) {
       classMethods: {
         urlAlias(record) {
           return {
-            alias: '/historias/' + record.id + '-'+  we.utils.string( record.title )
+            alias: '/historias/' + record.id + '-'+  we.utils.string( record.title || '')
+                   .truncate(40)
                    .slugify().s,
             target: '/history/' + record.id,
           };
@@ -259,6 +261,10 @@ module.exports = function HModel(we) {
             r.publishedAt = Date.now();
           }
 
+          if (!r.historyDate) {
+            r.historyDate = r.createdAt;
+          }
+
           if (!r.highlighted) {
             r.highlighted = 0;
           }
@@ -271,6 +277,10 @@ module.exports = function HModel(we) {
           } else if (!r.published && r.publishedAt) {
             // reset publishedAt on unpublish
             r.publishedAt = null;
+          }
+
+          if (!r.historyDate) {
+            r.historyDate = r.createdAt;
           }
 
           if (!r.highlighted) {

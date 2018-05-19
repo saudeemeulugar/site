@@ -8,9 +8,9 @@
       "fields": {
         "videoUrls": {
           "type": "file/url",
-          "formFieldMultiple": false,
+          "formFieldMultiple": true,
           "formFieldAttributes": {
-            "label": "Audios externos",
+            "label": "Vídeos externos",
             "placeholder": null,
             "help": null
           }

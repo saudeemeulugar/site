@@ -7569,6 +7569,9 @@ body.iframe-page-type footer {
 .user-full-page .user-professional-activity {
   text-transform: capitalize;
 }
+.user-teaser-item .caption {
+  min-height: 100px;
+}
 .posts > .post-teaser {
   box-shadow: none;
   border: 1px solid #ccc;

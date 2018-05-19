@@ -17,7 +17,8 @@
     "start": "npm run session",
     "docker-logs": "docker-compose logs --tail=100 -f site",
     "test": "NODE_ENV=test LOG_LV=info ./node_modules/.bin/mocha test/bootstrap.js test/**/*.test.js",
-    "coverage": "NODE_ENV=test LOG_LV=info node_modules/.bin/istanbul cover node_modules/.bin/_mocha -- -u exports -R spec test/bootstrap.js test/**/*.test.js"
+    "coverage": "NODE_ENV=test LOG_LV=info node_modules/.bin/istanbul cover node_modules/.bin/_mocha -- -u exports -R spec test/bootstrap.js test/**/*.test.js",
+    "migrate-all": "we MV1T && we MV1VVU && we MV1I && we MV1U && we MV1H"
   },
   "dependencies": {
     "async": "^2.6.0",

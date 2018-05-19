@@ -22,6 +22,18 @@
         "help": null
       }
     },
+    "category": {
+      "type": "vocabulary/tag",
+      "vocabularyName": "Category",
+      "canCreate": false,
+      "formFieldMultiple": true,
+      "onlyLowercase": false,
+      "formFieldAttributes": {
+        "label": "Eixos",
+        "placeholder": null,
+        "help": "Selecione um eixo relácionado com sua história"
+      }
+    },
     "tags": {
       "type": "vocabulary/tag",
       "vocabularyName": "Tags",

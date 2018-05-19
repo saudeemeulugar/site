@@ -166,9 +166,9 @@ module.exports = {
                 menuId: r.id
               },
               {
-                'href': '/',
-                'text': 'Mídias',
-                class: 'link-midia',
+                'href': '/user',
+                'text': 'Narradores',
+                class: 'link-narradores',
                 'type': 'custom',
                 'depth': 0,
                 'weight': 4,
