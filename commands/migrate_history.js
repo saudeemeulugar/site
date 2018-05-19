@@ -230,7 +230,6 @@ function importOneTipoImage(data, cb) {
     console.log('http://localhost:9400/history/'+history.id, {
       type: data.tipo
     });
-    process.exit();
     cb();
     return null;
   })
