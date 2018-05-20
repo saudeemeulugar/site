@@ -1,3 +1,5 @@
+<div class="loader"></div>
+
 <ul class="nav nav-tabs" role="tablist">
   <li role="presentation" class="active">
     <a href="#thistories" aria-controls="thistories" role="tab" data-toggle="tab">Histórias</a>
@@ -20,12 +22,10 @@
         {{else}}
           <div class="col-md-12">Nenhuma história públicada.</div>
         {{/each}}
-
-        <div class="col-md-12">
-          {{paginate count=metadata.count limit=query.limit currentPage=query.page req=req}}
-        </div>
       </div>
-
+      <div class="clearfix">
+        {{paginate count=metadata.count limit=query.limit currentPage=query.page req=req}}
+      </div>
     </div>
   </div>
   {{#if data.biography}}
@@ -33,3 +33,17 @@
   {{/if}}
   </div>
 </div>
+
+<script>
+$(window).load(function() {
+  $('.dynamic-grid').masonry({
+    // set itemSelector so .grid-sizer is not used in layout
+    itemSelector: '.d-col',
+    // use element for option
+    columnWidth: '.d-col',
+    percentPosition: true
+  });
+
+  $('.loader').fadeOut('slow');
+});
+</script>

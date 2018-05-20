@@ -27,7 +27,7 @@
         </div>
       {{else}}
         <div class="ht-creator">
-          <a href="{{record.creator.permanentLink}}">
+          <a href="/user/{{record.creator.id}}">
             {{we-avatar id=record.creator.id style="thumbnail" class="ht-creator-avatar img-thumbnail"}}
             <h6 class="ht-creator-displayName">{{record.creator.displayName}}</h6>
             {{#if record.creator.locationText}}
