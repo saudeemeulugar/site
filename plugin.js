@@ -230,26 +230,35 @@ module.exports = function loadPlugin(projectPath, Plugin) {
     }
 
     we.express.use('/history', (req, res, next)=> {
-      console.log('!!!!!')
-      ;
-      if (!req.query.view) {
-        return next();
-
-      }
-
+      if (!req.query.view) return next();
       req.we.db.models['imported-history']
       .findOne({
         where: { eid: String(req.query.view) }
       })
       .then( (ih)=> {
-
-        console.log('>>ih>>', ih);
-
         if (ih && ih.historyId) {
-          return res.goTo('/history/'+ih.historyId);
+          res.goTo('/history/'+ih.historyId);
         } else {
-          return next();
+          next();
         }
+        return null;
+      })
+      .catch(next);
+    });
+
+    we.express.use('/narrador', (req, res, next)=> {
+      if (!req.query.view) return next();
+      req.we.db.models['imported-user']
+      .findOne({
+        where: { eid: String(req.query.view) }
+      })
+      .then( (ih)=> {
+        if (ih && ih.userId) {
+          res.goTo('/user/'+ih.userId);
+        } else {
+          next();
+        }
+        return null;
       })
       .catch(next);
     });
