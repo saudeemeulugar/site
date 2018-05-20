@@ -229,6 +229,31 @@ module.exports = function loadPlugin(projectPath, Plugin) {
       });
     }
 
+    we.express.use('/history', (req, res, next)=> {
+      console.log('!!!!!')
+      ;
+      if (!req.query.view) {
+        return next();
+
+      }
+
+      req.we.db.models['imported-history']
+      .findOne({
+        where: { eid: String(req.query.view) }
+      })
+      .then( (ih)=> {
+
+        console.log('>>ih>>', ih);
+
+        if (ih && ih.historyId) {
+          return res.goTo('/history/'+ih.historyId);
+        } else {
+          return next();
+        }
+      })
+      .catch(next);
+    });
+
     we.express.use(plugin.iframeClassMD);
   });
 

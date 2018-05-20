@@ -3,6 +3,8 @@
   <li class="active">Histórias</li>
 </ol>
 
+<div class="loader"></div>
+
 <div class="history-findAll">
   <div class="history-findAll-header">
     <h2 class="hfah-title">Vivências que viram histórias.
@@ -31,14 +33,13 @@
         Não foi possível encontrar histórias para a lista.
       </div>
     {{/each}}
-
-    <div class="col-md-12">
-      {{paginate count=metadata.count limit=query.limit currentPage=query.page req=req}}
-    </div>
+  </div>
+  <div class="clearfix">
+    {{paginate count=metadata.count limit=query.limit currentPage=query.page req=req}}
   </div>
 </div>
 <script>
-$(function($) {
+$(window).load(function() {
   $('.dynamic-grid').masonry({
     // set itemSelector so .grid-sizer is not used in layout
     itemSelector: '.d-col',
@@ -46,5 +47,7 @@ $(function($) {
     columnWidth: '.d-col',
     percentPosition: true
   });
+
+  $('.loader').fadeOut('slow');
 });
 </script>

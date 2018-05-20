@@ -21,6 +21,11 @@
       <div class="history-featuredImage">
         {{we-image data.featuredImage "banner" class="img-responsive img-thumbnail featured-image-findOne"}}
       </div>
+      <div class="featuredImage-description">
+        {{#each data.featuredImage }}
+          {{{this.description}}}
+        {{/each}}
+      </div>
     {{/if}}
 
     <div class="history-body">{{{data.body}}}</div>

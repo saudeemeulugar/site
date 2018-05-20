@@ -58,6 +58,11 @@ module.exports = function HModel(we) {
         type: we.db.Sequelize.BOOLEAN,
         defaultValue: false
       },
+      isImported: {
+        type: we.db.Sequelize.BOOLEAN,
+        defaultValue: false,
+        formFieldType: null
+      },
       haveText: {
         type: we.db.Sequelize.BOOLEAN,
         defaultValue: true,
