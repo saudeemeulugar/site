@@ -277,3 +277,147 @@ img[style="float:right;"] {
   background: url('/public/project/loading.gif') 50% 50% no-repeat rgb(249,249,249);
   opacity: .8;
 }
+
+
+.widget-narradores,
+.widget-narradores-nomes {
+  padding-bottom: 35px;
+  background-color: #F3F4EE;
+
+  .widget-header {
+    h3 {
+      font-weight: bold;
+      margin-bottom: 35px;
+      font-size: 35px;
+      text-align: center;
+    }
+  }
+
+  .widget-content,
+  .widget-header {
+    .container-fixed();
+
+    @media (min-width: @screen-sm-min) {
+      width: @container-sm;
+    }
+    @media (min-width: @screen-md-min) {
+      width: @container-md;
+    }
+    @media (min-width: @screen-lg-min) {
+      width: @container-lg;
+    }
+  }
+}
+
+.widget-narradores {
+  .avatar-item {
+    text-align: center;
+
+    .wn-avatar-image {
+      border-radius: 50%;
+      width: 150px;
+      margin: 0px auto 10px;
+      display: block;
+    }
+
+    .displayName {
+      font-weight: bold;
+      font-size: 18px;
+      margin-bottom: 2px;
+    }
+
+    .atividade {
+      &:first-letter {
+        text-transform: uppercase;
+      }
+    }
+
+    @media (min-width: @screen-sm-min) {
+      width: @container-sm;
+    }
+    @media (min-width: @screen-md-min) {
+      width: @container-md;
+    }
+    @media (min-width: @screen-lg-min) {
+      width: 20%;
+      display: block;
+      float: left;
+    }
+
+  }
+}
+
+.widget-narradores {
+  .wn-avatar-image {
+    border: 3px solid #ffff;
+  }
+}
+
+.widget-narradores-nomes {
+  .displayName {
+    font-size: 15px;
+    margin-bottom: 0px;
+  }
+
+  .wnn-avatar-image {
+    width: 25px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+  }
+}
+
+.social-links-area {
+  background-color: #F3F4EE;
+  .list-inline {
+    margin-bottom: 0px;
+    padding: 20px 0px 40px 0px;
+
+    li {
+      background: transparent;
+      border: 0px;
+      // margin-right: 10px;
+      width: 50px;
+      height: 45px;
+
+      a {
+        color: #272727;
+        font-size: 40px;
+      }
+    }
+  }
+}
+
+
+.footer-left-menu {
+  // font
+}
+
+.widget-pinion {
+  background-color: #D84B35;
+  margin: 0px !important;
+  color: #fff;
+  padding: 5px;
+  a {
+    color: #fff;
+  }
+
+  .pinion-message {
+    font-size: 15px;
+  }
+}
+
+body.body-main-index {
+  .widget-pinion .pinion-helper {
+    .container-fixed();
+
+    @media (min-width: @screen-sm-min) {
+      width: @container-sm;
+    }
+    @media (min-width: @screen-md-min) {
+      width: @container-md;
+    }
+    @media (min-width: @screen-lg-min) {
+      width: @container-lg;
+    }
+  }
+}

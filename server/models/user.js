@@ -9,6 +9,11 @@
 module.exports = function UserModel(we) {
   const model = {
     definition: {
+      haveAvatar: {
+        type: we.db.Sequelize.BOOLEAN,
+        defaultValue: false,
+        formFieldType: null
+      },
       username: { // deprecated!
         type: we.db.Sequelize.STRING,
         formFieldType: null,
@@ -369,6 +374,12 @@ module.exports = function UserModel(we) {
         },
         beforeUpdate(user) {
           user.username = user.id;
+
+          if (user.avatar && user.avatar.length) {
+            user.haveAvatar = true;
+          } else {
+            user.haveAvatar = false;
+          }
 
           // set default displayName as username
           if (!user.displayName) {

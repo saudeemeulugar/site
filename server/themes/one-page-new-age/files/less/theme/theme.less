@@ -2,15 +2,15 @@
 @icon-font-path: "/public/theme/one-page-new-age/fonts/";
 
 .heading-font {
-  font-family: 'Catamaran', 'Helvetica', 'Arial', 'sans-serif';
+  font-family: 'Montserrat', sans-serif;
   font-weight: 200;
   letter-spacing: 1px;
 }
 .body-font {
-  font-family: 'Muli', 'Helvetica', 'Arial', 'sans-serif';
+  font-family: 'Montserrat', sans-serif;
 }
 .alt-font {
-  font-family: 'Lato', 'Helvetica', 'Arial', 'sans-serif';
+  font-family: 'Montserrat', sans-serif;
   text-transform: uppercase;
   letter-spacing: 2px;
 }
@@ -19,7 +19,7 @@ body {
   width: 100%;
 }
 body {
-  font-family: 'Muli', 'Helvetica', 'Arial', 'sans-serif';
+  font-family: 'Montserrat', sans-serif;
 }
 a {
   -webkit-transition: all 0.35s;
@@ -46,7 +46,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Catamaran', 'Helvetica', 'Arial', 'sans-serif';
+  font-family: 'Montserrat', sans-serif;
   font-weight: 200;
   letter-spacing: 1px;
 }
@@ -66,14 +66,12 @@ p {
   -webkit-transition: all 0.35s;
   -moz-transition: all 0.35s;
   transition: all 0.35s;
-  font-family: 'Catamaran', 'Helvetica', 'Arial', 'sans-serif';
+  font-family: 'Montserrat', sans-serif;
   font-weight: 200;
-  letter-spacing: 1px;
 }
 .navbar-default .navbar-header .navbar-brand {
-  font-family: 'Catamaran', 'Helvetica', 'Arial', 'sans-serif';
+  font-family: 'Montserrat', sans-serif;
   font-weight: bold;
-  letter-spacing: 1px;
   color: @navbar-color;
 }
 .navbar-default .navbar-header .navbar-brand:hover,
@@ -86,9 +84,8 @@ p {
   padding: 8px 10px;
 }
 .navbar-default .nav > li > a {
-  font-family: 'Lato', 'Helvetica', 'Arial', 'sans-serif';
+  font-family: 'Montserrat', sans-serif;
   text-transform: uppercase;
-  letter-spacing: 2px;
   font-size: 11px;
 }
 .navbar-default .nav > li > a,
@@ -365,7 +362,7 @@ footer ul {
   margin-bottom: 0;
 }
 footer ul li a {
-  font-size: 12px;
+  font-size: 16px;
   color: @footer-color;
 }
 footer ul li a:hover,
@@ -400,7 +397,7 @@ footer ul li a.active {
   border-color: @a-color-hover;
 }
 .btn {
-  font-family: 'Lato', 'Helvetica', 'Arial', 'sans-serif';
+  font-family: 'Montserrat', sans-serif;
   text-transform: uppercase;
   letter-spacing: 2px;
   border-radius: 300px;
@@ -438,9 +435,7 @@ body {
 
 .navbar-brand img {
   display: inline;
-  width: 35px;
-  margin-top: -8px;
-  margin-bottom: -6px;
+  width: 145px;
   margin-right: 5px;
 }
 
@@ -476,6 +471,7 @@ header {
 #mainNav {
   background-color: white;
   border-color: rgba(34, 34, 34, 0.1);
+  padding-bottom: 5px;
 }
 
 .navbar-default a {
@@ -753,8 +749,13 @@ hr {
   display: inline-block;
 }
 
-.navbar-nav .register-link {
-  display: none;
+.navbar-nav {
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  .register-link {
+    display: none;
+  }
 }
 
 html > object {

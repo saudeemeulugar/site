@@ -229,7 +229,8 @@ function resolveRole(perfil) {
     let p = perfis[i];
 
     if (p == 'Admin') {
-      roles.push('administrator');
+      // set manualy for security
+      // roles.push('administrator');
     } else if (p == 'Curador') {
       roles.push('curator');
     }

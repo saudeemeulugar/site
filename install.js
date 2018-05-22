@@ -166,9 +166,9 @@ module.exports = {
                 menuId: r.id
               },
               {
-                'href': '/user',
-                'text': 'Narradores',
-                class: 'link-narradores',
+                'href': '/mostras',
+                'text': 'Mostras',
+                class: 'link-mostras',
                 'type': 'custom',
                 'depth': 0,
                 'weight': 4,
@@ -176,14 +176,22 @@ module.exports = {
               },
               {
                 'href': '/noticias',
-                'text': 'Notícias',
+                'text': 'Blog',
                 class: 'link-news',
                 'type': 'custom',
                 'depth': 0,
                 'weight': 5,
                 menuId: r.id
               },
-
+              {
+                'href': '/site-contact',
+                'text': 'Contato',
+                class: 'link-news',
+                'type': 'custom',
+                'depth': 0,
+                'weight': 6,
+                menuId: r.id
+              },
               {
                 'href': '/history/create',
                 'text': 'Participar',

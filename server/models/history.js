@@ -254,6 +254,42 @@ module.exports = function HModel(we) {
             r.searchData += r.creator.displayName
           }
         },
+        setMidiaFlags() {
+          const r = this;
+          // have text
+          if (r.body && r.body.trim && r.body.trim()) {
+            r.haveText = true;
+          } else {
+            r.haveText = false
+          }
+          // have image
+          if (
+            (r.featuredImage && r.featuredImage.length) ||
+            (r.images && r.images.length)
+          ) {
+            r.haveImage = true;
+          } else {
+            r.haveImage = false
+          }
+          // video
+          if (
+            (r.videoUrls && r.videoUrls.length) ||
+            (r.videos && r.videos.length)
+          ) {
+            r.haveVideo = true;
+          } else {
+            r.haveVideo = false
+          }
+          // audio
+          if (
+            (r.audioUrls && r.audioUrls.length) ||
+            (r.audios && r.audios.length)
+          ) {
+            r.haveAudio = true;
+          } else {
+            r.haveAudio = false
+          }
+        },
 
         publish(status) {
           return we.db.models.history.publish(this, status);
@@ -273,6 +309,8 @@ module.exports = function HModel(we) {
           if (!r.highlighted) {
             r.highlighted = 0;
           }
+
+          r.setMidiaFlags();
         },
 
         beforeUpdate(r) {
@@ -284,14 +322,10 @@ module.exports = function HModel(we) {
             r.publishedAt = null;
           }
 
-          if (!r.historyDate) {
-            r.historyDate = r.createdAt;
-          }
+          if (!r.historyDate) r.historyDate = r.createdAt;
+          if (!r.highlighted) r.highlighted = 0;
 
-          if (!r.highlighted) {
-            r.highlighted = 0;
-          }
-
+          r.setMidiaFlags();
           r.buildSearchDataValue();
         },
 

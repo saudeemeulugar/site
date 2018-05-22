@@ -186,6 +186,8 @@ function importOneTipoImage(data, cb) {
           saveHistoryImage(history, image.arquivo, (err, im)=> {
             if (err) next(err);
 
+            console.log('>>>>', featuredImageId, im.id);
+
             if (!im) return next();
 
             if (!featuredImageId && im) {
@@ -230,6 +232,9 @@ function importOneTipoImage(data, cb) {
     console.log('http://localhost:9400/history/'+history.id, {
       type: data.tipo
     });
+
+
+          process.exit();
     cb();
     return null;
   })
@@ -435,7 +440,7 @@ function getAllV1Histories(cb) {
   let sql = 'SELECT * '+
     'FROM `app_historias` '+
     'WHERE deletedat IS NULL '+
-    // 'AND tipo = "video" '+
+    'AND tipo = "imagem" '+
     'ORDER BY historiaID DESC ';
   conn.query(sql, (err, results)=> {
     if (err) return cb(err);
