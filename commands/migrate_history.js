@@ -186,8 +186,6 @@ function importOneTipoImage(data, cb) {
           saveHistoryImage(history, image.arquivo, (err, im)=> {
             if (err) next(err);
 
-            console.log('>>>>', featuredImageId, im.id);
-
             if (!im) return next();
 
             if (!featuredImageId && im) {
@@ -196,7 +194,7 @@ function importOneTipoImage(data, cb) {
               return next();
             }
 
-            if (im.id == featuredImageId.id) {
+            if (featuredImageId == im.id) {
               // already salved in featured image.
               return next();
             }
@@ -233,8 +231,6 @@ function importOneTipoImage(data, cb) {
       type: data.tipo
     });
 
-
-          process.exit();
     cb();
     return null;
   })
@@ -270,7 +266,7 @@ function buildBasicData(data) {
     published: true,
     haveImage: true,
     haveVideo: Boolean(
-      data.videoUrls || data.videoUrls.length
+      data.videoUrls && data.videoUrls.length
     ),
     country: 'BR',
     locationState: locationState,
