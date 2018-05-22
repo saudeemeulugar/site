@@ -1,7 +1,7 @@
 {
   "name": "saudeemeulugar",
   "description": "Site com We.js do projeto Saúde é meu lugar",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "private": true,
   "main": "./app.js",
   "scripts": {
@@ -23,6 +23,7 @@
   "dependencies": {
     "async": "^2.6.0",
     "connect-redis": "^3.3.3",
+    "embed-video": "^2.0.4",
     "express-session": "^1.15.6",
     "fb": "^2.0.0",
     "gm": "^1.23.1",

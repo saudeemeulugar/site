@@ -19,7 +19,7 @@
     <div class="history-metadata">{{we-date data.historyDate 'DD/MM/YYYY'}}, {{data.locationText}}</div>
     {{#if data.featuredImage}}
       <div class="history-featuredImage">
-        {{we-image data.featuredImage "banner" class="img-responsive img-thumbnail featured-image-findOne"}}
+        {{we-image data.featuredImage "original" class="img-responsive img-thumbnail featured-image-findOne"}}
       </div>
       <div class="featuredImage-description">
         {{#each data.featuredImage }}
@@ -39,21 +39,49 @@
       </div>
     {{/if}}
 
-    {{#if data.videos.length}}
+    {{#if data.haveVideo}}
       <div class="history-videos">
         <h4>Vídeos</h4>
-        {{#each data.videos}}
-          <iframe width="640px" height="480px" src="{{urls.original}}" frameborder="0" class="history-video-preview"></iframe>
-        {{/each}}
+
+        <div class="row">
+          {{#each data.videos}}
+            <div class="col-sm-12 col-md-6">
+              <div class="embed-responsive embed-responsive-4by3">
+                <iframe src="{{urls.original}}" frameborder="0" class="embed-responsive-item history-video-preview"></iframe>
+              </div>
+            </div>
+          {{/each}}
+
+          {{#each data.videoUrls}}
+            <div class="col-sm-12 col-md-6">
+              <div class="embed-responsive embed-responsive-4by3">
+                {{{video-player this.url class="embed-responsive-item history-video-preview"}}}
+              </div>
+            </div>
+          {{/each}}
+        </div>
       </div>
     {{/if}}
 
-    {{#if data.audios.length}}
-      <div class="history-videos">
+    {{#if data.audio}}
+      <div class="history-audio">
         <h4>Audios</h4>
-        {{#each data.audios}}
-          <iframe width="640px" height="90px" src="{{urls.original}}" frameborder="0" class="history-video-preview"></iframe>
-        {{/each}}
+        <div class="row">
+          {{#each data.audios}}
+            <div class="col-sm-12 col-md-6">
+              <div class="embed-responsive-4by3">
+                <iframe src="{{urls.original}}" frameborder="0" class="embed-responsive-item history-audio-preview"></iframe>
+              </div>
+            </div>
+          {{/each}}
+          {{#each data.audioUrls}}
+            <div class="col-sm-12 col-md-6">
+              <div class="embed-responsive-4by3">
+                <iframe src="{{this.url}}" frameborder="0" class="embed-responsive-item history-audio-preview"></iframe>
+              </div>
+            </div>
+          {{/each}}
+        </div>
       </div>
     {{/if}}
 
@@ -71,7 +99,7 @@
       </div>
     {{/if}}
   </div>
-  <div class="col-md-3">
+  <div class="col-md-3 history-sidebar">
     {{#if data.publishAsAnonymous}}
       <div class="history-creator">
         {{we-avatar id="0" style="medium" class="img-responsive img-thumbnail"}}
@@ -96,34 +124,10 @@
 
         <a href="{{data.creator.linkPermanent}}" class="btn btn-default"><i class="fa fa-user" aria-hidden="true"></i> Ver perfil</a>
       </div>
-
-      <div class="history-creator-histories">
-        <h3 class="creator-histories-title">Mais histórias</h3>
-        <div class="histories-thumbnail-side">
-          TODO! add latest Autor histories...
-        </div>
-      </div>
     {{/if}}
+
+    {{#region 'sidebar'}}{{/region}}
   </div>
 </div>
 
 </div>{{!-- /.history-findOne  --}}
-
-<br><br>
-<hr>
-Dados salvos na história:
-<table class="table table-striped table-hover">
-  <tbody>
-    {{#each data.dataValues }}
-      <tr>
-        <th>{{@key}}</th>
-        <td>{{this}}</td>
-      </tr>
-    {{/each}}
-  </tbody>
-  <tfoot>
-    <td colspan="2">
-
-    </td>
-  </tfoot>
-</table>

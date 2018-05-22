@@ -436,7 +436,7 @@ function getAllV1Histories(cb) {
   let sql = 'SELECT * '+
     'FROM `app_historias` '+
     'WHERE deletedat IS NULL '+
-    'AND tipo = "imagem" '+
+    // 'AND tipo = "video" '+
     'ORDER BY historiaID DESC ';
   conn.query(sql, (err, results)=> {
     if (err) return cb(err);
