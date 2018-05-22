@@ -1,8 +1,8 @@
-<ol class="breadcrumb">
+{{!-- <ol class="breadcrumb">
   <li><a href="/">Início</a></li>
   <li class="active">Histórias</li>
 </ol>
-
+ --}}
 <div class="loader"></div>
 
 <div class="history-findAll">
@@ -10,8 +10,8 @@
     <h2 class="hfah-title">Vivências que viram histórias.
       <br>{{metadata.completeCount}} histórias que inspiram.</h2>
     <div class="history-search">
-      <form>
-        <div class="input-group">
+      <form class="form-inline">
+        <div class="input-group input-group-lg">
           <input type="text" name="q" class="form-control" placeholder="Procure uma história" value="{{req.query.q}}">
           <span class="input-group-btn">
             <button class="btn btn-default" type="submit">

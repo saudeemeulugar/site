@@ -29,57 +29,7 @@ module.exports = {
           { value: '#222222' },
           { value: '#FFD15A' }
         ]
-      },
-      // gray: {
-      //   label: 'Cores: preto, branco e cinza',
-      //   stylesheet: 'files/public/style-gray.css',
-      //   colors: [
-      //     { value: '#ccc' },
-      //     { value: '#dfdfdf' },
-      //     { value: '#aaa' },
-      //     { value: '#000' }
-      //   ]
-      // },
-      darkgreen: {
-        label: 'Cores: verde escuro, branco e vermelho claro nos links',
-        stylesheet: 'files/public/style-darkgreen.css',
-        colors: [
-          { value: '#003929' },
-          { value: '#ab4240' },
-          { value: '#fff' },
-          { value: '#00291e' }
-        ]
-      },
-      // lightgreen: {
-      //   label: 'Cores: verde claro, branco e laranja claro nos links',
-      //   stylesheet: 'files/public/style-lightgreen.css',
-      //   colors: [
-      //     { value: '#8aff87' },
-      //     { value: '#FEA313' },
-      //     { value: '#fff' },
-      //     { value: '#00291e' }
-      //   ]
-      // },
-      darkblue: {
-        label: 'Cores: azul escuro, branco e laranja claro nos links',
-        stylesheet: 'files/public/style-darkblue.css',
-        colors: [
-          { value: '#22296f' },
-          { value: '#022480' },
-          { value: '#fff' },
-          { value: '#FEA313' }
-        ]
-      },
-      // lightblue: {
-      //   label: 'Cores: azul claro e branco',
-      //   stylesheet: 'files/public/style-lightblue.css',
-      //   colors: [
-      //     { value: '#71C3B7' },
-      //     { value: '#182c2f' },
-      //     { value: '#fff' },
-      //     { value: '#FEA313' }
-      //   ]
-      // }
+      }
     }
   },
 

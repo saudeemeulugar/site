@@ -6802,7 +6802,7 @@ p {
   margin-bottom: 20px;
 }
 .navbar-default {
-  background-color: white;
+  background-color: #E6F2E7;
   border-color: rgba(34, 34, 34, 0.05);
   -webkit-transition: all 0.35s;
   -moz-transition: all 0.35s;
@@ -6814,6 +6814,7 @@ p {
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
   color: #00291e;
+  float: none;
 }
 .navbar-default .navbar-header .navbar-brand:hover,
 .navbar-default .navbar-header .navbar-brand:focus {
@@ -6827,7 +6828,8 @@ p {
 .navbar-default .nav > li > a {
   font-family: 'Montserrat', sans-serif;
   text-transform: uppercase;
-  font-size: 11px;
+  font-size: 16px;
+  color: #66615b;
 }
 .navbar-default .nav > li > a,
 .navbar-default .nav > li > a:focus {
@@ -6847,10 +6849,6 @@ p {
   background-color: transparent;
 }
 @media (min-width: 768px) {
-  .navbar-default {
-    background-color: transparent;
-    border-color: transparent;
-  }
   .navbar-default.affix {
     background-color: white;
     border-color: rgba(34, 34, 34, 0.1);
@@ -7171,7 +7169,7 @@ body {
 /* Costumized settings for be an we.js theme. */
 .navbar-brand img {
   display: inline;
-  width: 145px;
+  width: 170px;
   margin-right: 5px;
 }
 header {
@@ -7199,15 +7197,14 @@ header {
   color: #000;
 }
 #mainNav {
-  background-color: white;
-  border-color: rgba(34, 34, 34, 0.1);
   padding-bottom: 5px;
 }
 .navbar-default a {
   color: #000;
-  font-weight: bold;
+  font-weight: 500;
 }
 .navbar {
+  padding: 10px;
   margin-bottom: 0px;
 }
 body #we-layout {
