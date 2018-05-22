@@ -1,0 +1,5 @@
+{{#if widget.records.length}}
+  {{#each widget.records}}
+    {{render-record-teaser modelName='history' record=this locals=../locals}}
+  {{/each}}
+{{/if}}
