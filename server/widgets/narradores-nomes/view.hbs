@@ -1,0 +1,17 @@
+{{#if widget.records.length}}
+  <div class="row">
+    {{#each widget.records}}
+      <div class="col-md-3">
+        <a href="{{linkPermanent}}" class="avatar-name-item">
+          <h4 class="displayName">
+            {{#if avatar.length}}
+              {{we-image avatar 'thumbnail' class="wnn-avatar-image"}}
+            {{else}}
+              <img src="/avatar/0" class="wnn-avatar-image" />
+            {{/if}}
+            {{we-strip-tags text=displayName maxLength=50}}</h4>
+        </a>
+      </div>
+    {{/each}}
+  </div>
+{{/if}}
