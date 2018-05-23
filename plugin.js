@@ -168,6 +168,8 @@ module.exports = function loadPlugin(projectPath, Plugin) {
     findOne: { metatagHandler: 'contentFindOne' }
   });
 
+  plugin.setResource({ name: 'contributor' });
+
   plugin.setMetatagHandlers = function setMetatagHandlers(we) {
     if (we.router.metatag) {
       // override default metatag handler for all routes:

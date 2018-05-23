@@ -2,16 +2,15 @@
   <div class="row">
     {{#each widget.records}}
       <div class="col-md-3">
-        <a href="{{linkPermanent}}" class="avatar-name-item">
-          <h4 class="displayName">
-            {{#if avatar.length}}
-              {{we-image avatar 'thumbnail' class="wnn-avatar-image"}}
-            {{else}}
-              <img src="/avatar/0" class="wnn-avatar-image" />
-            {{/if}}
-            {{we-strip-tags text=displayName maxLength=50}}</h4>
-        </a>
+        <h4 class="displayName">
+          {{we-strip-tags text=name maxLength=150}}</h4>
       </div>
     {{/each}}
+
+    <div class="col-md-3">
+      <a href="/contribuidores">
+        <h4 class="displayName">Saiba mais <i class="glyphicon glyphicon-link"></i> </h4>
+      </a>
+    </div>
   </div>
 {{/if}}

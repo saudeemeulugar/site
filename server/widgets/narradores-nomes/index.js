@@ -2,18 +2,16 @@ module.exports = function (projectPath, Widget) {
   const widget = new Widget('narradores', __dirname);
 
   widget.viewMiddleware = function(w, req, res, next) {
-    req.we.db.models.user.findAll({
-      where: {
-        active: true,
-        displayName: {
-          [req.we.Op.ne]: null
-        }
-      },
-      order: [req.we.db.Sequelize.fn('RAND')],
-      limit: 12
+    req.we.db.models.contributor.findAll({
+      order: [req.we.db.Sequelize.fn('RAND')]
     })
     .then( (r)=> {
       w.records = r;
+
+      if (!r || !r.length) {
+        w.hide = true;
+      }
+
       next();
       return null;
     })

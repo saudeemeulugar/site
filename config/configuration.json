@@ -41,7 +41,8 @@
         "find_video",
         "upload_gdrive_video",
         "find_audio",
-        "upload_gdrive_audio"
+        "upload_gdrive_audio",
+        "find_contributor"
       ],
       "isSystemRole": true
     },
@@ -70,7 +71,8 @@
         "find_simple-event",
         "find_video",
         "find_audio",
-        "create_history"
+        "create_history",
+        "find_contributor"
       ],
       "isSystemRole": true
     },
