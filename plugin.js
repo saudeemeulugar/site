@@ -9,6 +9,8 @@
 const path = require('path'),
   metatagContentFindAll = require('./lib/metatags/metatagContentFindAll.js'),
   metatagContentFindOne = require('./lib/metatags/metatagContentFindOne.js'),
+  metatagHistoryFindAll = require('./lib/metatags/historyFindAll.js'),
+  metatagHistoryFindOne = require('./lib/metatags/historyFindOne.js'),
   generateHistoryCertification = require('./lib/generateHistoryCertification.js');
 
 module.exports = function loadPlugin(projectPath, Plugin) {
@@ -129,7 +131,22 @@ module.exports = function loadPlugin(projectPath, Plugin) {
     }
   });
 
-  plugin.setResource({ name: 'history' });
+  plugin.setResource({
+    name: 'history',
+    findAll: {
+      metatagHandler: 'historyFindAll',
+      search: {
+        published: {
+          parser: 'equalBoolean',
+          target: {
+            type: 'field',
+            field: 'published'
+          }
+        }
+      }
+    },
+    findOne: { metatagHandler: 'historyFindOne' }
+  });
 
   plugin.setResource({ name: 'certification' });
   plugin.setResource({ name: 'certification-template' });
@@ -157,6 +174,8 @@ module.exports = function loadPlugin(projectPath, Plugin) {
       we.router.metatag.add('default', require('./lib/metatags/default.js'));
       we.router.metatag.add('contentFindOne', metatagContentFindOne);
       we.router.metatag.add('contentFindAll', metatagContentFindAll);
+      we.router.metatag.add('historyFindOne', metatagHistoryFindOne);
+      we.router.metatag.add('historyFindAll', metatagHistoryFindAll);
     }
   }
 
@@ -205,11 +224,6 @@ module.exports = function loadPlugin(projectPath, Plugin) {
         !req.user.allRequirementsMet &&
         req.originalUrl == '/'
       ) {
-
-        // res.addMessage('warning', {
-        //   text: 'cpf.passport.required.to.continue'
-        // });
-
         return res.goTo('/complete-registration');
       }
 
@@ -323,33 +337,6 @@ module.exports = function loadPlugin(projectPath, Plugin) {
 
     done();
   });
-
-  // plugin.CPFOrPassportValidation = function(we, next) {
-  //   we.db.models.user
-  //   .hook('beforeValidate', (user) => {
-  //     let val = user.requerCpfOrPassport;
-  //     // skip cpf and passport requirement if is new record:
-  //     if (user.isNewRecord) {
-  //       return user;
-  //     }
-
-  //     if (!val || !we.utils._.trim(val)) {
-  //       if (!user.getDataValue('cpf')) {
-  //         // se for brasileiro, deve ter um cpf
-  //         throw new Error('user.cpf.required');
-  //       }
-  //     } else {
-  //       if (!user.getDataValue('passaporte') ) {
-  //         // se não for brasileiro deve ter um passaporte
-  //         throw new Error('user.passaporte.required');
-  //       }
-  //     }
-  //   });
-
-  //   next();
-  // };
-
-  // plugin.hooks.on('we:models:ready', plugin.CPFOrPassportValidation);
 
   plugin.hooks.on(
     'history:published:after',
