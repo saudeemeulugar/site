@@ -4663,9 +4663,9 @@ we-plugin-file-local@^2.0.2:
     mkdirp "^0.5.1"
     uuid "^3.2.1"
 
-we-plugin-file-url@^0.0.5:
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/we-plugin-file-url/-/we-plugin-file-url-0.0.5.tgz#67ae64e79a8aeb460d6b8e1217fa7830bae69364"
+we-plugin-file-url@^0.0.6:
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/we-plugin-file-url/-/we-plugin-file-url-0.0.6.tgz#e28dec21efb629590cb349c5f388e08b6f30ee70"
 
 we-plugin-file@^2.0.3:
   version "2.0.3"
