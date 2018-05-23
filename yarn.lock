@@ -230,6 +230,12 @@ async@2.6.0, async@^2.1.4, async@^2.5.0, async@^2.6.0:
   dependencies:
     lodash "^4.14.0"
 
+async@^2.6.1:
+  version "2.6.1"
+  resolved "https://registry.yarnpkg.com/async/-/async-2.6.1.tgz#b245a23ca71930044ec53fa46aa00a3e87c6a610"
+  dependencies:
+    lodash "^4.17.10"
+
 async@~0.2.6:
   version "0.2.10"
   resolved "https://registry.yarnpkg.com/async/-/async-0.2.10.tgz#b6bbe0b0674b9d719708ca38de8c237cb526c3d1"
@@ -641,15 +647,19 @@ combined-stream@1.0.6, combined-stream@^1.0.5, combined-stream@~1.0.5:
   dependencies:
     delayed-stream "~1.0.0"
 
-commander@2.11.0, commander@~2.11.0:
-  version "2.11.0"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-2.11.0.tgz#157152fd1e7a6c8d98a5b715cf376df928004563"
+commander@2.15.1:
+  version "2.15.1"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-2.15.1.tgz#df46e867d0fc2aec66a34662b406a9ccafff5b0f"
 
 commander@2.8.x:
   version "2.8.1"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.8.1.tgz#06be367febfda0c330aa1e2a072d3dc9762425d4"
   dependencies:
     graceful-readlink ">= 1.0.0"
+
+commander@~2.11.0:
+  version "2.11.0"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-2.11.0.tgz#157152fd1e7a6c8d98a5b715cf376df928004563"
 
 component-emitter@^1.2.0, component-emitter@^1.2.1:
   version "1.2.1"
@@ -1743,9 +1753,9 @@ graceful-fs@~1.2.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/graceful-readlink/-/graceful-readlink-1.0.1.tgz#4cafad76bc62f02fa039b2f94e9a3dd3a391a725"
 
-growl@1.10.3:
-  version "1.10.3"
-  resolved "https://registry.yarnpkg.com/growl/-/growl-1.10.3.tgz#1926ba90cf3edfe2adb4927f5880bc22c66c790f"
+growl@1.10.5:
+  version "1.10.5"
+  resolved "https://registry.yarnpkg.com/growl/-/growl-1.10.5.tgz#f2735dc2283674fa67478b10181059355c369e5e"
 
 gtoken@^2.2.0:
   version "2.3.0"
@@ -1896,10 +1906,6 @@ has-ansi@^2.0.0:
 has-flag@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/has-flag/-/has-flag-1.0.0.tgz#9d9e793165ce017a00f00418c43f942a7b1d11fa"
-
-has-flag@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/has-flag/-/has-flag-2.0.0.tgz#e8207af1cc7b30d446cc70b734b5e8be18f88d51"
 
 has-flag@^3.0.0:
   version "3.0.0"
@@ -2788,21 +2794,21 @@ mkdirp@0.5.1, mkdirp@0.5.x, mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.1:
   dependencies:
     minimist "0.0.8"
 
-mocha@^5.1.1:
-  version "5.1.1"
-  resolved "https://registry.yarnpkg.com/mocha/-/mocha-5.1.1.tgz#b774c75609dac05eb48f4d9ba1d827b97fde8a7b"
+mocha@^5.2.0:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/mocha/-/mocha-5.2.0.tgz#6d8ae508f59167f940f2b5b3c4a612ae50c90ae6"
   dependencies:
     browser-stdout "1.3.1"
-    commander "2.11.0"
+    commander "2.15.1"
     debug "3.1.0"
     diff "3.5.0"
     escape-string-regexp "1.0.5"
     glob "7.1.2"
-    growl "1.10.3"
+    growl "1.10.5"
     he "1.1.1"
     minimatch "3.0.4"
     mkdirp "0.5.1"
-    supports-color "4.4.0"
+    supports-color "5.4.0"
 
 moment-timezone@^0.5.14:
   version "0.5.16"
@@ -3572,6 +3578,31 @@ request@2.85.0, request@^2.37.0, request@^2.81.0, request@^2.83.0, request@^2.85
     tunnel-agent "^0.6.0"
     uuid "^3.1.0"
 
+request@^2.87.0:
+  version "2.87.0"
+  resolved "https://registry.yarnpkg.com/request/-/request-2.87.0.tgz#32f00235cd08d482b4d0d68db93a829c0ed5756e"
+  dependencies:
+    aws-sign2 "~0.7.0"
+    aws4 "^1.6.0"
+    caseless "~0.12.0"
+    combined-stream "~1.0.5"
+    extend "~3.0.1"
+    forever-agent "~0.6.1"
+    form-data "~2.3.1"
+    har-validator "~5.0.3"
+    http-signature "~1.2.0"
+    is-typedarray "~1.0.0"
+    isstream "~0.1.2"
+    json-stringify-safe "~5.0.1"
+    mime-types "~2.1.17"
+    oauth-sign "~0.8.2"
+    performance-now "^2.1.0"
+    qs "~6.5.1"
+    safe-buffer "^5.1.1"
+    tough-cookie "~2.3.3"
+    tunnel-agent "^0.6.0"
+    uuid "^3.1.0"
+
 require-all@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/require-all/-/require-all-2.2.0.tgz#b4420c233ac0282d0ff49b277fb880a8b5de0894"
@@ -4123,11 +4154,11 @@ supervisor@^0.12.0:
   version "0.12.0"
   resolved "https://registry.yarnpkg.com/supervisor/-/supervisor-0.12.0.tgz#de7e6337015b291851c10f3538c4a7f04917ecc1"
 
-supports-color@4.4.0:
-  version "4.4.0"
-  resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-4.4.0.tgz#883f7ddabc165142b2a61427f3352ded195d1a3e"
+supports-color@5.4.0, supports-color@^5.1.0, supports-color@^5.3.0:
+  version "5.4.0"
+  resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-5.4.0.tgz#1c6b337402c2137605efe19f10fec390f6faab54"
   dependencies:
-    has-flag "^2.0.0"
+    has-flag "^3.0.0"
 
 supports-color@^2.0.0:
   version "2.0.0"
@@ -4138,12 +4169,6 @@ supports-color@^3.1.0:
   resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-3.2.3.tgz#65ac0504b3954171d8a64946b2ae3cbb8a5f54f6"
   dependencies:
     has-flag "^1.0.0"
-
-supports-color@^5.1.0, supports-color@^5.3.0:
-  version "5.4.0"
-  resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-5.4.0.tgz#1c6b337402c2137605efe19f10fec390f6faab54"
-  dependencies:
-    has-flag "^3.0.0"
 
 tar@^4:
   version "4.4.1"
@@ -4605,9 +4630,9 @@ we-plugin-db-system-settings@^1.3.2:
   dependencies:
     chokidar "^1.7.0"
 
-we-plugin-editor-tinymce@^1.2.7:
-  version "1.2.7"
-  resolved "https://registry.yarnpkg.com/we-plugin-editor-tinymce/-/we-plugin-editor-tinymce-1.2.7.tgz#426c90f472ddc00c364689d3f9cae4735ebe3fbf"
+we-plugin-editor-tinymce@^1.2.8:
+  version "1.2.8"
+  resolved "https://registry.yarnpkg.com/we-plugin-editor-tinymce/-/we-plugin-editor-tinymce-1.2.8.tgz#258aa7c929774ef53effac85c0806d4eb1b33dff"
 
 we-plugin-email@^1.3.2:
   version "1.3.2"
@@ -4638,9 +4663,9 @@ we-plugin-file-local@^2.0.2:
     mkdirp "^0.5.1"
     uuid "^3.2.1"
 
-we-plugin-file-url@^0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/we-plugin-file-url/-/we-plugin-file-url-0.0.2.tgz#55238c84b15da4a7e0527160bcad1c1c52d410b4"
+we-plugin-file-url@^0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/we-plugin-file-url/-/we-plugin-file-url-0.0.5.tgz#67ae64e79a8aeb460d6b8e1217fa7830bae69364"
 
 we-plugin-file@^2.0.3:
   version "2.0.3"
@@ -4654,9 +4679,9 @@ we-plugin-flag@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/we-plugin-flag/-/we-plugin-flag-2.0.0.tgz#956e4d0291af0296e880778afa0a971f45506594"
 
-we-plugin-form@^1.3.2:
-  version "1.3.2"
-  resolved "https://registry.yarnpkg.com/we-plugin-form/-/we-plugin-form-1.3.2.tgz#168d9fd48caea46fb97f89643fbaa242219dd5e9"
+we-plugin-form@^1.3.3:
+  version "1.3.3"
+  resolved "https://registry.yarnpkg.com/we-plugin-form/-/we-plugin-form-1.3.3.tgz#efa69118ee5318b485f694ca428f704002ec72bc"
 
 we-plugin-google-analytics@^1.2.0:
   version "1.2.0"
