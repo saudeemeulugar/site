@@ -6,9 +6,9 @@
 
 <div class="row content-view-record news-item">
   <div class="col-md-8 col-lg-8">
-    {{#if data.featuredImage}}
+{{!--     {{#if data.featuredImage}}
       {{we-image data.featuredImage "banner" class="img-responsive img-thumbnail featured-image-findOne"}}
-    {{/if}}
+    {{/if}} --}}
     <h1>{{data.title}}
       {{#can permission='update_news' roleNames=req.userRoleNames}}
         <a href="/admin/#/news/{{data.id}}" class="btn btn-default">Editar</a>
