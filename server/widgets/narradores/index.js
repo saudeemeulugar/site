@@ -6,15 +6,19 @@ module.exports = function (projectPath, Widget) {
       where: {
         haveAvatar: true,
         active: true,
-        // publishedHistoryCount: {
-        //   [req.we.Op.gt]: 0
-        // }
+        roles: {
+          [req.we.Op.like]: '%team_member%'
+        }
       },
-      order: [req.we.db.Sequelize.fn('RAND')],
-      limit: 5
+      order: [req.we.db.Sequelize.fn('RAND')]
     })
     .then( (r)=> {
       w.records = r;
+
+      if (!r || !r.length) {
+        w.hide = true;
+      }
+
       next();
       return null;
     })

@@ -1332,5 +1332,7 @@
   "audio.url.uploader.title": "Audio salvo na internet",
   "audio.url.selector.btn": "URL do audio:",
   "file.url.select.btn": "Adicionar",
-  "url.remove": "Remover"
+  "url.remove": "Remover",
+  "Enable": "Ativar",
+  "Block": "Bloquear"
 }

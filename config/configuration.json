@@ -89,45 +89,9 @@
       ],
       "isSystemRole": true
     },
-    "groupMember": {
-      "name": "groupMember",
-      "isSystemRole": true,
-      "permissions": [
-        "find_group",
-        "find_post",
-        "find_group.post",
-        "create_post_in_group",
-        "create_group.post"
-      ]
-    },
-    "groupManager": {
-      "name": "groupManager",
-      "isSystemRole": true,
-      "permissions": [
-        "update_group",
-        "find_group",
-        "delete_group",
-        "manage_group",
-        "find_group_member",
-        "post_highlight",
-        "create_post_in_group",
-        "update_post_in_group",
-        "delete_post_in_group",
-        "find_group.post",
-        "create_group.post",
-        "update_group.post",
-        "delete_group.post"
-      ]
-    },
-    "eventManager": {
-      "name": "Gerente de eventos",
-      "canAddInUsers": true,
-      "permissions": [
-        "find_d-form-answer",
-        "find_d-form-value",
-        "find_d-form-group",
-        "find_d-form-field"
-      ]
+    "team_member": {
+      "name": "Membro da equipe",
+      "canAddInUsers": true
     },
     "editor": {
       "name": "editor",
@@ -166,15 +130,6 @@
         "update_email-template",
         "publish_history",
         "update_history"
-      ]
-    },
-    "tourismManager": {
-      "name": "Gestor de turismo",
-      "canAddInUsers": true,
-      "isSystemRole": false,
-      "permissions": [
-        "access_municipio_unPublished",
-        "update_municipio"
       ]
     }
   }
