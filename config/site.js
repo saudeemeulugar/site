@@ -5,7 +5,7 @@ module.exports = {
   subtitle: 'Nome do site',
   systemSettingsPubSubStrategy: 'redis',
 
-  queryDefaultLimit: 9,
+  // queryDefaultLimit: 9,
 
   googleApi: {
     scopes: {
