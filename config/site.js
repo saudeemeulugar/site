@@ -5,6 +5,8 @@ module.exports = {
   subtitle: 'Nome do site',
   systemSettingsPubSubStrategy: 'redis',
 
+  queryDefaultLimit: 9,
+
   googleApi: {
     scopes: {
       'https://www.googleapis.com/auth/drive.file': true,
