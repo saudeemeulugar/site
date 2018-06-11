@@ -222,7 +222,7 @@ module.exports = function HModel(we) {
                   we: we,
                   history: record
                 }, (err)=> {
-                  we.log.error('history:publish:error', err);
+                  if (err) we.log.error('history:publish:error', err);
                   resolve(record);
                 });
               } else {
