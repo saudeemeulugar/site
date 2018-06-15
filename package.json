@@ -36,8 +36,8 @@
     "we-core": "^2.0.4",
     "we-passport-oauth2-password": "^2.0.0",
     "we-plugin-acl": "^1.2.12",
-    "we-plugin-auth": "^2.2.0",
-    "we-plugin-certification": "^1.0.1",
+    "we-plugin-auth": "^2.2.1",
+    "we-plugin-certification": "^1.0.2",
     "we-plugin-comment": "^2.0.0",
     "we-plugin-contact": "^2.0.0",
     "we-plugin-csv": "^1.1.1",
@@ -71,9 +71,9 @@
     "we-plugin-user": "^2.0.1",
     "we-plugin-user-settings": "^2.0.0",
     "we-plugin-view": "^1.4.5",
-    "we-plugin-vocabulary": "^2.0.1",
+    "we-plugin-vocabulary": "^2.0.2",
     "we-plugin-widget": "^2.0.0",
-    "winston": "2.4.2"
+    "winston": "3.0.0"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
