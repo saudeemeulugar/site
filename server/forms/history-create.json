@@ -46,15 +46,6 @@
         "help": "Escreva ou selecione no máximo 3 assuntos relacionados à história"
       }
     },
-    "attachment": {
-      "type": "file/file",
-      "formFieldMultiple": true,
-      "formFieldAttributes": {
-        "label": "Arquivos anexos",
-        "placeholder": null,
-        "help": "Arquivos como textos, planilhas ou apresentações relácionadas com a sua história"
-      }
-    },
 
     "locationGroup": {
       "type": "field-group",
