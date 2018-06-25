@@ -32,7 +32,7 @@ module.exports = function loadPlugin(projectPath, Plugin) {
 
     certification: {
       textPositions: {
-        middle: { l: 120, t: 320,
+        middle: { l: 102, t: 273,
           options: {
             width: 440,
           },
