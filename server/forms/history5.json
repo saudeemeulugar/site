@@ -2,6 +2,16 @@
   "method": "post",
 
   "fields": {
+    "creatorId": {
+      "type": "hcreator",
+      "defaultValue": false,
+      "formFieldAttributes": {
+        "label": "Autor da história",
+        "placeholder": null,
+        "help": "Use esse campo para alterar o autor da história"
+      }
+    },
+
     "publishAsAnonymous": {
       "type": "boolean",
       "defaultValue": false,

@@ -239,6 +239,13 @@ module.exports = {
       res.locals.stepId = 1;
     }
 
+    if (
+      req.body.creatorId &&
+      !req.we.acl.canStatic('update_history_creator', req.userRoleNames)
+    ) {
+      delete req.body.creatorId;
+    }
+
     res.locals['step'+res.locals.stepId] = true;
     res.locals.currentStep = res.locals.stepId;
     res.locals.currentStepOBJ = editSteps[res.locals.stepId];
