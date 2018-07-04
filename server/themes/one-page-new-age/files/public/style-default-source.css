@@ -8381,6 +8381,10 @@ img[style="float:right;"] {
   color: #272727;
   font-size: 40px;
 }
+.footer-logos img {
+  max-height: 40px;
+  padding: 0px 5px;
+}
 .widget-pinion {
   background-color: #D84B35;
   margin: 0px !important;
