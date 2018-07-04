@@ -7,11 +7,13 @@
   "fields": {
     "fullName": {
       "type": "text",
-      "defaultValue": ""
+      "defaultValue": "",
+      "allowNull": false
     },
     "displayName": {
       "type": "text",
-      "defaultValue": ""
+      "defaultValue": "",
+      "allowNull": false
     },
     "cpf": {
       "type": "gov-br/cpf",
