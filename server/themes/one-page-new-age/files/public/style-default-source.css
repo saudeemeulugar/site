@@ -7588,6 +7588,9 @@ body.iframe-page-type footer {
 .user-full-page .user-professional-activity {
   text-transform: capitalize;
 }
+.user-location-data {
+  margin-bottom: 10px;
+}
 .user-teaser-item .caption {
   min-height: 100px;
 }
@@ -8493,4 +8496,7 @@ body.body-main-index .widget-pinion .pinion-helper {
 }
 .widget-home-video-block .btn-default:hover {
   background-color: #bb992f !important;
+}
+.widget-fb-page {
+  margin-top: 20px;
 }
