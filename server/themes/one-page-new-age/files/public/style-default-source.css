@@ -7479,18 +7479,6 @@ body.iframe-page-type footer {
 #weAdminBar > .container > .nav > li > a:hover {
   background-color: #888;
 }
-@media (max-width: 767px) {
-  .navbar-right,
-  .navbar-left {
-    width: 49%;
-  }
-  .navbar-left {
-    float: left;
-  }
-  .nav.navbar-right {
-    float: right;
-  }
-}
 .sidebar-nav > li {
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -8319,6 +8307,8 @@ img[style="float:right;"] {
   padding-top: 55px;
 }
 .widget-narradores .avatar-item {
+  display: block;
+  margin-bottom: 20px;
   text-align: center;
 }
 .widget-narradores .avatar-item .wn-avatar-image {
@@ -8376,6 +8366,7 @@ img[style="float:right;"] {
   border: 0px;
   width: 50px;
   height: 45px;
+  margin: 0px 6px;
 }
 .social-links-area .list-inline li a {
   color: #272727;
@@ -8383,7 +8374,7 @@ img[style="float:right;"] {
 }
 .footer-logos img {
   max-height: 40px;
-  padding: 0px 5px;
+  padding: 0px 10px;
 }
 .widget-pinion {
   background-color: #D84B35;
