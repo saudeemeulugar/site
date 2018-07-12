@@ -45,6 +45,7 @@ module.exports = {
       return next();
     }
 
+    const we = req.we;
     const models = req.we.db.models;
 
     if (req.we.acl.canStatic(
@@ -53,12 +54,10 @@ module.exports = {
       res.locals.data.canViewAllUserData = true;
     }
 
-    const queryH = {
-      where: {
-        creatorId: res.locals.data.id
-      },
-      limit: 20
-    };
+    if (!res.locals.metadata) res.locals.metadata = {};
+
+    const queryH = we.utils._.clone(res.locals.query);
+    queryH.where.creatorId = res.locals.data.id;
 
     if (
       req.isAuthenticated() &&
@@ -73,7 +72,16 @@ module.exports = {
       queryH.where.publishAsAnonymous = false;
     }
 
-    models.history.findAll(queryH)
+    models.history
+    .findAll(queryH)
+    .then( (histories)=> {
+      return models.history
+      .count(queryH)
+      .then( (count)=> {
+        res.locals.metadata.count = count;
+        return histories;
+      });
+    })
     .then( (histories)=> {
       res.locals.data.histories = histories;
       return res.ok();

@@ -128,6 +128,7 @@ module.exports = {
     }
   },
 
+  queryDefaultLimit: 15,
   latestCommentLimit: 4,// limit for preloaded comments
   comments: {
     models:  {
