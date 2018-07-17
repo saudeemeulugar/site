@@ -1,7 +1,7 @@
 {
   "name": "saudeemeulugar",
   "description": "Site com We.js do projeto Saúde é meu lugar",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "main": "./app.js",
   "scripts": {
