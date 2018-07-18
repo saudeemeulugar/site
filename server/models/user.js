@@ -18,8 +18,15 @@ module.exports = function UserModel(we) {
         type: we.db.Sequelize.STRING,
         formFieldType: null,
       },
-      displayName: { type: we.db.Sequelize.STRING },
-      fullName: { type: we.db.Sequelize.TEXT, formFieldType: 'text' },
+      displayName: {
+        type: we.db.Sequelize.STRING,
+        allowNull: false
+      },
+      fullName: {
+        type: we.db.Sequelize.TEXT,
+        formFieldType: 'text',
+        allowNull: false
+      },
 
       publishedHistoryCount: {
         type: we.db.Sequelize.INTEGER,
@@ -337,7 +344,6 @@ module.exports = function UserModel(we) {
             delete obj.password;
           }
 
-          if (!obj.displayName) obj.displayName = obj.id;
           if (!obj.username) obj.username = obj.id;
 
           return obj;
@@ -357,15 +363,6 @@ module.exports = function UserModel(we) {
         beforeCreate(user) {
           user.username = user.id;
 
-          // set default displayName as username
-          if (!user.displayName) {
-            if (user.fullName && user.fullName.trim()) {
-              user.displayName = user.fullName.split(' ')[0];
-            } else {
-              user.displayName = user.id;
-            }
-          }
-
           // never save consumers on create
           delete user.consumers;
           // dont allow to set admin and moderator flags
@@ -379,15 +376,6 @@ module.exports = function UserModel(we) {
             user.haveAvatar = true;
           } else {
             user.haveAvatar = false;
-          }
-
-          // set default displayName as username
-          if (!user.displayName) {
-            if (user.fullName && user.fullName.trim()) {
-              user.displayName = user.fullName.split(' ')[0];
-            } else {
-              user.displayName = user.id;
-            }
           }
 
           // dont change user acceptTerms in update
