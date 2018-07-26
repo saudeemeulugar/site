@@ -30,7 +30,7 @@
 
     "gender": {
       "type": "select",
-      "allowNull": false,
+      "allowNull": true,
       "fieldOptions": {
         "M": "Male",
         "F": "Female"
