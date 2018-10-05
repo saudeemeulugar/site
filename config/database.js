@@ -39,7 +39,10 @@ if (process.env.REDIS_URL) {
   });
 
   configs.session = {
-    secret: process.env.REDIS_SECRET || '123123189658558k012830908a09s8',
+    secret: process.env.REDIS_SECRET || '1231231sml',
+    cookie  : {
+      maxAge  : 31536000000 // one year
+    },
     store: new RedisStore({
       // pass the session store settings, see the session store docs
       client: redisClient,
