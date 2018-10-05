@@ -8,7 +8,7 @@
       "formFieldAttributes": {
         "label": "Imagem de destaque",
         "placeholder": null,
-        "help": "Imagen de destaque que aparece nas listas e destacada na parte de cima da história"
+        "help": "Imagem de destaque que aparece nas listas e ao compartilhar nas redes sociais"
       }
     },
     "images": {
