@@ -26,15 +26,17 @@
           <h6 class="ht-creator-displayName">Anônimo</h6>
         </div>
       {{else}}
-        <div class="ht-creator">
-          <a href="/user/{{record.creator.id}}">
-            {{we-avatar id=record.creator.id style="thumbnail" class="ht-creator-avatar img-thumbnail"}}
-            <h6 class="ht-creator-displayName">{{record.creator.displayName}}</h6>
-            {{#if record.creator.locationText}}
-              <span class="ht-creator-location">{{record.creator.locationText}}</span>
-            {{/if}}
-          </a>
-        </div>
+        {{#if record.creator.id}}
+          <div class="ht-creator">
+            <a href="/user/{{record.creator.id}}">
+              {{we-avatar id=record.creator.id style="thumbnail" class="ht-creator-avatar img-thumbnail"}}
+              <h6 class="ht-creator-displayName">{{record.creator.displayName}}</h6>
+              {{#if record.creator.locationText}}
+                <span class="ht-creator-location">{{record.creator.locationText}}</span>
+              {{/if}}
+            </a>
+          </div>
+        {{/if}}
       {{/if}}
     {{/ifCond}}
   </div>

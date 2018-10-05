@@ -1,4 +1,6 @@
-{{we-avatar id=user.id style='medium' width="100%" class="img-thumbnail avatar"}}
+{{#if user.id}}
+  {{we-avatar id=user.id style='medium' width="100%" class="img-thumbnail avatar"}}
+{{/if}}
 
 <h1 class="user-displayName">{{user.displayName}}</h1>
 {{#if user.atividade}}

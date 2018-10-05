@@ -110,7 +110,11 @@
     {{else}}
       <div class="history-creator">
         <a href="/user/{{data.creator.id}}">
-          {{we-avatar id=data.creator.id style="medium" class="img-responsive img-thumbnail"}}
+          {{#if data.creator.id}}
+            {{we-avatar id=data.creator.id style="medium" class="img-responsive img-thumbnail"}}
+          {{else}}
+            {{we-avatar id='0' style="medium" class="img-responsive img-thumbnail"}}
+          {{/if}}
           <h3 class="history-creator-displayName">{{data.creator.displayName}}</h3>
         </a>
         {{#if data.creator.atividade}}
