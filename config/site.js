@@ -33,6 +33,8 @@ module.exports = {
   },
 
   passport: {
+    expiresTime: 31536000000,
+
     strategies: {
       facebook: {
         clientID: 'TODO',
