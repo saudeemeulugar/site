@@ -72,7 +72,8 @@
     "we-plugin-user-settings": "^2.0.3",
     "we-plugin-view": "^1.4.6",
     "we-plugin-vocabulary": "^2.0.4",
-    "we-plugin-widget": "^2.0.0"
+    "we-plugin-widget": "^2.0.0",
+    "winston": "^2.4.4"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
