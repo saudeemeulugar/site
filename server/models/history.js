@@ -327,7 +327,7 @@ module.exports = function HModel(we) {
 
           s.distinct();
 
-          // console.log(s.toString());
+          we.log.info('q>>', s.toString());
 
           return s;
         }
