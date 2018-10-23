@@ -53,7 +53,9 @@ module.exports = {
     let s = models.history.buildSearchQuery(req, res);
 
     we.db.defaultConnection.query(s.toString())
-    .then((results)=> {
+    .then( (results)=> {
+      we.log.info('results>', results);
+
       if (!results[0].length) {
         return {
           count: 0,
@@ -61,7 +63,9 @@ module.exports = {
         }
       }
 
-      let countQ  = s.toString().replace('DISTINCT h.id', 'COUNT("h.id") AS count ').split('LIMIT')[0];
+      let countQ  = s.toString()
+        .replace('DISTINCT h.id', 'COUNT("h.id") AS count ')
+        .split('LIMIT')[0];
 
       return we.db.defaultConnection.query(countQ)
       .then( (results2)=> { // count query
@@ -73,6 +77,8 @@ module.exports = {
         let ids = results[0].map((r)=> {
           return r.id;
         });
+
+        we.log.info('ids>', ids);
 
         res.locals.query.where = { id: ids };
         res.locals.query.order = [
