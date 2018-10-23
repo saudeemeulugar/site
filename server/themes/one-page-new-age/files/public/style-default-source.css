@@ -7942,9 +7942,19 @@ body.body-main-index #region-content .widget.widget-slideshow .device-container 
 .history-search .form-inline {
   text-align: center;
 }
+.history-search .input-group,
+.history-search .form-group {
+  margin-bottom: 10px;
+}
 .history-search input {
-  width: 350px !important;
+  margin-right: 8px;
   border: 1px solid #ccc5b9;
+}
+.history-search .checkbox {
+  margin-left: 4px;
+}
+.history-search .midia-group input {
+  margin-right: 0px;
 }
 .ht-title {
   margin-top: 0px;

@@ -11,14 +11,62 @@
       <br>{{metadata.completeCount}} histórias que inspiram.</h2>
     <div class="history-search">
       <form class="form-inline">
-        <div class="input-group input-group-lg">
-          <input type="text" name="q" class="form-control" placeholder="Procure uma história" value="{{req.query.q}}">
-          <span class="input-group-btn">
-            <button class="btn btn-default" type="submit">
-              <span class="glyphicon glyphicon-search"></span>
-          </button>
-          </span>
+        <div class="row">
+          <div class="col-sm-12 col-md-12 col-ls-12">
+
+            <div class="form-group">
+              <label>Texto: </label>
+              <input type="text" name="q" class="form-control" placeholder="Buscar no título ou texto ..." value="{{req.query.q}}">
+{{!--               <span class="input-group-btn">
+                <button class="btn btn-default" type="submit">
+                  <span class="glyphicon glyphicon-search"></span>
+                </button>
+              </span> --}}
+            </div>
+
+            <div class="form-group">
+              <label>Autor: </label>
+              <input type="text" name="creatorName_like" class="form-control" placeholder="Do autor/narrador ..." value="{{req.query.creatorName_like}}">
+{{!--               <span class="input-group-btn">
+                <button class="btn btn-default" type="submit">
+                  <span class="glyphicon glyphicon-search"></span>
+                </button>
+              </span> --}}
+            </div>
+          </div>
+
+          <div class="col-sm-12 col-md-12 col-ls-12">
+
+            <div class="form-group midia-group">
+              <strong>Mídia:</strong>
+              <div class="checkbox">
+                <label><input name="haveImage" type="checkbox" {{#if req.query.haveImage}}checked{{/if}}> Imagem
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input name="haveVideo" type="checkbox" {{#if req.query.haveVideo}}checked{{/if}}> Vídeo
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input name="haveAudio" type="checkbox" {{#if req.query.haveAudio}}checked{{/if}}> Audio
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input name="haveText" type="checkbox" {{#if req.query.haveText}}checked{{/if}}> Texto
+                </label>
+              </div>
+
+              &nbsp;<button class="btn btn-default" type="submit">
+                <span class="glyphicon glyphicon-search"></span>
+              </button>
+
+            </div>
+          </div>
         </div>
+
       </form>
     </div>
   </div>

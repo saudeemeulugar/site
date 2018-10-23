@@ -140,14 +140,6 @@ module.exports = function HModel(we) {
       },
       setAlias: {
         type: we.db.Sequelize.VIRTUAL
-      },
-
-      // Search data with some record data concatened.
-      // TODO! move to search engines like Elasticsearch
-      searchData: {
-        type: we.db.Sequelize.TEXT,
-        allowNull: true,
-        formFieldType: null
       }
     },
     associations: {
@@ -340,23 +332,6 @@ module.exports = function HModel(we) {
       },
       // record method for use with record.[method]
       instanceMethods: {
-        buildSearchDataValue() {
-          const r = this;
-          // update search field before save in DB on update:
-          r.searchData = r.title + ' ' +
-            ( r.body || '') + ' ' +
-            ( r.locationState || '' ) + ' ' +
-            ( r.city || '' ) + ' ' +
-            ( r.categoryItem || '' ) + ' ';
-
-          if (
-            !r.publishAsAnonymous &&
-            r.creator &&
-            r.creator.displayName
-          ) {
-            r.searchData += r.creator.displayName
-          }
-        },
         setMidiaFlags() {
           const r = this;
           // have text
@@ -429,7 +404,6 @@ module.exports = function HModel(we) {
           if (!r.highlighted) r.highlighted = 0;
 
           r.setMidiaFlags();
-          r.buildSearchDataValue();
         },
 
         afterUpdate(r) {

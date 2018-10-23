@@ -672,7 +672,7 @@
   "form-helper-term-vocabularyName": "Digite o nome do vocabulário onde esse termo será criado",
   "form-helper-urlAlias-alias": "Esta é a URL que o usuário irá usar para acessar a página original, por exemplo: /meu-conteúdo-legal",
   "form-helper-urlAlias-target": "Normalmente um link permanente, por exemplo: /user/1",
-  "form-helper-user-avatar": "Tamanho ideal da imagem do avatar: 250x250px",
+  "form-helper-user-avatar": "Tamanho ideal da foto do perfil: 250x250px",
   "form-helper-user-banner": "Tamanho ideal da imagem do banner: 1140x388px",
   "form-helper-user-biography": " ",
   "form-helper-user-cfsession-about": " ",
@@ -919,7 +919,7 @@
   "form-register-fullName": "Nome completo",
   "form-register-displayName": "Nome de exibição",
   "form-register-gender": "Sexo",
-  "form-register-organization": "Organização",
+  "form-register-organization": "Onde trabalho",
   "form-register-password": "Senha",
   "form-register-submit": "Enviar",
   "form-register-username": "Nome de usuário",
@@ -938,7 +938,7 @@
   "form-urlAlias-createdAt": "Criado em",
   "form-urlAlias-target": "Url original",
   "form-user-active": "Ativo?",
-  "form-user-avatar": "Avatar",
+  "form-user-avatar": "Foto do Perfil",
   "form-user-banner": "Banner do perfil",
   "form-user-biography": "Sobre",
   "form-user-createdAt": "Registrado em",
@@ -947,7 +947,7 @@
   "form-user-fullName": "Nome completo",
   "form-user-gender": "Género",
   "form-user-language": "Linguagem",
-  "form-user-organization": "Organização",
+  "form-user-organization": "Onde trabalho",
   "form-user-setAlias": "URL do perfil",
   "form-user-username": "Nome de usuário",
   "form-vocabulary-createdAt": "Criado em",
@@ -1334,5 +1334,6 @@
   "file.url.select.btn": "Adicionar",
   "url.remove": "Remover",
   "Enable": "Ativar",
-  "Block": "Bloquear"
+  "Block": "Bloquear",
+  "form-user-atividade": "Ocupação Profissional"
 }
