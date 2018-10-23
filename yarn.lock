@@ -2884,6 +2884,11 @@ istanbul@^0.4.5:
     which "^1.1.1"
     wordwrap "^1.0.0"
 
+js-video-url-parser@^0.2.7:
+  version "0.2.7"
+  resolved "https://registry.yarnpkg.com/js-video-url-parser/-/js-video-url-parser-0.2.7.tgz#179de801d9363bfd44437b2b93f7e4fe59980e4d"
+  integrity sha512-pM6Et0CaThdgDxyXzn+d9IBMbJzryh+ta4nYzNggbehV7/4do8cAdRLtIPH+5cgzIDd1D5azoEzQWolBZ7lbjg==
+
 js-yaml@3.x:
   version "3.11.0"
   resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.11.0.tgz#597c1a8bd57152f26d622ce4117851a51f5ebaef"
@@ -5839,10 +5844,10 @@ we-plugin-passport-facebook@^1.4.0:
     passport-facebook "^2.1.1"
     request "^2.87.0"
 
-we-plugin-passport-google@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/we-plugin-passport-google/-/we-plugin-passport-google-1.2.1.tgz#4591c83f5e1df09d32b0d2ef9268c9471e87c1f2"
-  integrity sha512-AJkEOxaUmU1OTQz6cwckeSQ3AYbIEeihOwp/+A1J+RjFviAnpcdekz+fi/OfkS7yOxPXnTHbAi1qSyUfwOnUmg==
+we-plugin-passport-google@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/we-plugin-passport-google/-/we-plugin-passport-google-1.2.2.tgz#4950bab274f102a9cfcd4100ce0a836858143c29"
+  integrity sha512-7M811cre9RKaR2FVLNzLkXOSBH84IEAsl3vS7vt9U3N51mgmnmf0c8glyoDivwziOKSADkZawraVuXbZGIhROQ==
   dependencies:
     passport-google-oauth "^1.0.0"
 
@@ -5949,10 +5954,10 @@ window-size@0.1.0:
   resolved "https://registry.yarnpkg.com/window-size/-/window-size-0.1.0.tgz#5438cd2ea93b202efa3a19fe8887aee7c94f9c9d"
   integrity sha1-VDjNLqk7IC76Ohn+iIeu58lPnJ0=
 
-winston@2:
-  version "2.4.4"
-  resolved "https://registry.yarnpkg.com/winston/-/winston-2.4.4.tgz#a01e4d1d0a103cf4eada6fc1f886b3110d71c34b"
-  integrity sha512-NBo2Pepn4hK4V01UfcWcDlmiVTs7VTB1h7bgnB0rgP146bYhMxX0ypCz3lBOfNxCO4Zuek7yeT+y/zM1OfMw4Q==
+winston@2.4.3:
+  version "2.4.3"
+  resolved "https://registry.yarnpkg.com/winston/-/winston-2.4.3.tgz#7a9fdab371b6d3d9b63a592947846d856948c517"
+  integrity sha512-GYKuysPz2pxYAVJD2NPsDLP5Z79SDEzPm9/j4tCjkF/n89iBNGBMJcR+dMUqxgPNgoSs6fVygPi+Vl2oxIpBuw==
   dependencies:
     async "~1.0.0"
     colors "1.0.x"
@@ -5961,10 +5966,10 @@ winston@2:
     isstream "0.1.x"
     stack-trace "0.0.x"
 
-winston@2.4.3:
-  version "2.4.3"
-  resolved "https://registry.yarnpkg.com/winston/-/winston-2.4.3.tgz#7a9fdab371b6d3d9b63a592947846d856948c517"
-  integrity sha512-GYKuysPz2pxYAVJD2NPsDLP5Z79SDEzPm9/j4tCjkF/n89iBNGBMJcR+dMUqxgPNgoSs6fVygPi+Vl2oxIpBuw==
+winston@^2.4.4:
+  version "2.4.4"
+  resolved "https://registry.yarnpkg.com/winston/-/winston-2.4.4.tgz#a01e4d1d0a103cf4eada6fc1f886b3110d71c34b"
+  integrity sha512-NBo2Pepn4hK4V01UfcWcDlmiVTs7VTB1h7bgnB0rgP146bYhMxX0ypCz3lBOfNxCO4Zuek7yeT+y/zM1OfMw4Q==
   dependencies:
     async "~1.0.0"
     colors "1.0.x"

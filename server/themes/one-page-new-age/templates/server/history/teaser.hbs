@@ -1,9 +1,18 @@
 <div class="panel panel-default">
-  {{#if record.featuredImage}}
+ {{#if record.featuredImage}}
     {{#link-to-record record=record}}
       {{we-image record.featuredImage "large" width="100%"}}
     {{/link-to-record}}
+  {{else}}
+    {{#if record.videoUrls}}
+      {{#each record.videoUrls}}
+        <a href="/history/{{../record.id}}">
+          {{render-url-video-thumbnail url=url width="100%"}}
+        </a>
+      {{/each}}
+    {{/if}}
   {{/if}}
+
   <div class="panel-body">
     {{#link-to-record record=record}}
       <h2 class="ht-title">
