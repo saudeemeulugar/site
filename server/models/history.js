@@ -272,6 +272,22 @@ module.exports = function HModel(we) {
           s.from('histories', 'h')
           s.group('id');
 
+          if (!req.we.acl.canStatic('access_history_unpublished', req.userRoleNames)) {
+            if (req.isAuthenticated()) {
+              s.where (
+                squel.expr()
+                .and('h.creatorId = '+req.user.id)
+                .or(
+                  squel.expr()
+                  .and('h.creatorId != '+req.user.id)
+                  .and('h.published = 1')
+                )
+              );
+            } else {
+              s.where ('h.published = 1');
+            }
+          }
+
           if (q.q) {
             s.where(
               squel.expr()
@@ -321,8 +337,7 @@ module.exports = function HModel(we) {
             );
           }
 
-
-          s.order('publishedAt', false);
+          // s.order('credAt', false);
           s.order('id', false);
 
           s.limit(15)
