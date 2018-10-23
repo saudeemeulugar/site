@@ -61,7 +61,7 @@ module.exports = {
         }
       }
 
-      let countQ  = s.toString().replace('DISTINCT h.id', 'COUNT("h.id")');
+      let countQ  = s.toString().replace('DISTINCT h.id', 'COUNT("h.id") AS count ').split('LIMIT')[0];
 
       return we.db.defaultConnection.query(countQ)
       .then( (results2)=> { // count query
