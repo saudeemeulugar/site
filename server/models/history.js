@@ -321,13 +321,13 @@ module.exports = function HModel(we) {
 
           s.limit(15)
 
-          if (req.query.page || req.query.page != '1') {
+          if (Number(req.query.page) || Number(req.query.page) > 1) {
             s.offset(( req.query.page*15 )-15);
           }
 
           s.distinct();
 
-          console.log(s.toString());
+          // console.log(s.toString());
 
           return s;
         }
