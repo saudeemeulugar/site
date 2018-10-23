@@ -2,6 +2,13 @@
  * History model
  */
 
+const squel = require('squel');
+
+const vName = {
+  tags: 'Tags',
+  category: 'Category'
+};
+
 module.exports = function HModel(we) {
   const model = {
     definition: {
@@ -233,6 +240,102 @@ module.exports = function HModel(we) {
             })
             .catch(reject);
           });
+        },
+
+        loadSearchTerms() {
+          return we.db.models.term.findAll({
+            where: {
+              vocabularyName: [
+                'tags',
+                'category'
+              ]
+            },
+            raw: true,
+            attributes: ['text', 'vocabularyName'],
+            order: [['text', 'ASC']]
+          })
+          .then( (terms)=> {
+            let data = {};
+            // sort
+            terms.forEach( (term)=> {
+              let key = vName[term.vocabularyName];
+
+              if (!data[key]) {
+                data[key] = [];
+              }
+
+              data[key].push( term.text );
+            });
+
+            return data;
+          });
+        },
+
+        buildSearchQuery(req) {
+          const q = req.query;
+
+          let s = squel.select()
+          s.field('h.id');
+          s.from('histories', 'h')
+
+          if (q.q) {
+            s.where(
+              squel.expr()
+              .or('h.title LIKE %?%', q.q)
+              .or('h.body LIKE %?%', q.q)
+            );
+          }
+
+          if (q.haveImage) s.where('h.haveImage = 1');
+          if (q.haveText) s.where('h.haveText = 1');
+          if (q.haveVideo) s.where('h.haveVideo = 1');
+          if (q.haveAudio) s.where('h.haveAudio = 1');
+
+          // location:
+          if (q.country) s.where('h.country = ?', q.country);
+          if (q.locationState) s.where('h.locationState = ?', q.locationState);
+          if (q.city) s.where('h.city = ?', q.city);
+
+          // term fields:
+          const termFields = we.db.modelsConfigs.history.options.termFields;
+          for(let field in termFields) {
+            if (q[field]) {
+              s.join('modelsterms', field,
+                squel.expr()
+                .and(field+'.modelId = h.id')
+                .and(field+'.modelName = "history"')
+                .and(field+'.field = ?', field)
+              );
+              s.join('terms', field+'_t',
+                squel.expr()
+                .and(field+'_t'+'.id = '+field+'.termId')
+                .and(field+'_t'+'.text = ?', q[field])
+              );
+            }
+          }
+
+          // creator:
+          if (q.creatorName_like) {
+            s.join('users', 'c',
+              squel.expr()
+              .and('c.id = h.creatorId')
+              .and(
+                squel.expr()
+                .or('c.displayName LIKE "%'+q.creatorName_like+'%"')
+                .or('c.fullName LIKE "%'+q.creatorName_like+'%"')
+              )
+            );
+          }
+
+          s.limit(15)
+
+          if (req.query.page) s.offset(req.query.page*15-15);
+
+          s.distinct();
+
+          console.log(s.toString());
+
+          return s;
         }
       },
       // record method for use with record.[method]

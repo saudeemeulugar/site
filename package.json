@@ -33,6 +33,7 @@
     "mysql2": "^1.6.1",
     "redis": "^2.8.0",
     "request": "^2.88.0",
+    "squel": "^5.12.2",
     "we": "^1.5.9",
     "we-core": "^2.0.7",
     "we-passport-oauth2-password": "^2.0.0",

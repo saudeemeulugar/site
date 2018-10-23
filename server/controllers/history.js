@@ -45,35 +45,50 @@ module.exports = {
    * @param  {Object} res express.js response
    */
   find(req, res) {
-    const models = req.we.db.models;
+    const we = req.we,
+      models = we.db.models,
+      Op = we.Op,
+      sLiteral = we.db.defaultConnection.literal;
 
-    if (!req.we.acl.canStatic('access_history_unpublished', req.userRoleNames)) {
-      res.locals.query.where.published = true;
-    }
+    let s = models.history.buildSearchQuery(req, res);
 
-    const Op = req.we.Op;
+    we.db.defaultConnection.query(s.toString())
+    .then((results)=> {
+      if (!results[0].length) {
+        return {
+          count: 0,
+          rows: []
+        }
+      }
 
-    if (req.query.q && req.query.q.split) {
-      let searchs = req.query.q.split(' ');
+      let countQ  = s.toString().replace('DISTINCT h.id', 'COUNT("h.id")');
 
-      const where = res.locals.query.where;
+      return we.db.defaultConnection.query(countQ)
+      .then( (results2)=> { // count query
+        return {
+          count: results2[0][0].count
+        };
+      })
+      .then( (r)=> { // fetch records query
+        let ids = results[0].map((r)=> {
+          return r.id;
+        });
 
-      where[Op.and] = [];
-      const and = where[Op.and];
+        res.locals.query.where = { id: ids };
+        res.locals.query.order = [
+           sLiteral('FIELD(history.id,'+ids.join(',')+')')
+        ];
 
-      searchs.forEach( (s)=> {
-        if (!s) return;
-        and.push({
-          searchData: {
-            [Op.like]: '%'+s+'%'
-          }
+        return res.locals.Model
+        .findAll(res.locals.query)
+        .then( (records)=> {
+          return {
+            rows: records,
+            count: r.count
+          };
         });
       });
-    }
-
-    return res.locals.Model
-    .findAndCountAll(res.locals.query)
-    // reload creators to get tags and related data from hooks:
+    })
     .then(function (result) {
       let creatorsIds = result.rows.map( (r)=> {
         if (!r.creator || !r.creator.id) return;
@@ -111,8 +126,14 @@ module.exports = {
     .then(function afterFindAndCount (record) {
       res.locals.metadata.count = record.count;
       res.locals.data = record.rows;
-      res.ok();
-      return null;
+
+      return models.history.loadSearchTerms()
+      .then( (terms)=> {
+        res.locals.searchTerms = terms;
+        res.ok();
+        return null;
+      })
+      .catch(res.queryError);
     })
     .catch(res.queryError);
   },
