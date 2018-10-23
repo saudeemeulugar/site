@@ -321,7 +321,9 @@ module.exports = function HModel(we) {
 
           s.limit(15)
 
-          if (req.query.page) s.offset(req.query.page*15-15);
+          if (req.query.page || req.query.page != '1') {
+            s.offset(( req.query.page*15 )-15);
+          }
 
           s.distinct();
 
