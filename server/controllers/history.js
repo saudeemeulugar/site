@@ -52,7 +52,7 @@ module.exports = {
 
     let query = {
       include: [
-        { 'as': 'creator', model: models.user }
+        { as: 'creator', model: models.user }
       ]
     };
 
