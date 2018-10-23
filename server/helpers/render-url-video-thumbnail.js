@@ -17,6 +17,8 @@ module.exports = function(we) {
 
     let info = urlParser.parse(options.hash.url);
 
+    if (!info || !info.provider || !info.id) return '';
+
     let format = options.hash.format || 'shortImage';
 
     let url = urlParser.create({
