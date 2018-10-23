@@ -7,24 +7,30 @@ const editSteps = {
   },
   2: {
     id: 2,
+    label: 'Texto',
+    title: 'Texto',
+    form: 'history-text',
+  },
+  3: {
+    id: 3,
     label: 'Imagens',
     title: 'Imagens',
     form: 'history2',
   },
-  3: {
-    id: 3,
+  4: {
+    id: 4,
     label: 'Vídeo',
     title: 'Vídeo',
     form: 'history3',
   },
-  4: {
-    id: 4,
+  5: {
+    id: 5,
     label: 'Audios',
     title: 'Audios',
     form: 'history4',
   },
-  5: {
-    id: 5,
+  6: {
+    id: 6,
     label: 'Publicação',
     title: 'Publicação',
     form: 'history5',

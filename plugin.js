@@ -57,6 +57,7 @@ module.exports = function loadPlugin(projectPath, Plugin) {
       'complete-registration': __dirname + '/server/forms/complete-registration.json',
       'history-create': __dirname + '/server/forms/history-create.json',
       'history1': __dirname + '/server/forms/history1.json',
+      'history-text': __dirname + '/server/forms/history-text.json',
       'history2': __dirname + '/server/forms/history2.json',
       'history3': __dirname + '/server/forms/history3.json',
       'history4': __dirname + '/server/forms/history4.json',

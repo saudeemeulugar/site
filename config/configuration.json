@@ -91,6 +91,30 @@
       ],
       "isSystemRole": true
     },
+    "groupMember": {
+      "name": "groupMember",
+      "isSystemRole": true,
+      "permissions": [
+        "find_group",
+        "find_post",
+        "create_post_in_group"
+      ]
+    },
+    "groupManager": {
+      "name": "groupManager",
+      "isSystemRole": true,
+      "permissions": [
+        "update_group",
+        "find_group",
+        "delete_group",
+        "manage_group",
+        "find_group_member",
+        "post_highlight",
+        "create_post_in_group",
+        "update_post_in_group",
+        "delete_post_in_group"
+      ]
+    },
     "team_member": {
       "name": "Membro da equipe",
       "canAddInUsers": true

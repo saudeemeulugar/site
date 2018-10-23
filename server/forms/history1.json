@@ -11,39 +11,37 @@
         "help": null
       }
     },
-    "body": {
-      "type": "html",
-      "allowNull": true,
-      "formFieldType": "html",
-      "formFieldHeight": 300,
-      "formFieldAttributes": {
-        "label": "Escreva aqui sua história",
-        "placeholder": null,
-        "help": null
-      }
-    },
-    "category": {
-      "type": "vocabulary/tag",
-      "vocabularyName": "Category",
-      "canCreate": false,
-      "formFieldMultiple": true,
-      "onlyLowercase": false,
-      "formFieldAttributes": {
-        "label": "Eixos",
-        "placeholder": null,
-        "help": "Selecione um eixo relácionado com sua história"
-      }
-    },
-    "tags": {
-      "type": "vocabulary/tag",
-      "vocabularyName": "Tags",
-      "canCreate": true,
-      "formFieldMultiple": true,
-      "onlyLowercase": true,
-      "formFieldAttributes": {
-        "label": "Assuntos relacionados",
-        "placeholder": null,
-        "help": "Escreva ou selecione no máximo 3 assuntos relacionados à história"
+
+    "keywordsGroup": {
+      "type": "field-group",
+      "title": "Palavras-chave",
+      "description": "Selecione algumas palavras relácionadas com a sua história",
+
+      "fields": {
+        "category": {
+          "type": "vocabulary/tag",
+          "vocabularyName": "Category",
+          "canCreate": false,
+          "formFieldMultiple": true,
+          "onlyLowercase": false,
+          "formFieldAttributes": {
+            "label": "Eixos",
+            "placeholder": null,
+            "help": "Selecione um eixo relácionado com sua história"
+          }
+        },
+        "tags": {
+          "type": "vocabulary/tag",
+          "vocabularyName": "Tags",
+          "canCreate": true,
+          "formFieldMultiple": true,
+          "onlyLowercase": true,
+          "formFieldAttributes": {
+            "label": "Assuntos relacionados",
+            "placeholder": null,
+            "help": "Escreva ou selecione no máximo 3 assuntos relacionados à história"
+          }
+        }
       }
     },
 

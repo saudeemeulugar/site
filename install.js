@@ -17,6 +17,7 @@ module.exports = {
         email: 'alberto.souza.99@gmail.com',
         password: '123', // change after install
         displayName: 'Administrator',
+        fullName: 'Administrator LinuxMan',
         cpf: '13044479797',
         active: true,
         roles: ['administrator']
