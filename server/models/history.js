@@ -319,6 +319,9 @@ module.exports = function HModel(we) {
             );
           }
 
+          s.order('publishedAt', false);
+          s.order('createdAt', false);
+
           s.limit(15)
 
           if (Number(req.query.page) || Number(req.query.page) > 1) {
