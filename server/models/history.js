@@ -268,7 +268,9 @@ module.exports = function HModel(we) {
 
           let s = squel.select()
           s.field('h.id');
+          s.field('h.updatedAt');
           s.from('histories', 'h')
+          s.group('id');
 
           if (q.q) {
             s.where(
@@ -319,8 +321,9 @@ module.exports = function HModel(we) {
             );
           }
 
+
           s.order('publishedAt', false);
-          s.order('createdAt', false);
+          s.order('id', false);
 
           s.limit(15)
 
