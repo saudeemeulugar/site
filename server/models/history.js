@@ -268,9 +268,7 @@ module.exports = function HModel(we) {
 
           let s = squel.select()
           s.field('h.id');
-          s.field('h.updatedAt');
           s.from('histories', 'h')
-          s.group('id');
 
           if (!req.we.acl.canStatic('access_history_unpublished', req.userRoleNames)) {
             if (req.isAuthenticated()) {
@@ -337,7 +335,6 @@ module.exports = function HModel(we) {
             );
           }
 
-          // s.order('credAt', false);
           s.order('id', false);
 
           s.limit(15)
