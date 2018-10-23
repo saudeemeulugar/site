@@ -52,7 +52,7 @@ module.exports = {
 
     let query = {
       include: [
-        { as: 'creator', model: models.user }
+        { as: 'creator', model: models.user, attributes: ['id'] }
       ]
     };
 
@@ -83,7 +83,7 @@ module.exports = {
           return r.id;
         });
 
-        query.where = { id: ids };
+        query.where = { id: { [Op.in]: ids } };
         query.order = [
            sLiteral('FIELD(history.id,'+ids.join(',')+')')
         ];
@@ -141,8 +141,7 @@ module.exports = {
         res.locals.searchTerms = terms;
         res.ok();
         return null;
-      })
-      .catch(res.queryError);
+      });
     })
     .catch(res.queryError);
   },
