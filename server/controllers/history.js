@@ -50,11 +50,16 @@ module.exports = {
       Op = we.Op,
       sLiteral = we.db.defaultConnection.literal;
 
+    let query = {
+      include: [
+        { 'as': 'creator', model: models.user }
+      ]
+    };
+
     let s = models.history.buildSearchQuery(req, res);
 
     we.db.defaultConnection.query(s.toString())
     .then( (results)=> {
-      we.log.info('results>', results);
 
       if (!results[0].length) {
         return {
@@ -78,15 +83,13 @@ module.exports = {
           return r.id;
         });
 
-        we.log.info('ids>', ids);
-
-        res.locals.query.where = { id: ids };
-        res.locals.query.order = [
+        query.where = { id: ids };
+        query.order = [
            sLiteral('FIELD(history.id,'+ids.join(',')+')')
         ];
 
         return res.locals.Model
-        .findAll(res.locals.query)
+        .findAll(query)
         .then( (records)=> {
           return {
             rows: records,
