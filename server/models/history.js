@@ -335,7 +335,7 @@ module.exports = function HModel(we) {
             );
           }
 
-          s.order('id', false);
+          s.order('h.id', false);
 
           s.limit(15)
 
