@@ -271,6 +271,7 @@ module.exports = function HModel(we) {
           s.from('histories', 'h')
 
           if (!req.we.acl.canStatic('access_history_unpublished', req.userRoleNames)) {
+            // not is admin and cant access unpublished:
             if (req.isAuthenticated()) {
               s.where (
                 squel.expr()
@@ -283,6 +284,19 @@ module.exports = function HModel(we) {
               );
             } else {
               s.where ('h.published = 1');
+            }
+          } else {
+            // published filter if user has access:
+            if (
+              req.query.published === true ||
+              req.query.published == 'true'
+            ) {
+              s.where ('h.published = 1');
+            } else if (
+              req.query.published == 'false' ||
+              req.query.published == false
+            ) {
+              s.where ('h.published = 0 OR h.published IS NULL');
             }
           }
 
