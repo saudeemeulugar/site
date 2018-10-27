@@ -16,7 +16,14 @@
     <div class="actions">
       {{we-action-edit-btn resourceName data req data.id}} {{we-action-delete-btn resourceName data req data.id}}
     </div>
-    <div class="history-metadata">{{we-date data.historyDate 'DD/MM/YYYY'}}, {{data.locationText}}</div>
+    <div class="history-meta-share">
+      <span class="history-metadata">{{we-date data.historyDate 'DD/MM/YYYY'}}, {{data.locationText}}</span>
+
+      {{share-url-links url=data.linkPermanent title=data.title}}
+      <div class="history-share">
+
+      </div>
+    </div>
     {{#if data.featuredImage}}
       <div class="history-featuredImage">
         {{we-image data.featuredImage "original" class="img-responsive img-thumbnail featured-image-findOne"}}

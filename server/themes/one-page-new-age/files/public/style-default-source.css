@@ -8510,3 +8510,23 @@ body.body-main-index .widget-pinion .pinion-helper {
 .widget-fb-page {
   margin-top: 20px;
 }
+.history-meta-share .history-metadata {
+  padding-top: 5px;
+  display: inline-block;
+  font-size: 12px;
+}
+.history-meta-share a {
+  float: right;
+}
+.history-meta-share a img {
+  width: 30px;
+}
+@media (max-width: 374px) {
+  .history-meta-share .history-metadata {
+    display: block;
+    margin-bottom: 3px;
+  }
+  .history-meta-share a {
+    float: none;
+  }
+}
