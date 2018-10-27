@@ -64,6 +64,7 @@
         "country": {
           "type": "hidden",
           "defaultValue": "BR",
+          "allowNull": false,
           "formFieldAttributes": {
             "label": null,
             "placeholder": null,
@@ -72,6 +73,7 @@
         },
         "locationState": {
           "type": "location/state",
+          "allowNull": false,
           "formCountryFieldName": "country",
           "formFieldAttributes": {
             "label": "Estado",
@@ -81,6 +83,7 @@
         },
         "city": {
           "type": "location/city",
+          "allowNull": false,
           "formStateFieldName": "locationState",
           "formFieldAttributes": {
             "label": "Cidade",

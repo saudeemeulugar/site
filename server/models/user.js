@@ -111,7 +111,9 @@ module.exports = function UserModel(we) {
             this.get('displayName') &&
             this.get('cpf') &&
             this.get('cellphone') &&
-            this.get('phone')
+            this.get('country') &&
+            this.get('locationState') &&
+            this.get('city')
           ) {
             return true;
           }

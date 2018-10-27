@@ -230,7 +230,7 @@ module.exports = function loadPlugin(projectPath, Plugin) {
       if (
         req.isAuthenticated() &&
         !req.user.allRequirementsMet &&
-        req.originalUrl == '/'
+        ( req.originalUrl == '/' || req.originalUrl == '/history/create' )
       ) {
         return res.goTo('/complete-registration');
       }
