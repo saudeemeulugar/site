@@ -8015,6 +8015,9 @@ body.body-main-index #region-content .widget.widget-slideshow .device-container 
 .history-findOne .history-videos {
   margin-top: 10px;
 }
+.history-body {
+  padding-top: 10px;
+}
 .social-logins {
   border-bottom: 1px solid #ddd;
   padding-bottom: 10px;
