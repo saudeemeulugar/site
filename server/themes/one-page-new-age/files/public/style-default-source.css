@@ -7933,8 +7933,12 @@ body.body-main-index #region-content .widget.widget-slideshow .device-container 
   color: #9a9a9a;
 }
 .history-findAll-header {
+  margin-bottom: 5px;
+}
+.history-findAll-actions {
   border-bottom: 1px solid #ddd;
-  margin-bottom: 30px;
+  padding-bottom: 8px;
+  margin-bottom: 12px;
 }
 .history-search {
   margin-bottom: 25px;

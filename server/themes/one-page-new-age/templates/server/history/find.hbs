@@ -17,7 +17,7 @@
             <div class="form-group">
               <label>Texto: </label>
               <input type="text" name="q" class="form-control" placeholder="Buscar no título ou texto ..." value="{{req.query.q}}">
-{{!--               <span class="input-group-btn">
+              {{!-- <span class="input-group-btn">
                 <button class="btn btn-default" type="submit">
                   <span class="glyphicon glyphicon-search"></span>
                 </button>
@@ -27,7 +27,7 @@
             <div class="form-group">
               <label>Autor: </label>
               <input type="text" name="creatorName_like" class="form-control" placeholder="Do autor/narrador ..." value="{{req.query.creatorName_like}}">
-{{!--               <span class="input-group-btn">
+              {{!-- <span class="input-group-btn">
                 <button class="btn btn-default" type="submit">
                   <span class="glyphicon glyphicon-search"></span>
                 </button>
@@ -69,6 +69,13 @@
 
       </form>
     </div>
+  </div>
+  {{!-- authenticated user actions --}}
+  <div class="history-findAll-actions">
+    <a href="/history/create" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Enviar</a>
+    {{#if req.user.id}}
+      <a href="/user/{{req.user.id}}" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span> Minhas histórias</a>
+    {{/if}}
   </div>
 
   <div class="row dynamic-grid">
