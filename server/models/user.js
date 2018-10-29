@@ -330,6 +330,175 @@ module.exports = function UserModel(we) {
             .then(resolve)
             .catch(reject);
           });
+        },
+
+        emailSend(userId, emailName) {
+          const Model = we.db.models['user-unique-email-log'];
+
+          return Model.findOne({
+            where: {
+              userId: userId,
+              emailName: emailName
+            }
+          })
+          .then( (r)=> {
+            if (!r) return Model.build({
+              userId: userId,
+              emailName: emailName,
+              send: false
+            });
+            return r
+          })
+        },
+        sendNewUserEmail(user) {
+          if (
+            we.plugins['we-plugin-email'] &&
+            user &&
+            user.toJSON &&
+            user.active &&
+            user.id
+          ) {
+            we.db.models.user.emailSend(user.id, 'newUserEmail')
+            .then( (eLog)=> {
+              if (eLog.send) return null; // already send
+              // only send to new users:
+              if (we.utils.moment(user.createdAt).unix < 1540819709) return null;
+
+              const tv = user.toJSON();
+
+              tv.siteName = we.config.appName;
+              tv.userEmail = user.email;
+              tv.siteUrl = we.config.hostname;
+              tv.userName = (user.displayName || user.fullName);
+
+              if (we.systemSettings) {
+                if (we.systemSettings.siteName) {
+                  tv.siteName = we.systemSettings.siteName;
+                }
+              }
+
+              const options = { to: tv.userEmail };
+              // send email in async
+              we.email.sendEmail('newUserEmail',
+                options, tv,
+              (err)=> {
+                if (err) {
+                  we.log.error('user:newUserEmail', err);
+                }
+              });
+
+              eLog.send = true;
+              return eLog.save();
+            })
+            .catch( (err)=> {
+              we.log.error('user:newUserEmail', err);
+            });
+          }
+        },
+        sendNewHistoryEmail(user, history) {
+          if (
+            we.plugins['we-plugin-email'],
+            user && user.id &&
+            history && history.id && history.title &&
+            ( history.published == false )
+          ) {
+            const emailName = 'newHistoryEmail_'+history.id;
+
+            we.db.models.user.emailSend(user.id, emailName)
+            .then( (eLog)=> {
+              if (eLog.send) return null; // already send
+              // only send to new histories:
+              if (we.utils.moment(history.createdAt).unix < 1540819709) return null;
+
+              const tv = user.toJSON();
+
+              tv.siteName = we.config.appName;
+              tv.userEmail = user.email;
+              tv.siteUrl = we.config.hostname;
+              tv.userName = (user.displayName || user.fullName);
+              tv.historyTitle = history.title;
+              tv.historyCreatedAt = we.utils.moment(
+                history.createdAt
+              ).format('dd/mm/yyyy');
+              tv.historyId = history.id;
+
+              if (we.systemSettings) {
+                if (we.systemSettings.siteName) {
+                  tv.siteName = we.systemSettings.siteName;
+                }
+              }
+
+              const options = { to: tv.userEmail };
+              // send email in async
+              we.email.sendEmail('newHistoryEmail',
+                options, tv,
+              (err)=> {
+                if (err) {
+                  we.log.error('user:newHistoryEmail', err);
+                }
+              });
+
+              eLog.send = true;
+              return eLog.save();
+            })
+            .catch( (err)=> {
+              we.log.error('user:newHistoryEmail', err);
+            });
+          }
+        },
+        sendHistoryPublishedEmail(user, history) {
+          if (
+            we.plugins['we-plugin-email'],
+            user && user.id &&
+            history && history.id && history.title &&
+            ( history.published == true )
+          ) {
+            const emailName = 'historyPublishedEmail_'+history.id;
+
+            we.db.models.user.emailSend(user.id, emailName)
+            .then( (eLog)=> {
+              if (eLog.send) return null; // already send
+
+              const tv = user.toJSON();
+
+              tv.siteName = we.config.appName;
+              tv.userEmail = user.email;
+              tv.siteUrl = we.config.hostname;
+              tv.userName = (user.displayName || user.fullName);
+              tv.historyTitle = history.title;
+
+              tv.historyCreatedAt = we.utils.moment(
+                history.createdAt
+              ).format('DD/MM/YYYY');
+              tv.historyPublishedAt = we.utils.moment(
+                history.publishedAt
+              ).format('DD/MM/YYYY');
+
+              tv.historyId = history.id;
+
+              if (we.systemSettings) {
+                if (we.systemSettings.siteName) {
+                  tv.siteName = we.systemSettings.siteName;
+                }
+              }
+
+              const options = { to: tv.userEmail };
+              // send email in async
+              we.email.sendEmail('historyPublishedEmail',
+                options, tv,
+              (err)=> {
+                if (err) {
+                  we.log.error('user:historyPublishedEmail', err);
+                }
+              });
+
+              eLog.send = true;
+              return eLog.save();
+            })
+            .catch( (err)=> {
+              we.log.error('user:historyPublishedEmail', err);
+            });
+          }
         }
       },
       instanceMethods: {
@@ -371,6 +540,10 @@ module.exports = function UserModel(we) {
           delete user.isAdmin;
           delete user.isModerator;
         },
+        afterCreate(user) {
+          we.db.models.user.sendNewUserEmail(user);
+        },
+
         beforeUpdate(user) {
           user.username = user.id;
 
@@ -382,6 +555,9 @@ module.exports = function UserModel(we) {
 
           // dont change user acceptTerms in update
           user.acceptTerms = true;
+        },
+        afterUpdate(user) {
+          we.db.models.user.sendNewUserEmail(user);
         },
 
         afterFind(record) {

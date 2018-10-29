@@ -135,6 +135,109 @@ module.exports = function loadPlugin(projectPath, Plugin) {
           ]
         };
       }
+    },
+
+    emailTypes: {
+      newUserEmail: {
+        label: 'E-mail de boas vindas após o usuário se cadastrar no site',
+        defaultSubject: `Bem vindo(a) ao site {{siteName}}`,
+        defaultHTML: ``,
+        defaultText: ``,
+        templateVariables: {
+          displayName: {
+            example: 'Alberto',
+            description: 'Nome de exibição do novo usuário'
+          },
+          email: {
+            example: 'alberto@linkysystems.com',
+            description: 'E-mail do novo usuário'
+          },
+          siteName: {
+            example: 'Site Name',
+            description: 'Nome desse site'
+          },
+          siteUrl: {
+            example: plugin.we.config.hostname,
+            description: 'URL desse site'
+          }
+        }
+      },
+      newHistoryEmail: {
+        label: 'E-mail confirmação de envio de história antes de ser publicada',
+        defaultSubject: `Sua história {{historyTitle}} foi enviada`,
+        defaultHTML: ``,
+        defaultText: ``,
+        templateVariables: {
+          displayName: {
+            example: 'Alberto',
+            description: 'Nome de exibição do novo usuário'
+          },
+          email: {
+            example: 'alberto@linkysystems.com',
+            description: 'E-mail do novo usuário'
+          },
+          siteName: {
+            example: 'Site Name',
+            description: 'Nome desse site'
+          },
+          siteUrl: {
+            example: plugin.we.config.hostname,
+            description: 'URL desse site'
+          },
+          historyTitle: {
+            example: 'Outubro Rosa em Santa Rita do Tocantins',
+            description: 'Título da história'
+          },
+          historyCreatedAt: {
+            example: '20/05/2018',
+            description: 'Data de envio da história'
+          },
+          historyId: {
+            example: '1000',
+            description: 'ID da história'
+          }
+        }
+      },
+      historyPublishedEmail: {
+        label: 'E-mail de aviso de história publicada',
+        defaultSubject: `Sua história {{historyTitle}} foi publicada!`,
+        defaultHTML: ``,
+        defaultText: ``,
+        templateVariables: {
+          displayName: {
+            example: 'Alberto',
+            description: 'Nome de exibição do novo usuário'
+          },
+          email: {
+            example: 'alberto@linkysystems.com',
+            description: 'E-mail do novo usuário'
+          },
+          siteName: {
+            example: 'Site Name',
+            description: 'Nome desse site'
+          },
+          siteUrl: {
+            example: plugin.we.config.hostname,
+            description: 'URL desse site'
+          },
+          historyTitle: {
+            example: 'Outubro Rosa em Santa Rita do Tocantins',
+            description: 'Título da história'
+          },
+          historyCreatedAt: {
+            example: '20/05/2018',
+            description: 'Data de envio da história'
+          },
+          historyPublishedAt: {
+            example: '20/05/2018',
+            description: 'Data de publicação da história'
+          },
+          historyId: {
+            example: '1000',
+            description: 'ID da história'
+          }
+        }
+      }
     }
   });
 

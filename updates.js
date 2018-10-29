@@ -46,6 +46,34 @@ function updates() {
       })
       .catch(done);
     }
+  }, {
+    version: '1.1.0',
+    update(we, done) {
+      we.log.info('Start project update v1.1.0');
+
+      we.db.models.user.findAll({
+        limit: 100000,
+        attributes: ['id'],
+        raw: true
+      })
+      .then( (r)=> {
+        return we.db.models['user-unique-email-log']
+        .bulkCreate(r.map( (u)=> {
+          return {
+            userId: u.id,
+            emailName: 'newUserEmail',
+            send: true
+          }
+        }))
+        .then(()=> r);
+      })
+      .then(()=> {
+        we.log.info('Done project update v1.1.0');
+        done();
+        return null;
+      })
+      .catch(done);
+    }
   }];
 }
 

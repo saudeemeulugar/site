@@ -217,6 +217,8 @@ module.exports = {
       return res.goTo('/login?redirectUrl=/history/create');
     }
 
+    const we = req.we;
+
     if (!res.locals.template) {
       res.locals.template = res.locals.model + '/' + 'create';
     }
@@ -232,12 +234,16 @@ module.exports = {
         req.body.creatorId = req.user.id;
       }
 
-      req.we.utils._.merge(res.locals.data, req.body);
+      we.utils._.merge(res.locals.data, req.body);
 
       return res.locals.Model
       .create(req.body)
       .then(function afterCreate (record) {
         res.locals.data = record;
+
+        if (req.user) {
+          we.db.models.user.sendNewHistoryEmail(req.user, record);
+        }
 
         if (req.body.avancar || req.body.next) {
           return res.goTo('/history/'+record.id+'/edit?step=2');
@@ -303,14 +309,25 @@ module.exports = {
   publish(req, res) {
     if (!req.isAuthenticated()) return res.forbidden();
 
+    if (req.body.published === 'false') req.body.published = false;
+
     const models = req.we.db.models;
 
-    models.history.findById(req.params.id)
+    models.history.findById(req.params.id, {
+      include: [{ as: 'creator', model: models.user }]
+    })
     .then( (history)=> {
       if (!history) return res.notFound();
 
       return history.publish( Boolean(req.body.published) )
       .then( ()=> {
+
+        if (Boolean(req.body.published)) {
+          if (history.creator) {
+            models.user.sendNewHistoryEmail(history.creator, history);
+          }
+        }
+
         // success
         return res.ok();
       });
@@ -352,6 +369,9 @@ module.exports = {
 };
 
 function editResponse(req, res, record) {
+  // only update published at publish action:
+  delete req.body.published;
+
   record.updateAttributes(req.body)
   .then(function reloadAssocs(n) {
     return n.reload()
