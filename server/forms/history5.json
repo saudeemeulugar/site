@@ -2,6 +2,10 @@
   "method": "post",
 
   "fields": {
+    "body": {
+      "type": "history-required-midia"
+    },
+
     "creatorId": {
       "type": "hcreator",
       "defaultValue": false,

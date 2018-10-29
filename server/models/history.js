@@ -90,6 +90,20 @@ module.exports = function HModel(we) {
         defaultValue: false,
         formFieldType: null
       },
+      haveAnyMedia: {
+        type: we.db.Sequelize.VIRTUAL,
+        get() {
+          if (
+            this.get('haveText') ||
+            this.get('haveImage') ||
+            this.get('haveVideo') ||
+            this.get('haveAudio')
+          ) {
+            return true;
+          }
+          return false;
+        }
+      },
       country: {
         type: we.db.Sequelize.STRING(5),
         formFieldType: 'location/country',
