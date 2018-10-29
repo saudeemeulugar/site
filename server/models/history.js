@@ -317,10 +317,14 @@ module.exports = function HModel(we) {
           if (q.q) {
             s.where(
               squel.expr()
-              .or('h.title LIKE %?%', q.q)
-              .or('h.body LIKE %?%', q.q)
+              .or('h.title LIKE ?', '%'+q.q+'%')
+              .or('h.body LIKE ?', '%'+q.q+'%')
             );
           }
+
+          if (q.id) s.where('h.id = ?', q.id);
+          if (q.title_contains) s.where('h.title LIKE ?', '%'+q.title_contains+'%');
+          if (q.locationState_contains) s.where('h.locationState LIKE ?', '%'+q.locationState_contains+'%');
 
           if (q.haveImage) s.where('h.haveImage = 1');
           if (q.haveText) s.where('h.haveText = 1');
@@ -357,8 +361,8 @@ module.exports = function HModel(we) {
               .and('c.id = h.creatorId')
               .and(
                 squel.expr()
-                .or('c.displayName LIKE "%'+q.creatorName_like+'%"')
-                .or('c.fullName LIKE "%'+q.creatorName_like+'%"')
+                .or('c.displayName LIKE ?', '%'+q.creatorName_like+'%')
+                .or('c.fullName LIKE ?', '%'+q.creatorName_like+'%')
               )
             );
           }
@@ -372,6 +376,8 @@ module.exports = function HModel(we) {
           }
 
           s.distinct();
+
+          // console.log('>>', s.toString());
 
           return s;
         }
