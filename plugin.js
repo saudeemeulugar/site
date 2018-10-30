@@ -141,8 +141,22 @@ module.exports = function loadPlugin(projectPath, Plugin) {
       newUserEmail: {
         label: 'E-mail de boas vindas após o usuário se cadastrar no site',
         defaultSubject: `Bem vindo(a) ao site {{siteName}}`,
-        defaultHTML: ``,
-        defaultText: ``,
+        defaultHTML: `<p>O seu cadastro no site do <i><a href="{{siteUrl}}">{{siteName}}</a></i> foi realizado com sucesso!</p>
+<p>Caso queira editar ou completar algumas informações sobre você, acesse o seu perfil no site do <i><a href="{{userEditProfileURL}}">{{siteName}}</a></i> ou clique no link abaixo:</p>
+<p>{{userEditProfileURL}}</p>
+<p>Muito obrigada por participar!</p>
+<p><br />Atenciosamente,<br />{{siteName}}<br />{{siteUrl}}</p>`,
+        defaultText: `O seu cadastro no site do {{siteName}} foi realizado com sucesso!
+
+Caso queira editar ou completar algumas informações sobre você, acesse o seu perfil no site do {{siteName}} ou clique no link abaixo:
+
+{{userEditProfileURL}}
+
+Muito obrigada por participar!
+
+Atenciosamente,
+{{siteName}}
+{{siteUrl}}`,
         templateVariables: {
           displayName: {
             example: 'Alberto',
@@ -159,14 +173,29 @@ module.exports = function loadPlugin(projectPath, Plugin) {
           siteUrl: {
             example: plugin.we.config.hostname,
             description: 'URL desse site'
-          }
+          },
+          userEditProfileURL: {
+            example: plugin.we.config.hostname+'/user/1/edit',
+            description: 'URL para edição do perfil do usuário'
+          },
         }
       },
       newHistoryEmail: {
         label: 'E-mail confirmação de envio de história antes de ser publicada',
-        defaultSubject: `Sua história {{historyTitle}} foi enviada`,
-        defaultHTML: ``,
-        defaultText: ``,
+        defaultSubject: `Sua história {{historyTitle}} foi enviada com sucesso`,
+        defaultHTML: `<p>Sua história '{{historyTitle}}' foi enviada com sucesso e encaminhada para a nossa triagem.<br>
+Em breve avisaremos quando sua história for publicada.</p>
+<p>O <i><a href="{{siteUrl}}">{{siteName}}</a></i> agradece a sua participação.</p>
+<p><br />Atenciosamente,<br />{{siteName}}<br />{{siteUrl}}</p>`,
+        defaultText: `Sua história '{{historyTitle}}' foi enviada com sucesso e encaminhada para a nossa triagem.
+Em breve avisaremos quando sua história for publicada.
+
+O {{siteName}} agradece a sua participação.
+
+
+Atenciosamente,
+{{siteName}}
+{{siteUrl}}`,
         templateVariables: {
           displayName: {
             example: 'Alberto',
@@ -195,14 +224,32 @@ module.exports = function loadPlugin(projectPath, Plugin) {
           historyId: {
             example: '1000',
             description: 'ID da história'
+          },
+          historyUrl: {
+            example: 'http://...',
+            description: 'Url para a história'
           }
         }
       },
       historyPublishedEmail: {
-        label: 'E-mail de aviso de história publicada',
+        label: 'E-mail de aviso de história publicada com sucesso',
         defaultSubject: `Sua história {{historyTitle}} foi publicada!`,
-        defaultHTML: ``,
-        defaultText: ``,
+        defaultHTML: `<p>Sua história '<a href="{{historyUrl}}">{{historyTitle}}</a>' ,enviada para <i><a href="{{siteUrl}}">{{siteName}}</a></i> já está NO AR!</p>
+<p>Compartilhe ela em suas redes!</p>
+<p>O <i><a href="{{siteUrl}}">{{siteName}}</a></i>  agradece a sua participação e aguarda o envio de mais histórias das suas vivências nos territórios.</p>
+<p>Link: {{historyUrl}}</p>
+<p><br />Atenciosamente,<br />{{siteName}}<br />{{siteUrl}}</p>`,
+        defaultText: `Sua história '{{historyTitle}}' ,enviada para {{siteName}} já está NO AR!
+
+Compartilhe ela em suas redes!
+
+O {{siteName}} agradece a sua participação e aguarda o envio de mais histórias das suas vivências nos territórios.
+
+Link: {{historyUrl}}
+
+Atenciosamente,
+{{siteName}}
+{{siteUrl}}`,
         templateVariables: {
           displayName: {
             example: 'Alberto',
@@ -235,6 +282,10 @@ module.exports = function loadPlugin(projectPath, Plugin) {
           historyId: {
             example: '1000',
             description: 'ID da história'
+          },
+          historyUrl: {
+            example: 'http://...',
+            description: 'Url para a história'
           }
         }
       }

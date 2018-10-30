@@ -370,6 +370,7 @@ module.exports = function UserModel(we) {
               tv.userEmail = user.email;
               tv.siteUrl = we.config.hostname;
               tv.userName = (user.displayName || user.fullName);
+              tv.userEditProfileURL = we.config.hostname+'/user/'+user.id+'/edit'
 
               if (we.systemSettings) {
                 if (we.systemSettings.siteName) {
@@ -421,6 +422,7 @@ module.exports = function UserModel(we) {
                 history.createdAt
               ).format('dd/mm/yyyy');
               tv.historyId = history.id;
+              tv.historyUrl = we.config.hostname+'/history/'+history.id;
 
               if (we.systemSettings) {
                 if (we.systemSettings.siteName) {
@@ -475,6 +477,7 @@ module.exports = function UserModel(we) {
               ).format('DD/MM/YYYY');
 
               tv.historyId = history.id;
+              tv.historyUrl = we.config.hostname+'/history/'+history.id;
 
               if (we.systemSettings) {
                 if (we.systemSettings.siteName) {

@@ -3664,7 +3664,7 @@ negotiator@0.6.1:
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.1.tgz#2b327184e8992101177b28563fb5e7102acd0ca9"
   integrity sha1-KzJxhOiZIQEXeyhWP7XnECrNDKk=
 
-nise@^1.4.5:
+nise@^1.4.6:
   version "1.4.6"
   resolved "https://registry.yarnpkg.com/nise/-/nise-1.4.6.tgz#76cc3915925056ae6c405dd8ad5d12bde570c19f"
   integrity sha512-1GedetLKzmqmgwabuMSqPsT7oumdR77SBpDfNNJhADRIeA3LN/2RVqR4fFqwvzhAqcTef6PPCzQwITE/YQ8S8A==
@@ -4783,10 +4783,10 @@ simple-hooks-callback@1.0.0:
   resolved "https://registry.yarnpkg.com/simple-hooks-callback/-/simple-hooks-callback-1.0.0.tgz#810b93bee7ed046d0db313fc0008cf506fea1b02"
   integrity sha1-gQuTvuftBG0NsxP8AAjPUG/qGwI=
 
-sinon@^7.0.0:
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/sinon/-/sinon-7.0.0.tgz#99f2e5198d90a01ccbcebd4dc181a24827cb90dd"
-  integrity sha512-8OrSYFPZ9xaECfi1ayVMd0ihYCW2OZYgX3rBczrB990gHZMM+aftvhNTJazGz/luS0Us9NWgD5P3KGQ7kYZvGg==
+sinon@^7.1.0:
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/sinon/-/sinon-7.1.0.tgz#819b63002ee09a90a3b50a0da4e0bdecb2e3f345"
+  integrity sha512-ffASxced8xr8eU0EGyfj9K++bRCtv/NyOFOxl7UBD86YH97oZjVxvecMhObwRlXe27GRUa6rVFEn67khPZ29rQ==
   dependencies:
     "@sinonjs/commons" "^1.0.2"
     "@sinonjs/formatio" "^3.0.0"
@@ -4794,7 +4794,7 @@ sinon@^7.0.0:
     diff "^3.5.0"
     lodash.get "^4.4.2"
     lolex "^3.0.0"
-    nise "^1.4.5"
+    nise "^1.4.6"
     supports-color "^5.5.0"
     type-detect "^4.0.8"
 
@@ -5680,10 +5680,10 @@ we-plugin-acl@^1.2.13:
   dependencies:
     we-core-acl "^1.2.3"
 
-we-plugin-auth@^2.2.2:
-  version "2.2.2"
-  resolved "https://registry.yarnpkg.com/we-plugin-auth/-/we-plugin-auth-2.2.2.tgz#beb45b353bda718d3c7fc6460fb5c36e12b52c69"
-  integrity sha512-7eLLDQJFVhZ8dBOxLj3lZDtVPWdvOvktuF6eWDIuAJWbxvcPPnVingqvd2vSmvbMXiTB2j3eDEstWzh5mhhdYA==
+we-plugin-auth@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/we-plugin-auth/-/we-plugin-auth-2.3.0.tgz#86064e3e3a872fe4301230a14505000694daa47b"
+  integrity sha512-w1nhB5F5/72OlDCYiUiKo2xUygiJGtpJrYGwxuPTxSIle7qw4R4o0bzGh5ikAjXObjcmZ/Y/rvzJmOcWUKzuSg==
   dependencies:
     bcryptjs "2.4.3"
     passport "0.4.0"
@@ -5752,10 +5752,10 @@ we-plugin-file-gdrive@^1.0.2:
     request "^2.85.0"
     uuid "^3.2.1"
 
-we-plugin-file-local@^2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/we-plugin-file-local/-/we-plugin-file-local-2.1.1.tgz#b25d8bbf52e2888b19919e2deafd8121f28f95d7"
-  integrity sha512-YnXbBbcJVzGGHv6OHCAiMzF5ehViQaqSKS83RLTLYxBn9IJ3An8PJDGi6ti9TsFFfKuHHsWBxq9uWblD6+LJhg==
+we-plugin-file-local@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/we-plugin-file-local/-/we-plugin-file-local-2.1.2.tgz#4b1fd87df22aa710cfd0285d50457f52b556a8b1"
+  integrity sha512-ApQtJPA3J9B4TIsS7wOd1I2j92kZJjLK+iuNGRqGnPu+nz0H7tKSxKFDQKQnfPZbkO9ARsSceaEKxR+U8Y784A==
   dependencies:
     gm "^1.23.1"
     mkdirp "^0.5.1"
@@ -5971,7 +5971,7 @@ winston@2.4.3:
     isstream "0.1.x"
     stack-trace "0.0.x"
 
-winston@^2.4.4:
+winston@2.4.4:
   version "2.4.4"
   resolved "https://registry.yarnpkg.com/winston/-/winston-2.4.4.tgz#a01e4d1d0a103cf4eada6fc1f886b3110d71c34b"
   integrity sha512-NBo2Pepn4hK4V01UfcWcDlmiVTs7VTB1h7bgnB0rgP146bYhMxX0ypCz3lBOfNxCO4Zuek7yeT+y/zM1OfMw4Q==
