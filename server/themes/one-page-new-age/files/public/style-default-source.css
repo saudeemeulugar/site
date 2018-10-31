@@ -8022,6 +8022,14 @@ body.body-main-index #region-content .widget.widget-slideshow .device-container 
 .history-body {
   padding-top: 10px;
 }
+.location-search-area .select2-container {
+  min-width: 190px;
+  text-align: left;
+}
+.history-search label {
+  margin-left: 6px;
+  padding-right: 4px;
+}
 .social-logins {
   border-bottom: 1px solid #ddd;
   padding-bottom: 10px;

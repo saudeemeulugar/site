@@ -35,6 +35,81 @@
             </div>
           </div>
 
+          <div class="col-sm-12 col-md-12 col-ls-12 location-search-area" >
+
+            <div class="form-group location-state-f-group">
+              <label for="sHistoryLocationState">Estado:</label>
+              <select id="sHistoryLocationState" name="locationState" class="form-control">
+                <option value="{{req.query.locationState}}">{{req.query.locationState}}</option>
+              </select>
+            </div>
+
+            <script>
+            $(document).ready(function() {
+              var country = 'BR';
+
+              we.components.select.init('#sHistoryLocationState', {
+                searchField: 'name',
+                cache: true,
+                url: function () {
+                  return '/api/v1/location/' + country;
+                },
+                processResults: function (data) {
+                  if (!data || !data.lstate) return {};
+                  return {
+                    results: data.lstate.map(function(r) {
+                      return { text: r.name, id: r.code };
+                    })
+                  };
+                }
+              });
+            });
+            </script>
+
+            <div class="form-group location-city-f-group">
+              <label for="sHistoryCity">Cidade:</label>
+              <select id="sHistoryCity" name="city"
+                class="form-control">
+                  <option value="{{req.query.city}}">{{req.query.city}}</option>
+              </select>
+            </div>
+
+            <script>$(document).ready(function() {
+              function checkCityDisabled (state) {
+                if (!state) {
+                  citySelector.attr('disabled', 'disabled');
+                } else {
+                  citySelector.attr('disabled', null);
+                }
+              }
+
+              var state = $('#sHistoryLocationState')[0].value;
+              var citySelector = $('#sHistoryCity');
+
+              checkCityDisabled(state);
+
+              $('#sHistoryLocationState').change(function() {
+                state = this.value;
+                checkCityDisabled(state);
+              });
+
+              we.components.select.init('#sHistoryCity', {
+                searchField: 'name',
+                cache: true,
+                url: function () {
+                  return '/api/v1/location/BR/' + state;
+                },
+                processResults: function (data) {
+                  if (!data || !data.lcity) return {};
+                  return {
+                    results: data.lcity.map(function(r) {
+                      return { text: r.name, id: r.name };
+                    })
+                  };
+                }
+              });
+            });</script>
+          </div>
           <div class="col-sm-12 col-md-12 col-ls-12">
 
             <div class="form-group midia-group">
